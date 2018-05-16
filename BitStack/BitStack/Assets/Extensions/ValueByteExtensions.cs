@@ -59,7 +59,7 @@ namespace BitStack {
 
         /**
          * Returns the String representation of the Bit Sequence from the provided
-         * ushort. The String will contain 16 characters of 1 or 0 for each bit position
+         * ushort. The String will contain 8 characters of 1 or 0 for each bit position
          */
 		public static string BitString(this byte value) {
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder(8);
