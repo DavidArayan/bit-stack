@@ -22,7 +22,7 @@ namespace BitStack {
          * position. position value must be between [0, 7]
          */
 		public static sbyte SetBitAt(this sbyte data, int pos) {
-			return (sbyte)(data | 1 << pos);
+			return (sbyte)((byte)data | 1 << pos);
         }
 
         /**
