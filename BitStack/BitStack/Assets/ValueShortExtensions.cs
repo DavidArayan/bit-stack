@@ -7,7 +7,7 @@ namespace BitStack {
      * 
      * For more info visit https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/short
      */
-	public static class ValueShortExtension {
+	public static class ValueShortExtensions {
 
         /**
          * Return the state of the bit (either 1 or 0) at provided

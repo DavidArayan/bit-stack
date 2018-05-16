@@ -7,7 +7,7 @@ namespace BitStack {
      * 
      * For more info visit https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/ulong
      */
-	public static class ValueULongExtension {
+	public static class ValueULongExtensions {
 
         /**
          * Return the state of the bit (either 1 or 0) at provided
