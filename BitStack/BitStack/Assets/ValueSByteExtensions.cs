@@ -62,13 +62,7 @@ namespace BitStack {
          * ushort. The String will contain 16 characters of 1 or 0 for each bit position
          */
 		public static string BitString(this sbyte value) {
-            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder(8);
-
-            for (int i = 0; i < 8; i++) {
-                stringBuilder.Append(value.BitAt(i));
-            }
-
-            return stringBuilder.ToString();
+			return ((byte)value).BitString();
         }
 
         /**
