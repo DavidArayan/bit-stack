@@ -8,6 +8,7 @@ public class ValueByteTests {
 
 	private readonly static byte TEST_VALUE = 158; // 10011110
 	private readonly static string TEST_VALUE_STR = "10011110";
+	private readonly static string TEST_HEX = "9E";
 	private readonly static byte LOOP_COUNT = 8;
 
     [Test]
@@ -85,5 +86,13 @@ public class ValueByteTests {
 
 		Debug.Assert(testByte == TEST_VALUE, 
 		             "Expected Byte(" + testByte + ") and Test(" + TEST_VALUE + ") to Match.");
+    }
+
+	[Test]
+	public void Test_HexString() {
+		string testHex = TEST_VALUE.HexString();
+
+		Debug.Assert(testHex == TEST_HEX,
+		             "Expected Hex(" + testHex + ") and Test(" + TEST_HEX + ") to Match.");
     }
 }
