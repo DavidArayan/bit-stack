@@ -9,6 +9,13 @@ namespace BitStack {
      */
 	public static class ValueULongExtensions {
 
+		/**
+         * Simple method to get a simple true/false value from data
+         */
+        public static bool Bool(this ulong data) {
+            return data > 0;
+        }
+
         /**
          * Return the state of the bit (either 1 or 0) at provided
          * position. position value must be between [0, 63]
@@ -90,7 +97,7 @@ namespace BitStack {
         }
 
         /**
-         * Allows splitting a single unsigned 64 but ulong value into 8 x 8 bit byte values.
+         * Allows splitting a single unsigned 64 bit ulong value into 8 x 8 bit byte values.
          * Returns a System.ValueTuple of the split values
          */
 		public static System.ValueTuple<byte, byte, byte, byte, byte, byte, byte, byte> SplitByte(this ulong value) {
@@ -106,7 +113,7 @@ namespace BitStack {
         }
 
 		/**
-         * Allows splitting a single unsigned 64 but ulong value into 8 x 8 bit sbyte values.
+         * Allows splitting a single unsigned 64 bit ulong value into 8 x 8 bit sbyte values.
          * Returns a System.ValueTuple of the split values
          */
         public static System.ValueTuple<sbyte, sbyte, sbyte, sbyte, sbyte, sbyte, sbyte, sbyte> SplitSByte(this ulong value) {
@@ -122,7 +129,7 @@ namespace BitStack {
 		}
 
 		/**
-         * Allows splitting a single unsigned 64 but ulong value into 4 x 16 bit ushort values.
+         * Allows splitting a single unsigned 64 bit ulong value into 4 x 16 bit ushort values.
          * Returns a System.ValueTuple of the split values
          */
         public static System.ValueTuple<ushort, ushort, ushort, ushort> SplitUShort(this ulong value) {
@@ -138,7 +145,7 @@ namespace BitStack {
 		}
 
 		/**
-         * Allows splitting a single unsigned 64 but ulong value into 4 x 16 bit short values.
+         * Allows splitting a single unsigned 64 bit ulong value into 4 x 16 bit short values.
          * Returns a System.ValueTuple of the split values
          */
         public static System.ValueTuple<short, short, short, short> SplitShort(this ulong value) {
@@ -154,7 +161,7 @@ namespace BitStack {
 		}
 
 		/**
-         * Allows splitting a single unsigned 64 but ulong value into 2 x 32 bit uint values.
+         * Allows splitting a single unsigned 64 bit ulong value into 2 x 32 bit uint values.
          * Returns a System.ValueTuple of the split values
          */
         public static System.ValueTuple<uint, uint> SplitUInt(this ulong value) {
@@ -170,7 +177,7 @@ namespace BitStack {
 		}
 
 		/**
-         * Allows splitting a single unsigned 64 but ulong value into 2 x 32 bit int values.
+         * Allows splitting a single unsigned 64 bit ulong value into 2 x 32 bit int values.
          * Returns a System.ValueTuple of the split values
          */
         public static System.ValueTuple<int, int> SplitInt(this ulong value) {

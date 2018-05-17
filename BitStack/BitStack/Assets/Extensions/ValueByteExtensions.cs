@@ -8,6 +8,13 @@ namespace BitStack {
      * For more info visit https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/byte
      */
 	public static class ValueByteExtensions {
+
+        /**
+         * Simple method to get a simple true/false value from data
+         */
+		public static bool Bool(this byte data) {
+			return data > 0;
+		}
         
         /**
          * Return the state of the bit (either 1 or 0) at provided
@@ -70,6 +77,28 @@ namespace BitStack {
 
             return stringBuilder.ToString();
         }
+
+		/**
+         * Given a string in binary form ie (10110101) convert into
+         * a byte and return. Will only look at the first 8 characters
+         */
+        public static byte ByteFromBitString(this string data, int readIndex) {
+            byte value = 0;
+
+			for (int i = readIndex; i < 8; i++) {
+                value = data[i] == 1 ? value.SetBitAt(i) : value.UnsetBitAt(i);
+            }
+
+            return value;
+        }
+        
+        /**
+         * Given a string in binary form ie (10110101) convert into
+         * a byte and return. Will only look at the first 8 characters
+         */
+		public static byte ByteFromBitString(this string data) {
+			return data.ByteFromBitString(0);
+		}
 
         /**
          * Returns the Hex Value as a String.

@@ -9,6 +9,13 @@ namespace BitStack {
      */
 	public static class ValueUIntExtensions {
 
+		/**
+         * Simple method to get a simple true/false value from data
+         */
+        public static bool Bool(this uint data) {
+            return data > 0;
+        }
+
         /**
          * Return the state of the bit (either 1 or 0) at provided
          * position. position value must be between [0, 31]

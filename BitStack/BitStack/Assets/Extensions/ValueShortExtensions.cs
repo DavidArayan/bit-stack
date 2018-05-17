@@ -9,6 +9,13 @@ namespace BitStack {
      */
 	public static class ValueShortExtensions {
 
+		/**
+         * Simple method to get a simple true/false value from data
+         */
+        public static bool Bool(this short data) {
+            return data > 0;
+        }
+
         /**
          * Return the state of the bit (either 1 or 0) at provided
          * position. position value must be between [0, 15]
@@ -22,7 +29,7 @@ namespace BitStack {
          * position. position value must be between [0, 15]
          */
         public static short SetBitAt(this short data, int pos) {
-            return (short)(data | 1 << pos);
+            return (short)((ushort)data | 1u << pos);
         }
         
         /**

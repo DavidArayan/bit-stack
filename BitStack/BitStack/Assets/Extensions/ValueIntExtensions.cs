@@ -8,6 +8,13 @@ namespace BitStack {
      * For more info visit https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/int
      */
 	public static class ValueIntExtensions {
+        
+		/**
+         * Simple method to get a simple true/false value from data
+         */
+        public static bool Bool(this int data) {
+            return data > 0;
+        }
 
         /**
          * Return the state of the bit (either 1 or 0) at provided

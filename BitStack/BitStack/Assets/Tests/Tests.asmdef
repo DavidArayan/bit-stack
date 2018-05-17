@@ -1,0 +1,12 @@
+{
+    "name": "Tests",
+    "references": [
+        "BitStackAssembly"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
