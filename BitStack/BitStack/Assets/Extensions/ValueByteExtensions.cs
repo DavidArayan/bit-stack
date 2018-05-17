@@ -71,7 +71,7 @@ namespace BitStack {
 		public static string BitString(this byte value) {
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder(8);
 
-            for (int i = 0; i < 8; i++) {
+            for (int i = 7; i >= 0; i--) {
                 stringBuilder.Append(value.BitAt(i));
             }
 
@@ -85,8 +85,8 @@ namespace BitStack {
         public static byte ByteFromBitString(this string data, int readIndex) {
             byte value = 0;
 
-			for (int i = readIndex; i < 8; i++) {
-                value = data[i] == 1 ? value.SetBitAt(i) : value.UnsetBitAt(i);
+			for (int i = readIndex, j = 7; i < 8; i++, j--) {
+                value = data[i] == '1' ? value.SetBitAt(j) : value.UnsetBitAt(j);
             }
 
             return value;

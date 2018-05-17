@@ -24,11 +24,11 @@ public class ValueByteTests {
 
 	[Test]
     public void Test_Bool() {
-		byte POS_VALUE = 2;
-		byte ZERO_VALUE = 0;
+		byte posValue = 2;
+		byte zeroValue = 0;
 
-		Debug.Assert(POS_VALUE.Bool());
-		Debug.Assert(!ZERO_VALUE.Bool());
+		Debug.Assert(posValue.Bool());
+		Debug.Assert(!zeroValue.Bool());
     }
 
 	[Test]
@@ -47,20 +47,23 @@ public class ValueByteTests {
     
 	[Test]
 	public void Test_ToggleBitAt() {
-		byte INV = TEST_VALUE;
+		byte inv = TEST_VALUE;
+		byte invTest = (byte)~TEST_VALUE;
 
 		for (int i = 0; i < LOOP_COUNT; i++) {
-			INV = INV.ToggleBitAt(i);
+			inv = inv.ToggleBitAt(i);
         }
 
-		Debug.Assert(INV == ~TEST_VALUE);
+		Debug.Assert(inv == invTest, 
+		             "Expected Toggle(" + inv +") and InvTest(" + (invTest) + ") to Match.");
 
         // invert the order to ensure
 		for (int i = 0; i < LOOP_COUNT; i++) {
-            INV = INV.ToggleBitAt(i);
+			inv = inv.ToggleBitAt(i);
         }
 
-		Debug.Assert(INV == TEST_VALUE);
+		Debug.Assert(inv == TEST_VALUE, 
+		             "Expected Toggle(" + inv + ") and Test(" + TEST_VALUE + ") to Match.");
     }
 
 	[Test]
@@ -70,11 +73,17 @@ public class ValueByteTests {
 
 	[Test]
     public void Test_BitString() {
-		Debug.Assert(TEST_VALUE.BitString() == TEST_VALUE_STR);
+		string testStr = TEST_VALUE.BitString();
+
+		Debug.Assert(testStr == TEST_VALUE_STR, 
+		             "Expected String(" + testStr + ") and Test(" + TEST_VALUE_STR + ") to Match.");
     }
 
 	[Test]
 	public void Test_ByteFromBitString() {
-		Debug.Assert(TEST_VALUE_STR.ByteFromBitString() == TEST_VALUE);
+		byte testByte = TEST_VALUE_STR.ByteFromBitString();
+
+		Debug.Assert(testByte == TEST_VALUE, 
+		             "Expected Byte(" + testByte + ") and Test(" + TEST_VALUE + ") to Match.");
     }
 }
