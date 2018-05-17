@@ -95,4 +95,32 @@ public class ValueByteTests {
 		Debug.Assert(testHex == TEST_HEX,
 		             "Expected Hex(" + testHex + ") and Test(" + TEST_HEX + ") to Match.");
     }
+
+	[Test]
+	public void Test_IsPowerOfTwo() {
+		byte pow1 = 16;
+		byte pow2 = 64;
+		byte pow3 = 2;
+		byte nPow1 = 14;
+		byte nPow2 = 33;
+		byte nPow3 = 5;
+
+		Debug.Assert(pow1.IsPowerOfTwo() == true, 
+		             "Expected Test(" + pow1 + ") To be Power of Two");
+
+		Debug.Assert(pow2.IsPowerOfTwo() == true,
+		             "Expected Test(" + pow2 + ") To be Power of Two");
+
+		Debug.Assert(pow3.IsPowerOfTwo() == true,
+		             "Expected Test(" + pow3 + ") To be Power of Two");
+
+		Debug.Assert(nPow1.IsPowerOfTwo() == false,
+		             "Expected Test(" + nPow1 + ") To be Non Power of Two");
+        
+		Debug.Assert(nPow2.IsPowerOfTwo() == false,
+		             "Expected Test(" + nPow2 + ") To be Non Power of Two");
+
+		Debug.Assert(nPow3.IsPowerOfTwo() == false,
+		             "Expected Test(" + nPow3 + ") To be Non Power of Two");
+	}
 }
