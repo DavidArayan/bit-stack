@@ -72,6 +72,22 @@ namespace BitStack {
 			return ((uint)value).BitString();
         }
 
+		/**
+         * Given a string in binary form ie (10110101) convert into
+         * a byte and return. Will only look at the first 8 characters
+         */
+        public static int IntFromBitString(this string data, int readIndex) {
+			return (int)data.UIntFromBitString();
+        }
+
+        /**
+         * Given a string in binary form ie (10110101) convert into
+         * a byte and return. Will only look at the first 8 characters
+         */
+        public static int IntFromBitString(this string data) {
+            return data.IntFromBitString(0);
+        }
+
         /**
          * Returns the Hex Value as a String.
          */

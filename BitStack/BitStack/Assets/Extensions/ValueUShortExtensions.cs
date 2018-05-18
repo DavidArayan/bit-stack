@@ -71,11 +71,33 @@ namespace BitStack {
         public static string BitString(this ushort value) {
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder(16);
 
-            for (int i = 0; i < 16; i++) {
+            for (int i = 15; i >= 0; i--) {
                 stringBuilder.Append(value.BitAt(i));
             }
 
             return stringBuilder.ToString();
+        }
+
+		/**
+         * Given a string in binary form ie (10110101) convert into
+         * a byte and return. Will only look at the first 8 characters
+         */
+        public static ushort UShortFromBitString(this string data, int readIndex) {
+            ushort value = 0;
+
+            for (int i = readIndex, j = 15; i < 16; i++, j--) {
+                value = data[i] == '1' ? value.SetBitAt(j) : value.UnsetBitAt(j);
+            }
+
+            return value;
+        }
+
+        /**
+         * Given a string in binary form ie (10110101) convert into
+         * a byte and return. Will only look at the first 8 characters
+         */
+        public static ushort UShortFromBitString(this string data) {
+            return data.UShortFromBitString(0);
         }
 
         /**

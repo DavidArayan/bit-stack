@@ -4,23 +4,24 @@ using NUnit.Framework;
 using System.Collections;
 using BitStack;
 
+/**
+ * Provides a test suite for the ValueByte functionality
+ */
 public class ValueByteTests {
 
 	private readonly static byte TEST_VALUE = 158; // 10011110
 	private readonly static string TEST_VALUE_STR = "10011110";
 	private readonly static string TEST_HEX = "9E";
-	private readonly static byte LOOP_COUNT = 8;
+	private readonly static int LOOP_COUNT = 8;
+
+    // the expected bit sequence in array form
+	private readonly static int[] EXPTECTED_BITS = { 0, 1, 1, 1, 1, 0, 0, 1 };
 
     [Test]
 	public void Test_BitAt() {
-		Debug.Assert(TEST_VALUE.BitAt(0) == 0);
-		Debug.Assert(TEST_VALUE.BitAt(1) == 1);
-		Debug.Assert(TEST_VALUE.BitAt(2) == 1);
-		Debug.Assert(TEST_VALUE.BitAt(3) == 1);
-		Debug.Assert(TEST_VALUE.BitAt(4) == 1);
-		Debug.Assert(TEST_VALUE.BitAt(5) == 0);
-		Debug.Assert(TEST_VALUE.BitAt(6) == 0);
-		Debug.Assert(TEST_VALUE.BitAt(7) == 1);
+		for (int i = 0; i < LOOP_COUNT; i++) {
+			Debug.Assert(TEST_VALUE.BitAt(i) == EXPTECTED_BITS[i]);
+		}
     }
 
 	[Test]
@@ -34,15 +35,17 @@ public class ValueByteTests {
 
 	[Test]
     public void Test_SetBitAt() {
-		for (int i = 0; i < LOOP_COUNT; i++) {
-			Debug.Assert(TEST_VALUE.SetBitAt(i).BitAt(i) == 1);
-		}
+        for (int i = 0; i < LOOP_COUNT; i++) {
+            Debug.Assert(TEST_VALUE.SetBitAt(i).BitAt(i) == 1,
+                         "Expected Bit Position(" + i + ") to be 1");
+        }
     }
-    
-	[Test]
+
+    [Test]
     public void Test_UnsetBitAt() {
-		for (int i = 0; i < LOOP_COUNT; i++) {
-            Debug.Assert(TEST_VALUE.UnsetBitAt(i).BitAt(i) == 0);
+        for (int i = 0; i < LOOP_COUNT; i++) {
+            Debug.Assert(TEST_VALUE.UnsetBitAt(i).BitAt(i) == 0,
+                         "Expected Bit Position(" + i + ") to be 0");
         }
     }
     
@@ -69,7 +72,10 @@ public class ValueByteTests {
 
 	[Test]
     public void Test_PopCount() {
-		Debug.Assert(TEST_VALUE.PopCount() == 5);
+		int popCount = TEST_VALUE.PopCount();
+
+		Debug.Assert(TEST_VALUE.PopCount() == 5,
+		             "Expected Value(" + popCount + ") and Test(5) + to Match");
     }
 
 	[Test]
@@ -105,22 +111,22 @@ public class ValueByteTests {
 		byte nPow2 = 33;
 		byte nPow3 = 5;
 
-		Debug.Assert(pow1.IsPowerOfTwo() == true, 
+		Debug.Assert(pow1.IsPowerOfTwo(), 
 		             "Expected Test(" + pow1 + ") To be Power of Two");
 
-		Debug.Assert(pow2.IsPowerOfTwo() == true,
+		Debug.Assert(pow2.IsPowerOfTwo(),
 		             "Expected Test(" + pow2 + ") To be Power of Two");
 
-		Debug.Assert(pow3.IsPowerOfTwo() == true,
+		Debug.Assert(pow3.IsPowerOfTwo(),
 		             "Expected Test(" + pow3 + ") To be Power of Two");
 
-		Debug.Assert(nPow1.IsPowerOfTwo() == false,
+		Debug.Assert(!nPow1.IsPowerOfTwo(),
 		             "Expected Test(" + nPow1 + ") To be Non Power of Two");
         
-		Debug.Assert(nPow2.IsPowerOfTwo() == false,
+		Debug.Assert(!nPow2.IsPowerOfTwo(),
 		             "Expected Test(" + nPow2 + ") To be Non Power of Two");
 
-		Debug.Assert(nPow3.IsPowerOfTwo() == false,
+		Debug.Assert(!nPow3.IsPowerOfTwo(),
 		             "Expected Test(" + nPow3 + ") To be Non Power of Two");
 	}
 }

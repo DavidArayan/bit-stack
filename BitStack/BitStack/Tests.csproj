@@ -59,6 +59,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Tests\ValueByteTests.cs" />
+    <Compile Include="Assets\Tests\ValueDecimalTests.cs" />
+    <Compile Include="Assets\Tests\ValueIntTests.cs" />
+    <Compile Include="Assets\Tests\ValueLongTests.cs" />
+    <Compile Include="Assets\Tests\ValueSByteTests.cs" />
+    <Compile Include="Assets\Tests\ValueShortTests.cs" />
+    <Compile Include="Assets\Tests\ValueUIntTests.cs" />
+    <Compile Include="Assets\Tests\ValueULongTests.cs" />
+    <Compile Include="Assets\Tests\ValueUShortTests.cs" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>

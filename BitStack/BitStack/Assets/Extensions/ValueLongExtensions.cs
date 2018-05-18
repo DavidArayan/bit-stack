@@ -72,107 +72,27 @@ namespace BitStack {
 			return ((ulong)value).BitString();
         }
 
+		/**
+         * Given a string in binary form ie (10110101) convert into
+         * a byte and return. Will only look at the first 8 characters
+         */
+        public static long LongFromBitString(this string data, int readIndex) {
+			return (long)data.ULongFromBitString();
+        }
+
+        /**
+         * Given a string in binary form ie (10110101) convert into
+         * a byte and return. Will only look at the first 8 characters
+         */
+        public static long LongFromBitString(this string data) {
+            return data.LongFromBitString(0);
+        }
+
         /**
          * Returns the Hex Value as a String.
          */
 		public static string HexString(this long value) {
 			return value.ToString("X");
 		}
-
-		/**
-         * Allows combining 8 x 8 bit byte values into a single signed 64 bit long value
-         * Accepts a System.ValueTuple type
-         */
-        public static long Combine(this System.ValueTuple<byte, byte, byte, byte, byte, byte, byte, byte> tuple) {
-            throw new System.Exception("unimplemented");
-        }
-
-        /**
-         * Allows splitting a single signed 64 bit long value into 8 x 8 bit byte values.
-         * Returns a System.ValueTuple of the split values
-         */
-        public static System.ValueTuple<byte, byte, byte, byte, byte, byte, byte, byte> SplitByte(this long value) {
-            throw new System.Exception("unimplemented");
-        }
-
-        /**
-         * Allows combining 8 x 8 bit sbyte values into a single signed 64 bit long value
-         * Accepts a System.ValueTuple type
-         */
-        public static long Combine(this System.ValueTuple<sbyte, sbyte, sbyte, sbyte, sbyte, sbyte, sbyte, sbyte> tuple) {
-            throw new System.Exception("unimplemented");
-        }
-
-        /**
-         * Allows splitting a single signed 64 bit ulong value into 8 x 8 bit sbyte values.
-         * Returns a System.ValueTuple of the split values
-         */
-        public static System.ValueTuple<sbyte, sbyte, sbyte, sbyte, sbyte, sbyte, sbyte, sbyte> SplitSByte(this long value) {
-            throw new System.Exception("unimplemented");
-        }
-
-        /**
-         * Allows combining 4 x 16 bit ushort values into a single signed 64 bit long value
-         * Accepts a System.ValueTuple type
-         */
-        public static long Combine(this System.ValueTuple<ushort, ushort, ushort, ushort> tuple) {
-            throw new System.Exception("unimplemented");
-        }
-
-        /**
-         * Allows splitting a single signed 64 bit ulong value into 4 x 16 bit ushort values.
-         * Returns a System.ValueTuple of the split values
-         */
-        public static System.ValueTuple<ushort, ushort, ushort, ushort> SplitUShort(this long value) {
-            throw new System.Exception("unimplemented");
-        }
-
-        /**
-         * Allows combining 4 x 16 bit short values into a single signed 64 bit long value
-         * Accepts a System.ValueTuple type
-         */
-        public static long Combine(this System.ValueTuple<short, short, short, short> tuple) {
-            throw new System.Exception("unimplemented");
-        }
-
-        /**
-         * Allows splitting a single signed 64 bit ulong value into 4 x 16 bit short values.
-         * Returns a System.ValueTuple of the split values
-         */
-        public static System.ValueTuple<short, short, short, short> SplitShort(this long value) {
-            throw new System.Exception("unimplemented");
-        }
-
-        /**
-         * Allows combining 2 x 32 bit uint values into a single signed 64 bit long value
-         * Accepts a System.ValueTuple type
-         */
-        public static long Combine(this System.ValueTuple<uint, uint> tuple) {
-            throw new System.Exception("unimplemented");
-        }
-
-        /**
-         * Allows splitting a single signed 64 bit ulong value into 2 x 32 bit uint values.
-         * Returns a System.ValueTuple of the split values
-         */
-        public static System.ValueTuple<uint, uint> SplitUInt(this long value) {
-            throw new System.Exception("unimplemented");
-        }
-
-        /**
-         * Allows combining 2 x 32 bit int values into a single signed 64 bit long value
-         * Accepts a System.ValueTuple type
-         */
-        public static long Combine(this System.ValueTuple<int, int> tuple) {
-            throw new System.Exception("unimplemented");
-        }
-
-        /**
-         * Allows splitting a single signed 64 bit ulong value into 2 x 32 bit int values.
-         * Returns a System.ValueTuple of the split values
-         */
-        public static System.ValueTuple<int, int> SplitInt(this long value) {
-            throw new System.Exception("unimplemented");
-        }
     }
 }

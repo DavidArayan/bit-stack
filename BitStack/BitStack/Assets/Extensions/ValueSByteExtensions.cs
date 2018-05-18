@@ -54,7 +54,7 @@ namespace BitStack {
          * set bits in the argument.
          */
 		public static int PopCount(this sbyte data) {
-            return ((uint)data).PopCount();
+            return ((byte)data).PopCount();
         }
 
         /**
@@ -70,6 +70,22 @@ namespace BitStack {
          */
 		public static string BitString(this sbyte value) {
 			return ((byte)value).BitString();
+        }
+
+		/**
+         * Given a string in binary form ie (10110101) convert into
+         * a byte and return. Will only look at the first 8 characters
+         */
+        public static sbyte SByteFromBitString(this string data, int readIndex) {
+			return (sbyte)data.ByteFromBitString(readIndex);
+        }
+
+        /**
+         * Given a string in binary form ie (10110101) convert into
+         * a byte and return. Will only look at the first 8 characters
+         */
+        public static sbyte SByteFromBitString(this string data) {
+            return data.SByteFromBitString(0);
         }
 
         /**
