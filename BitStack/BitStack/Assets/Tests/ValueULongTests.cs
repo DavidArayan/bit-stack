@@ -136,4 +136,14 @@ public class ValueULongTests {
 		Debug.Assert(revert == TEST_VALUE,
 		             "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
 	}
+
+	[Test]
+    public void Test_SByteTuple() {
+        var tuple = TEST_VALUE.SplitIntoSByte();
+
+        ulong revert = tuple.CombineToULong();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
 }
