@@ -9,7 +9,7 @@ namespace BitStack {
      * with Tuples.
      */
 	public static class ValueTupleULongExtensions {
-        
+
 		/**
          * Combine an 8 value byte tuple into a set of unsigned long (64 bits x 1)
          */
