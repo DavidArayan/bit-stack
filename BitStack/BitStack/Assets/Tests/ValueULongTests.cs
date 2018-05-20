@@ -126,4 +126,14 @@ public class ValueULongTests {
         Debug.Assert(!nPow3.IsPowerOfTwo(),
                      "Expected Test(" + nPow3 + ") To be Non Power of Two");
     }
+
+    [Test]
+	public void Test_ByteTuple() {
+		var tuple = TEST_VALUE.SplitIntoByte();
+
+		ulong revert = tuple.CombineToULong();
+        
+		Debug.Assert(revert == TEST_VALUE,
+		             "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+	}
 }
