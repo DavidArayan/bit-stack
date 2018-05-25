@@ -4,6 +4,10 @@ using NUnit.Framework;
 using System.Collections;
 using BitStack;
 
+/**
+ * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
+ * related to the short data type (signed short, 16 bits)
+ */
 public class ValueShortTests {
 
 	private readonly static short TEST_VALUE = -29897; // 1000101100110111
@@ -127,5 +131,25 @@ public class ValueShortTests {
 
         Debug.Assert(!nPow3.IsPowerOfTwo(),
                      "Expected Test(" + nPow3 + ") To be Non Power of Two");
+    }
+
+	[Test]
+    public void Test_ByteTuple() {
+        var tuple = TEST_VALUE.SplitIntoByte();
+
+        short revert = tuple.CombineToShort();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+    [Test]
+    public void Test_SByteTuple() {
+        var tuple = TEST_VALUE.SplitIntoSByte();
+
+        short revert = tuple.CombineToShort();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
     }
 }

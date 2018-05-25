@@ -14,6 +14,7 @@ namespace BitStack {
          */
 		public static bool IsEqual(this float a, float b) {
 			const float floatNormal = (1 << 23) * float.Epsilon;
+
             float absA = Math.Abs(a);
             float absB = Math.Abs(b);
             float diff = Math.Abs(a - b);
@@ -39,6 +40,7 @@ namespace BitStack {
          */
 		public static bool IsEqual(this double a, double b) {
 			const double doubleNormal = (1L << 52) * double.Epsilon;
+
             double absA = Math.Abs(a);
             double absB = Math.Abs(b);
             double diff = Math.Abs(a - b);

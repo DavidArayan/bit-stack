@@ -4,6 +4,10 @@ using NUnit.Framework;
 using System.Collections;
 using BitStack;
 
+/**
+ * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
+ * related to the ulong data type (unsigned long, 64 bits)
+ */
 public class ValueULongTests {
 
 	private readonly static ulong TEST_VALUE = 47520971873972742; // 0000000010101000110101000001001001110111111011011111001000000110
@@ -140,6 +144,46 @@ public class ValueULongTests {
 	[Test]
     public void Test_SByteTuple() {
         var tuple = TEST_VALUE.SplitIntoSByte();
+
+        ulong revert = tuple.CombineToULong();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+	[Test]
+    public void Test_ShortTuple() {
+        var tuple = TEST_VALUE.SplitIntoShort();
+
+        ulong revert = tuple.CombineToULong();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+	[Test]
+    public void Test_UShortTuple() {
+        var tuple = TEST_VALUE.SplitIntoUShort();
+
+        ulong revert = tuple.CombineToULong();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+	[Test]
+    public void Test_IntTuple() {
+        var tuple = TEST_VALUE.SplitIntoInt();
+
+        ulong revert = tuple.CombineToULong();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+	[Test]
+    public void Test_UIntTuple() {
+        var tuple = TEST_VALUE.SplitIntoUInt();
 
         ulong revert = tuple.CombineToULong();
 

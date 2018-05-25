@@ -5,7 +5,8 @@ using System.Collections;
 using BitStack;
 
 /**
- * Provides a test suite for the ValueByte functionality
+ * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
+ * related to the sbyte data type (signed byte, 8 bits)
  */
 public class ValueSByteTests {
 

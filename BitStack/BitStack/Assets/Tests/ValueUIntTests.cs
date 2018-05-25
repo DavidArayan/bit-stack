@@ -4,6 +4,10 @@ using NUnit.Framework;
 using System.Collections;
 using BitStack;
 
+/**
+ * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
+ * related to the uint data type (unsigned int, 32 bits)
+ */
 public class ValueUIntTests {
 
 	private readonly static uint TEST_VALUE = 7623190; // 00000000011101000101001000010110
@@ -125,5 +129,45 @@ public class ValueUIntTests {
 
         Debug.Assert(!nPow3.IsPowerOfTwo(),
                      "Expected Test(" + nPow3 + ") To be Non Power of Two");
+    }
+
+    [Test]
+    public void Test_ByteTuple() {
+        var tuple = TEST_VALUE.SplitIntoByte();
+
+        uint revert = tuple.CombineToUInt();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+    [Test]
+    public void Test_SByteTuple() {
+        var tuple = TEST_VALUE.SplitIntoSByte();
+
+        uint revert = tuple.CombineToUInt();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+    [Test]
+    public void Test_ShortTuple() {
+        var tuple = TEST_VALUE.SplitIntoShort();
+
+        uint revert = tuple.CombineToUInt();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+    [Test]
+    public void Test_UShortTuple() {
+        var tuple = TEST_VALUE.SplitIntoUShort();
+
+        uint revert = tuple.CombineToUInt();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
     }
 }

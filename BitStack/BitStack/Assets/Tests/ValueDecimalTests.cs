@@ -4,6 +4,11 @@ using NUnit.Framework;
 using System.Collections;
 using BitStack;
 
+/**
+ * Comparison of Float (32 bit) and Double (64 bit) values is often tricky due
+ * to precision loss. These Unit tests will execute tolerance tests to ensure that
+ * comparison operations work properly.
+ */
 public class ValueDecimalTests {
 	private static readonly float FLOAT_SMALL_POSITIVE = float.Epsilon;
 	private static readonly float FLOAT_SMALL_NEGATIVE = -float.Epsilon;

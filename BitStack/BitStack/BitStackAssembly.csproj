@@ -61,7 +61,12 @@
   <ItemGroup>
     <Compile Include="Assets\Extensions\Compat\ValueTupleCompat.cs" />
     <Compile Include="Assets\Extensions\Tuple\ValueTupleGenericExtensions.cs" />
+    <Compile Include="Assets\Extensions\Tuple\ValueTupleIntExtensions.cs" />
+    <Compile Include="Assets\Extensions\Tuple\ValueTupleLongExtensions.cs" />
+    <Compile Include="Assets\Extensions\Tuple\ValueTupleShortExtensions.cs" />
+    <Compile Include="Assets\Extensions\Tuple\ValueTupleUIntExtensions.cs" />
     <Compile Include="Assets\Extensions\Tuple\ValueTupleULongExtensions.cs" />
+    <Compile Include="Assets\Extensions\Tuple\ValueTupleUShortExtensions.cs" />
     <Compile Include="Assets\Extensions\ValueByteExtensions.cs" />
     <Compile Include="Assets\Extensions\ValueDecimalExtensions.cs" />
     <Compile Include="Assets\Extensions\ValueIntExtensions.cs" />

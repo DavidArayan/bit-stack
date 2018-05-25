@@ -4,6 +4,10 @@ using NUnit.Framework;
 using System.Collections;
 using BitStack;
 
+/**
+ * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
+ * related to the long data type (signed long, 64 bits)
+ */
 public class ValueLongTests {
 
 	private readonly static long TEST_VALUE = -396761530871789; // 1111111111111110100101110010010111000001111001000101000000010011
@@ -127,5 +131,65 @@ public class ValueLongTests {
 
         Debug.Assert(!nPow3.IsPowerOfTwo(),
                      "Expected Test(" + nPow3 + ") To be Non Power of Two");
+    }
+
+	[Test]
+    public void Test_ByteTuple() {
+        var tuple = TEST_VALUE.SplitIntoByte();
+
+        long revert = tuple.CombineToLong();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+    [Test]
+    public void Test_SByteTuple() {
+        var tuple = TEST_VALUE.SplitIntoSByte();
+
+        long revert = tuple.CombineToLong();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+    [Test]
+    public void Test_ShortTuple() {
+        var tuple = TEST_VALUE.SplitIntoShort();
+
+        long revert = tuple.CombineToLong();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+    [Test]
+    public void Test_UShortTuple() {
+        var tuple = TEST_VALUE.SplitIntoUShort();
+
+        long revert = tuple.CombineToLong();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+
+    [Test]
+    public void Test_IntTuple() {
+        var tuple = TEST_VALUE.SplitIntoInt();
+
+        long revert = tuple.CombineToLong();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+    }
+    
+    [Test]
+    public void Test_UIntTuple() {
+        var tuple = TEST_VALUE.SplitIntoUInt();
+
+        long revert = tuple.CombineToLong();
+
+        Debug.Assert(revert == TEST_VALUE,
+                     "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
     }
 }

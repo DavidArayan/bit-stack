@@ -8,6 +8,23 @@ namespace BitStack {
      */
 	public static class ValueTupleGenericExtensions {
 
+        /**
+         * Split a 4 component value tuple into 2 x 2 component value tuples.
+         */
+		public static ValueTuple<ValueTuple<T, T>, ValueTuple<T, T>> Split<T>(this ValueTuple<T, T, T, T> tuple) 
+			where T : struct
+		{
+			return new ValueTuple<ValueTuple<T, T>, ValueTuple<T, T>>(
+                new ValueTuple<T, T>(
+					tuple.Item1,
+					tuple.Item2),
+                new ValueTuple<T, T>(
+					tuple.Item3,
+                    tuple.Item4
+                )
+            );
+		}
+
 		/**
          * Convert the provided 8 value struct tuple into an array of 8 elements and return
          * The generated array
