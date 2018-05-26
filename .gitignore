@@ -1,22 +1,4 @@
 
+BitStack/\.DS_Store
+
 \.DS_Store
-
-*.meta
-
-BitStack/BitStack/Library/
-
-BitStack/BitStack/obj/Debug/
-
-BitStack/BitStack/ProjectSettings/
-
-BitStack/BitStack/Temp/
-
-BitStack/BitStack/Packages/
-
-BitStack/BitStack/\.vs/BitStack/xs/sqlite3/
-
-BitStack/BitStack/\.vs/BitStack/xs/UserPrefs\.xml
-
-BitStack/BitStack/Assembly-CSharp\.csproj
-
-BitStack/BitStack/BitStack\.sln
