@@ -2,3 +2,5 @@
 BitStack/\.DS_Store
 
 \.DS_Store
+
+*.meta
