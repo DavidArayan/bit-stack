@@ -8,21 +8,20 @@ namespace BitStack {
      */
 	public static class ValueTupleGenericExtensions {
 
-        /**
+		/**
          * Split a 4 component value tuple into 2 x 2 component value tuples.
          */
-		public static ValueTuple<ValueTuple<T, T>, ValueTuple<T, T>> Split<T>(this ValueTuple<T, T, T, T> tuple) 
-			where T : struct
-		{
+		public static ValueTuple<ValueTuple<T, T>, ValueTuple<T, T>> Split<T>(this ValueTuple<T, T, T, T> tuple)
+			where T : struct {
 			return new ValueTuple<ValueTuple<T, T>, ValueTuple<T, T>>(
-                new ValueTuple<T, T>(
+				new ValueTuple<T, T>(
 					tuple.Item1,
 					tuple.Item2),
-                new ValueTuple<T, T>(
+				new ValueTuple<T, T>(
 					tuple.Item3,
-                    tuple.Item4
-                )
-            );
+					tuple.Item4
+				)
+			);
 		}
 
 		/**
@@ -30,8 +29,7 @@ namespace BitStack {
          * The generated array
          */
 		public static T[] ToArray<T>(this ValueTuple<ValueTuple<T, T, T, T>, ValueTuple<T, T, T, T>> tuple)
-			where T : struct 
-		{
+			where T : struct {
 			return tuple.ToArray(new T[8], 0);
 		}
 
@@ -40,8 +38,7 @@ namespace BitStack {
          * is an index from the array starting from read position 0
          */
 		public static ValueTuple<ValueTuple<T, T, T, T>, ValueTuple<T, T, T, T>> ToTuple8<T>(this T[] array)
-			where T : struct 
-		{
+			where T : struct {
 			return array.ToTuple8(0);
 		}
 
@@ -50,19 +47,18 @@ namespace BitStack {
          * is an index from the array starting from read position readIndex
          */
 		public static ValueTuple<ValueTuple<T, T, T, T>, ValueTuple<T, T, T, T>> ToTuple8<T>(this T[] array, int readIndex)
-			where T : struct 
-		{
+			where T : struct {
 			return new ValueTuple<ValueTuple<T, T, T, T>, ValueTuple<T, T, T, T>>(
 				new ValueTuple<T, T, T, T>(
 					array[readIndex + 0],
-                    array[readIndex + 1],
-                    array[readIndex + 2],
-                    array[readIndex + 3]),
+					array[readIndex + 1],
+					array[readIndex + 2],
+					array[readIndex + 3]),
 				new ValueTuple<T, T, T, T>(
 					array[readIndex + 4],
-                    array[readIndex + 5],
-                    array[readIndex + 6],
-                    array[readIndex + 7]
+					array[readIndex + 5],
+					array[readIndex + 6],
+					array[readIndex + 7]
 				)
 			);
 		}
@@ -72,8 +68,7 @@ namespace BitStack {
          * The generated array
          */
 		public static T[] ToArray<T>(this ValueTuple<T, T, T, T> tuple)
-			where T : struct 
-		{
+			where T : struct {
 			return tuple.ToArray(new T[4], 0);
 		}
 
@@ -82,8 +77,7 @@ namespace BitStack {
          * is an index from the array starting from read position 0
          */
 		public static ValueTuple<T, T, T, T> ToTuple4<T>(this T[] array)
-			where T : struct 
-		{
+			where T : struct {
 			return array.ToTuple4(0);
 		}
 
@@ -92,8 +86,7 @@ namespace BitStack {
          * is an index from the array starting from read position readIndex
          */
 		public static ValueTuple<T, T, T, T> ToTuple4<T>(this T[] array, int readIndex)
-			where T : struct 
-		{
+			where T : struct {
 			return new ValueTuple<T, T, T, T>(
 				array[readIndex + 0],
 				array[readIndex + 1],
@@ -107,8 +100,7 @@ namespace BitStack {
          * The generated array
          */
 		public static T[] ToArray<T>(this ValueTuple<T, T> tuple)
-			where T : struct 
-		{
+			where T : struct {
 			return tuple.ToArray(new T[2], 0);
 		}
 
@@ -117,8 +109,7 @@ namespace BitStack {
          * is an index from the array starting from read position 0
          */
 		public static ValueTuple<T, T> ToTuple2<T>(this T[] array)
-			where T : struct 
-		{
+			where T : struct {
 			return array.ToTuple2(0);
 		}
 
@@ -127,8 +118,7 @@ namespace BitStack {
          * is an index from the array starting from read position readIndex
          */
 		public static ValueTuple<T, T> ToTuple2<T>(this T[] array, int readIndex)
-			where T : struct 
-		{
+			where T : struct {
 			return new ValueTuple<T, T>(
 				array[readIndex + 0],
 				array[readIndex + 1]
@@ -143,8 +133,7 @@ namespace BitStack {
 		public static T[] ToArray<T>(this ValueTuple<ValueTuple<T, T, T, T>, ValueTuple<T, T, T, T>> tuple,
 									 T[] array,
 									 int start)
-			where T : struct 
-		{
+			where T : struct {
 			var upper = tuple.Item1;
 			var lower = tuple.Item2;
 
@@ -169,8 +158,7 @@ namespace BitStack {
 		public static T[] ToArray<T>(this ValueTuple<T, T, T, T> tuple,
 								  T[] array,
 								  int start)
-			where T : struct 
-		{
+			where T : struct {
 			array[start + 0] = tuple.Item1;
 			array[start + 1] = tuple.Item2;
 			array[start + 2] = tuple.Item3;
@@ -187,8 +175,7 @@ namespace BitStack {
 		public static T[] ToArray<T>(this ValueTuple<T, T> tuple,
 								  T[] array,
 								  int start)
-			where T : struct 
-		{
+			where T : struct {
 			array[start + 0] = tuple.Item1;
 			array[start + 1] = tuple.Item2;
 
