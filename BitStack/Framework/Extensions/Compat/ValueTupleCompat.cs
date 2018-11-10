@@ -8,8 +8,8 @@ namespace BitStack {
 #if !NET_4_6
 
 	/**
-     * Represents a 1 component Tuple
-     */
+	 * Represents a 1 component Tuple
+	 */
 	public struct ValueTuple<I1> {
 		readonly I1 i1;
 
@@ -21,8 +21,8 @@ namespace BitStack {
 	}
 
 	/**
-     * Represents a 2 component Tuple
-     */
+	 * Represents a 2 component Tuple
+	 */
 	public struct ValueTuple<I1, I2> {
 		readonly I1 i1;
 		readonly I2 i2;
@@ -38,8 +38,8 @@ namespace BitStack {
 	}
 
 	/**
-     * Represents a 3 component Tuple
-     */
+	 * Represents a 3 component Tuple
+	 */
 	public struct ValueTuple<I1, I2, I3> {
 		readonly I1 i1;
 		readonly I2 i2;
@@ -59,8 +59,8 @@ namespace BitStack {
 	}
 
 	/**
-     * Represents a 4 component Tuple
-     */
+	 * Represents a 4 component Tuple
+	 */
 	public struct ValueTuple<I1, I2, I3, I4> {
 		readonly I1 i1;
 		readonly I2 i2;

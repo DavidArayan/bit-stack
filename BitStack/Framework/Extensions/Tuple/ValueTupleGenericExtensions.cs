@@ -3,14 +3,14 @@
 namespace BitStack {
 
 	/**
-     * Provides Generic Extension Methods for the System.ValueTuple which is used
-     * throughout the stack 
-     */
+	 * Provides Generic Extension Methods for the System.ValueTuple which is used
+	 * throughout the stack 
+	 */
 	public static class ValueTupleGenericExtensions {
 
 		/**
-         * Split a 4 component value tuple into 2 x 2 component value tuples.
-         */
+		 * Split a 4 component value tuple into 2 x 2 component value tuples.
+		 */
 		public static ValueTuple<ValueTuple<T, T>, ValueTuple<T, T>> Split<T>(this ValueTuple<T, T, T, T> tuple)
 			where T : struct {
 			return new ValueTuple<ValueTuple<T, T>, ValueTuple<T, T>>(
@@ -25,27 +25,27 @@ namespace BitStack {
 		}
 
 		/**
-         * Convert the provided 8 value struct tuple into an array of 8 elements and return
-         * The generated array
-         */
+		 * Convert the provided 8 value struct tuple into an array of 8 elements and return
+		 * The generated array
+		 */
 		public static T[] ToArray<T>(this ValueTuple<ValueTuple<T, T, T, T>, ValueTuple<T, T, T, T>> tuple)
 			where T : struct {
 			return tuple.ToArray(new T[8], 0);
 		}
 
 		/**
-         * Convert the provided array into an 8 component tuple where each tuple value
-         * is an index from the array starting from read position 0
-         */
+		 * Convert the provided array into an 8 component tuple where each tuple value
+		 * is an index from the array starting from read position 0
+		 */
 		public static ValueTuple<ValueTuple<T, T, T, T>, ValueTuple<T, T, T, T>> ToTuple8<T>(this T[] array)
 			where T : struct {
 			return array.ToTuple8(0);
 		}
 
 		/**
-         * Convert the provided array into an 8 component tuple where each tuple value
-         * is an index from the array starting from read position readIndex
-         */
+		 * Convert the provided array into an 8 component tuple where each tuple value
+		 * is an index from the array starting from read position readIndex
+		 */
 		public static ValueTuple<ValueTuple<T, T, T, T>, ValueTuple<T, T, T, T>> ToTuple8<T>(this T[] array, int readIndex)
 			where T : struct {
 			return new ValueTuple<ValueTuple<T, T, T, T>, ValueTuple<T, T, T, T>>(
@@ -64,27 +64,27 @@ namespace BitStack {
 		}
 
 		/**
-         * Convert the provided 4 value struct tuple into an array of 4 elements and return
-         * The generated array
-         */
+		 * Convert the provided 4 value struct tuple into an array of 4 elements and return
+		 * The generated array
+		 */
 		public static T[] ToArray<T>(this ValueTuple<T, T, T, T> tuple)
 			where T : struct {
 			return tuple.ToArray(new T[4], 0);
 		}
 
 		/**
-         * Convert the provided array into an 4 component tuple where each tuple value
-         * is an index from the array starting from read position 0
-         */
+		 * Convert the provided array into an 4 component tuple where each tuple value
+		 * is an index from the array starting from read position 0
+		 */
 		public static ValueTuple<T, T, T, T> ToTuple4<T>(this T[] array)
 			where T : struct {
 			return array.ToTuple4(0);
 		}
 
 		/**
-         * Convert the provided array into an 4 component tuple where each tuple value
-         * is an index from the array starting from read position readIndex
-         */
+		 * Convert the provided array into an 4 component tuple where each tuple value
+		 * is an index from the array starting from read position readIndex
+		 */
 		public static ValueTuple<T, T, T, T> ToTuple4<T>(this T[] array, int readIndex)
 			where T : struct {
 			return new ValueTuple<T, T, T, T>(
@@ -96,27 +96,27 @@ namespace BitStack {
 		}
 
 		/**
-         * Convert the provided 2 value struct tuple into an array of 2 elements and return
-         * The generated array
-         */
+		 * Convert the provided 2 value struct tuple into an array of 2 elements and return
+		 * The generated array
+		 */
 		public static T[] ToArray<T>(this ValueTuple<T, T> tuple)
 			where T : struct {
 			return tuple.ToArray(new T[2], 0);
 		}
 
 		/**
-         * Convert the provided array into an 2 component tuple where each tuple value
-         * is an index from the array starting from read position 0
-         */
+		 * Convert the provided array into an 2 component tuple where each tuple value
+		 * is an index from the array starting from read position 0
+		 */
 		public static ValueTuple<T, T> ToTuple2<T>(this T[] array)
 			where T : struct {
 			return array.ToTuple2(0);
 		}
 
 		/**
-         * Convert the provided array into an 4 component tuple where each tuple value
-         * is an index from the array starting from read position readIndex
-         */
+		 * Convert the provided array into an 4 component tuple where each tuple value
+		 * is an index from the array starting from read position readIndex
+		 */
 		public static ValueTuple<T, T> ToTuple2<T>(this T[] array, int readIndex)
 			where T : struct {
 			return new ValueTuple<T, T>(
@@ -126,10 +126,10 @@ namespace BitStack {
 		}
 
 		/**
-         * Write the provided 8 value struct tuple into an existing array. Provide
-         * the start position of the write operation. This function will write 8 values
-         * from the start.
-         */
+		 * Write the provided 8 value struct tuple into an existing array. Provide
+		 * the start position of the write operation. This function will write 8 values
+		 * from the start.
+		 */
 		public static T[] ToArray<T>(this ValueTuple<ValueTuple<T, T, T, T>, ValueTuple<T, T, T, T>> tuple,
 									 T[] array,
 									 int start)
@@ -151,10 +151,10 @@ namespace BitStack {
 		}
 
 		/**
-         * Write the provided 4 value struct tuple into an existing array. Provide
-         * the start position of the write operation. This function will write 4 values
-         * from the start.
-         */
+		 * Write the provided 4 value struct tuple into an existing array. Provide
+		 * the start position of the write operation. This function will write 4 values
+		 * from the start.
+		 */
 		public static T[] ToArray<T>(this ValueTuple<T, T, T, T> tuple,
 								  T[] array,
 								  int start)
@@ -168,10 +168,10 @@ namespace BitStack {
 		}
 
 		/**
-         * Write the provided 2 value struct tuple into an existing array. Provide
-         * the start position of the write operation. This function will write 2 values
-         * from the start.
-         */
+		 * Write the provided 2 value struct tuple into an existing array. Provide
+		 * the start position of the write operation. This function will write 2 values
+		 * from the start.
+		 */
 		public static T[] ToArray<T>(this ValueTuple<T, T> tuple,
 								  T[] array,
 								  int start)

@@ -3,18 +3,18 @@
 namespace BitStack {
 
 	/**
-     * Contains simple utility methods for dealing with decimal numbers. These are often
-     * required for writing robust code to deal with precision loss for real time applications.
-     */
+	 * Contains simple utility methods for dealing with decimal numbers. These are often
+	 * required for writing robust code to deal with precision loss for real time applications.
+	 */
 	public static class ValueDecimalExtensions {
 
 		const float FLOAT_NORMAL = (1 << 23) * float.Epsilon;
 		const double DOUBLE_NORMAL = (1L << 52) * double.Epsilon;
 
 		/**
-         * Perform a robust approximate equality test between two 32 bit
-         * floating point numbers.
-         */
+		 * Perform a robust approximate equality test between two 32 bit
+		 * floating point numbers.
+		 */
 		public static bool IsEqual(this float a, float b) {
 #pragma warning disable RECS0018 // Comparison of floating point numbers with equality operator
 			var absA = Math.Abs(a);
@@ -38,9 +38,9 @@ namespace BitStack {
 		}
 
 		/**
-         * Perform a robust approximate equality test between two 64 bit
-         * floating point numbers.
-         */
+		 * Perform a robust approximate equality test between two 64 bit
+		 * floating point numbers.
+		 */
 		public static bool IsEqual(this double a, double b) {
 #pragma warning disable RECS0018 // Comparison of floating point numbers with equality operator
 			var absA = Math.Abs(a);

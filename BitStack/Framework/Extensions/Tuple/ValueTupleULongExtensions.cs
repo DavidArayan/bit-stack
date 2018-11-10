@@ -3,14 +3,14 @@
 namespace BitStack {
 
 	/**
-     * Represents Extension methods for unsigned long value type for working
-     * with Tuples.
-     */
+	 * Represents Extension methods for unsigned long value type for working
+	 * with Tuples.
+	 */
 	public static class ValueTupleULongExtensions {
 
 		/**
-         * Combine a 2 value signed int (32 bits per) into a set of unsigned long (64 bits x 1)
-         */
+		 * Combine a 2 value signed int (32 bits per) into a set of unsigned long (64 bits x 1)
+		 */
 		public static ulong CombineToULong(this ValueTuple<int, int> tuple) {
 			ulong u0 = (uint)tuple.Item1;
 			ulong u1 = (uint)tuple.Item2;
@@ -19,8 +19,8 @@ namespace BitStack {
 		}
 
 		/**
-         * Combine a 2 value unsigned int (32 bits per) into a set of unsigned long (64 bits x 1)
-         */
+		 * Combine a 2 value unsigned int (32 bits per) into a set of unsigned long (64 bits x 1)
+		 */
 		public static ulong CombineToULong(this ValueTuple<uint, uint> tuple) {
 			ulong u0 = tuple.Item1;
 			ulong u1 = tuple.Item2;
@@ -29,8 +29,8 @@ namespace BitStack {
 		}
 
 		/**
-         * Combine a 4 value signed short (16 bits per) into a set of unsigned long (64 bits x 1)
-         */
+		 * Combine a 4 value signed short (16 bits per) into a set of unsigned long (64 bits x 1)
+		 */
 		public static ulong CombineToULong(this ValueTuple<short, short, short, short> tuple) {
 			ulong u0 = (ushort)tuple.Item1;
 			ulong u1 = (ushort)tuple.Item2;
@@ -41,8 +41,8 @@ namespace BitStack {
 		}
 
 		/**
-         * Combine a 4 value unsigned short (16 bits per) into a set of unsigned long (64 bits x 1)
-         */
+		 * Combine a 4 value unsigned short (16 bits per) into a set of unsigned long (64 bits x 1)
+		 */
 		public static ulong CombineToULong(this ValueTuple<ushort, ushort, ushort, ushort> tuple) {
 			ulong u0 = tuple.Item1;
 			ulong u1 = tuple.Item2;
@@ -53,8 +53,8 @@ namespace BitStack {
 		}
 
 		/**
-         * Combine an 8 value byte tuple into a set of unsigned long (64 bits x 1)
-         */
+		 * Combine an 8 value byte tuple into a set of unsigned long (64 bits x 1)
+		 */
 		public static ulong CombineToULong(this ValueTuple<ValueTuple<byte, byte, byte, byte>, ValueTuple<byte, byte, byte, byte>> tuple) {
 			var upper = tuple.Item1;
 			var lower = tuple.Item2;
@@ -73,8 +73,8 @@ namespace BitStack {
 		}
 
 		/**
-         * Combine an 8 value sbyte tuple into a set of unsigned long (64 bits x 1)
-         */
+		 * Combine an 8 value sbyte tuple into a set of unsigned long (64 bits x 1)
+		 */
 		public static ulong CombineToULong(this ValueTuple<ValueTuple<sbyte, sbyte, sbyte, sbyte>, ValueTuple<sbyte, sbyte, sbyte, sbyte>> tuple) {
 			var upper = tuple.Item1;
 			var lower = tuple.Item2;
@@ -93,8 +93,8 @@ namespace BitStack {
 		}
 
 		/**
-         * Split a single unsigned long value (64 bit x 1) into an 8 value byte tuple
-         */
+		 * Split a single unsigned long value (64 bit x 1) into an 8 value byte tuple
+		 */
 		public static ValueTuple<ValueTuple<byte, byte, byte, byte>, ValueTuple<byte, byte, byte, byte>> SplitIntoByte(this ulong value) {
 			var i0 = (byte)(value >> 56);
 			var i1 = (byte)(value >> 48);
@@ -113,8 +113,8 @@ namespace BitStack {
 		}
 
 		/**
-         * Split a single unsigned long value (64 bit x 1) into an 8 value sbyte tuple
-         */
+		 * Split a single unsigned long value (64 bit x 1) into an 8 value sbyte tuple
+		 */
 		public static ValueTuple<ValueTuple<sbyte, sbyte, sbyte, sbyte>, ValueTuple<sbyte, sbyte, sbyte, sbyte>> SplitIntoSByte(this ulong value) {
 			var i0 = (sbyte)(value >> 56);
 			var i1 = (sbyte)(value >> 48);
@@ -133,8 +133,8 @@ namespace BitStack {
 		}
 
 		/**
-         * Split a single unsigned long value (64 bit x 1) into an 4 value short tuple
-         */
+		 * Split a single unsigned long value (64 bit x 1) into an 4 value short tuple
+		 */
 		public static ValueTuple<short, short, short, short> SplitIntoShort(this ulong value) {
 			var i0 = (short)(value >> 48);
 			var i1 = (short)(value >> 32);
@@ -145,8 +145,8 @@ namespace BitStack {
 		}
 
 		/**
-         * Split a single unsigned long value (64 bit x 1) into an 4 value ushort tuple
-         */
+		 * Split a single unsigned long value (64 bit x 1) into an 4 value ushort tuple
+		 */
 		public static ValueTuple<ushort, ushort, ushort, ushort> SplitIntoUShort(this ulong value) {
 			var i0 = (ushort)(value >> 48);
 			var i1 = (ushort)(value >> 32);
@@ -157,8 +157,8 @@ namespace BitStack {
 		}
 
 		/**
-         * Split a single unsigned long value (64 bit x 1) into an 2 value int tuple
-         */
+		 * Split a single unsigned long value (64 bit x 1) into an 2 value int tuple
+		 */
 		public static ValueTuple<int, int> SplitIntoInt(this ulong value) {
 			var i0 = (int)(value >> 32);
 			var i1 = (int)(value);
@@ -167,8 +167,8 @@ namespace BitStack {
 		}
 
 		/**
-         * Split a single unsigned long value (64 bit x 1) into an 2 value uint tuple
-         */
+		 * Split a single unsigned long value (64 bit x 1) into an 2 value uint tuple
+		 */
 		public static ValueTuple<uint, uint> SplitIntoUInt(this ulong value) {
 			var i0 = (uint)(value >> 32);
 			var i1 = (uint)(value);
