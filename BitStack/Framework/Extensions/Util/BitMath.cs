@@ -1,5 +1,5 @@
 ﻿namespace BitStack {
-	public class BitMath {
+	public sealed class BitMath {
 		public static uint MortonKey3(uint x, uint y, uint z) {
 			var cx = MortonPart3(x);
 			var cy = MortonPart3(y);
