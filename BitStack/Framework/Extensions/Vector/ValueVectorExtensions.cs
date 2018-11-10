@@ -17,7 +17,13 @@ namespace BitStack {
 			var _y = (uint)vec.y;
 			var _z = (uint)vec.z;
 
-			return BitMath.MortonKey3(_x, _y, _z);
+			return BitMath.EncodeMortonKey(_x, _y, _z);
+		}
+		
+		public static Vector3 DecodeMortonKey3(this uint mortonKey) {
+			var decodedKey = BitMath.DecodeMortonKey3(mortonKey);
+			
+			return new Vector3(decodedKey.Item1, decodedKey.Item2, decodedKey.Item3);
 		}
 
 		/**
@@ -33,7 +39,13 @@ namespace BitStack {
 			var _x = (uint)vec.x;
 			var _y = (uint)vec.y;
 			
-			return BitMath.MortonKey2(_x, _y);
+			return BitMath.EncodeMortonKey(_x, _y);
+		}
+		
+		public static Vector2 DecodeMortonKey2(this uint mortonKey) {
+			var decodedKey = BitMath.DecodeMortonKey2(mortonKey);
+			
+			return new Vector2(decodedKey.Item1, decodedKey.Item2);
 		}
 	}
 }
