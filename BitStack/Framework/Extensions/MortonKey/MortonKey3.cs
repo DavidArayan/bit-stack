@@ -123,9 +123,9 @@ namespace BitStack {
 		}
 		
 		public static MortonKey3 operator -(MortonKey3 x, MortonKey3 y) {
-			uint sum_x = (x.mortonKey | ValueMortonKeyExtensions.MORTON_X3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_X3_MASK);
-			uint sum_y = (x.mortonKey | ValueMortonKeyExtensions.MORTON_Y3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_Y3_MASK);
-			uint sum_z = (x.mortonKey | ValueMortonKeyExtensions.MORTON_Z3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_Z3_MASK);
+			uint sum_x = (x.mortonKey | ValueMortonKeyExtensions.MORTON_YZ3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_X3_MASK);
+			uint sum_y = (x.mortonKey | ValueMortonKeyExtensions.MORTON_XZ3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_Y3_MASK);
+			uint sum_z = (x.mortonKey | ValueMortonKeyExtensions.MORTON_XY3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_Z3_MASK);
 			
 			return new MortonKey3((sum_x & ValueMortonKeyExtensions.MORTON_X3_MASK) | (sum_y & ValueMortonKeyExtensions.MORTON_Y3_MASK) | (sum_z & ValueMortonKeyExtensions.MORTON_Z3_MASK));
 		}

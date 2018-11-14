@@ -297,4 +297,50 @@ public class ValueMortonKeyTests {
 			}
 		}
 	}
+	
+	[Test]
+	public void Test_MortonKeyAdd() {
+		for (int x = 4; x < 9; x++) {
+			for (int y = 3; y < 10; y++) {
+				for (int z = 2; z < 11; z++) {
+					Vector3 xa = new Vector3(z, y, x);
+					Vector3 ya = new Vector3(x, z, y);
+					
+					MortonKey3 xm = new MortonKey3(xa);
+					MortonKey3 ym = new MortonKey3(ya);
+					
+					MortonKey3 sum = xm + ym;
+					Vector3 testInc = xa + ya;
+					Vector3 decode = sum.Value;
+					
+					
+					Debug.Assert(testInc == decode,
+								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ")");
+				}
+			}
+		}
+	}
+	
+	[Test]
+	public void Test_MortonKeySub() {
+		for (int x = 4; x < 6; x++) {
+			for (int y = 8; y < 10; y++) {
+				for (int z = 12; z < 16; z++) {
+					Vector3 xa = new Vector3(z, y, z);
+					Vector3 ya = new Vector3(x, x, y);
+					
+					MortonKey3 xm = new MortonKey3(xa);
+					MortonKey3 ym = new MortonKey3(ya);
+					
+					MortonKey3 sum = xm - ym;
+					Vector3 testInc = xa - ya;
+					Vector3 decode = sum.Value;
+					
+					
+					Debug.Assert(testInc == decode,
+								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ")");
+				}
+			}
+		}
+	}
 }
