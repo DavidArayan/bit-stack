@@ -28,7 +28,7 @@
 		 * position. position value must be between [0, 7]
 		 */
 		public static byte SetBitAt(this byte data, int pos) {
-			return (byte)(data | 1u << pos);
+			return (byte)(data | 1 << pos);
 		}
 
 		/**
@@ -45,6 +45,18 @@
 		 */
 		public static byte ToggleBitAt(this byte data, int pos) {
 			return (byte)(data ^ (1 << pos));
+		}
+		
+		/**
+		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
+		 * position. position value must be between [0, 7]
+		 */
+		public static byte SetBit(this byte data, int pos, byte bit) {
+			int mask = 1 << pos;
+			int m1 = (bit << pos) & mask;
+			int m2 = data & ~mask;
+			
+			return (byte)(m2 | m1);
 		}
 
 		/**

@@ -13,13 +13,36 @@ namespace BitStack {
 	 * cache locality.
 	 */
 	public struct MortonKey3 : IEquatable<MortonKey3>, IEquatable<uint>, IEquatable<Vector3> {
-		uint mortonKey;
+		readonly uint mortonKey;
 
 		public MortonKey3(uint mortonKey) {
 			this.mortonKey = mortonKey;
 		}
 		
+		public MortonKey3(int mortonKey) {
+			#if UNITY_EDITOR || DEBUG
+				if (mortonKey < 0) {
+					BitDebug.Exception("MortonKey3(int) - morton key must be positive");
+				}
+			#endif
+			
+			this.mortonKey = (uint)mortonKey;
+		}
+		
 		public MortonKey3(uint x, uint y, uint z) {
+			#if UNITY_EDITOR || DEBUG
+				if (x > 1024 || x < 0) {
+					BitDebug.Exception("MortonKey3(uint, uint, uint) - morton key x component must be between 0-1023 (10 bits), was " + x);
+				}
+				
+				if (y > 1024 || y < 0) {
+					BitDebug.Exception("MortonKey3(uint, uint, uint) - morton key y component must be between 0-1023 (10 bits), was " + y);
+				}
+				
+				if (z > 1024 || z < 0) {
+					BitDebug.Exception("MortonKey3(uint, uint, uint) - morton key z component must be between 0-1023 (10 bits), was " + z);
+				}
+			#endif
 			mortonKey = BitMath.EncodeMortonKey(x, y, z);
 		}
 		
@@ -45,74 +68,106 @@ namespace BitStack {
 			}
 		}
 		
-		public void IncX() {
-			mortonKey = mortonKey.MortonIncX3();
+		public MortonKey3 IncX() {
+			return new MortonKey3(mortonKey.MortonIncX3());
 		}
 		
-		public void IncY() {
-			mortonKey = mortonKey.MortonIncY3();
+		public MortonKey3 IncY() {
+			return new MortonKey3(mortonKey.MortonIncY3());
 		}
 		
-		public void IncZ() {
-			mortonKey = mortonKey.MortonIncZ3();
+		public MortonKey3 IncZ() {
+			return new MortonKey3(mortonKey.MortonIncZ3());
 		}
 		
-		public void IncXY() {
-			IncX();
-			IncY();
+		public MortonKey3 IncXY() {
+			uint key = mortonKey;
+			
+			key = key.MortonIncX3();
+			key = key.MortonIncY3();
+			
+			return new MortonKey3(key);
 		}
 		
-		public void IncXZ() {
-			IncX();
-			IncZ();
+		public MortonKey3 IncXZ() {
+			uint key = mortonKey;
+			
+			key = key.MortonIncX3();
+			key = key.MortonIncZ3();
+			
+			return new MortonKey3(key);
 		}
 		
-		public void IncYZ() {
-			IncY();
-			IncZ();
+		public MortonKey3 IncYZ() {
+			uint key = mortonKey;
+			
+			key = key.MortonIncY3();
+			key = key.MortonIncZ3();
+			
+			return new MortonKey3(key);
 		}
 		
-		public void IncXYZ() {
-			IncX();
-			IncY();
-			IncZ();
+		public MortonKey3 IncXYZ() {
+			uint key = mortonKey;
+			
+			key = key.MortonIncX3();
+			key = key.MortonIncY3();
+			key = key.MortonIncZ3();
+			
+			return new MortonKey3(key);
 		}
 		
-		public void DecX() {
-			mortonKey = mortonKey.MortonDecX3();
+		public MortonKey3 DecX() {
+			return new MortonKey3(mortonKey.MortonDecX3());
 		}
 		
-		public void DecY() {
-			mortonKey = mortonKey.MortonDecY3();
+		public MortonKey3 DecY() {
+			return new MortonKey3(mortonKey.MortonDecY3());
 		}
 		
-		public void DecZ() {
-			mortonKey = mortonKey.MortonDecZ3();
+		public MortonKey3 DecZ() {
+			return new MortonKey3(mortonKey.MortonDecZ3());
 		}
 		
-		public void DecXY() {
-			DecX();
-			DecY();
+		public MortonKey3 DecXY() {
+			uint key = mortonKey;
+			
+			key = key.MortonDecX3();
+			key = key.MortonDecY3();
+			
+			return new MortonKey3(key);
 		}
 		
-		public void DecXZ() {
-			DecX();
-			DecZ();
+		public MortonKey3 DecXZ() {
+			uint key = mortonKey;
+			
+			key = key.MortonDecX3();
+			key = key.MortonDecZ3();
+			
+			return new MortonKey3(key);
 		}
 		
-		public void DecYZ() {
-			DecY();
-			DecZ();
+		public MortonKey3 DecYZ() {
+			uint key = mortonKey;
+			
+			key = key.MortonDecY3();
+			key = key.MortonDecZ3();
+			
+			return new MortonKey3(key);
 		}
 		
-		public void DecXYZ() {
-			DecX();
-			DecY();
-			DecZ();
+		public MortonKey3 DecXYZ() {
+			uint key = mortonKey;
+			
+			key = key.MortonDecX3();
+			key = key.MortonDecY3();
+			key = key.MortonDecZ3();
+			
+			return new MortonKey3(key);
 		}
 		
 		/**
-		 * Overrides
+		 * Overrides - MortonKey3(1,2,3) + MortonKey3(4,5,6) = MortonKey3(5,7,9)
 		 */
 		public static MortonKey3 operator +(MortonKey3 x, MortonKey3 y) {
 			uint sum_x = (x.mortonKey | ValueMortonKeyExtensions.MORTON_YZ3_MASK) + (y.mortonKey & ValueMortonKeyExtensions.MORTON_X3_MASK);
@@ -122,10 +177,34 @@ namespace BitStack {
 			return new MortonKey3((sum_x & ValueMortonKeyExtensions.MORTON_X3_MASK) | (sum_y & ValueMortonKeyExtensions.MORTON_Y3_MASK) | (sum_z & ValueMortonKeyExtensions.MORTON_Z3_MASK));
 		}
 		
+		/**
+		 * Overrides - MortonKey3(1,2,3) * MortonKey3(4,5,6) = MortonKey3(4,10,18)
+		 */
+		public static MortonKey3 operator *(MortonKey3 x, MortonKey3 y) {
+			// TO-DO, these needs to be replaced with a more efficient method
+			Vector3 vx = x.Value;
+			Vector3 vy = y.Value;
+			
+			return new MortonKey3((uint)(vx.x * vy.x), (uint)(vx.y * vy.y), (uint)(vx.z * vy.z));
+		}
+		
+		/**
+		 * Overrides - MortonKey3(1,2,3) * 4 = MortonKey3(4,8,12)
+		 */
+		public static MortonKey3 operator *(MortonKey3 x, uint val) {
+			// TO-DO, these needs to be replaced with a more efficient method
+			Vector3 vx = x.Value;
+			
+			return new MortonKey3((uint)(vx.x * val), (uint)(vx.y * val), (uint)(vx.z * val));
+		}
+		
+		/**
+		 * Overrides - MortonKey3(4,5,6) - MortonKey3(1,2,3) = MortonKey3(3,3,3)
+		 */
 		public static MortonKey3 operator -(MortonKey3 x, MortonKey3 y) {
-			uint sum_x = (x.mortonKey | ValueMortonKeyExtensions.MORTON_YZ3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_X3_MASK);
-			uint sum_y = (x.mortonKey | ValueMortonKeyExtensions.MORTON_XZ3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_Y3_MASK);
-			uint sum_z = (x.mortonKey | ValueMortonKeyExtensions.MORTON_XY3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_Z3_MASK);
+			uint sum_x = (x.mortonKey & ValueMortonKeyExtensions.MORTON_X3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_X3_MASK);
+			uint sum_y = (x.mortonKey & ValueMortonKeyExtensions.MORTON_Y3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_Y3_MASK);
+			uint sum_z = (x.mortonKey & ValueMortonKeyExtensions.MORTON_Z3_MASK) - (y.mortonKey & ValueMortonKeyExtensions.MORTON_Z3_MASK);
 			
 			return new MortonKey3((sum_x & ValueMortonKeyExtensions.MORTON_X3_MASK) | (sum_y & ValueMortonKeyExtensions.MORTON_Y3_MASK) | (sum_z & ValueMortonKeyExtensions.MORTON_Z3_MASK));
 		}
@@ -140,6 +219,10 @@ namespace BitStack {
 
 		public bool Equals(Vector3 other) {
 			return mortonKey == other.MortonKey();
+		}
+		
+		public MortonKey3 Copy() {
+			return new MortonKey3(Key);
 		}
 	}
 }

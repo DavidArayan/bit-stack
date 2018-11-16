@@ -47,6 +47,18 @@ namespace BitStack {
 		public static uint ToggleBitAt(this uint data, int pos) {
 			return (data ^ (1u << pos));
 		}
+		
+		/**
+		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
+		 * position. position value must be between [0, 31]
+		 */
+		public static uint SetBit(this uint data, int pos, uint bit) {
+			uint mask = 1u << pos;
+			uint m1 = (bit << pos) & mask;
+			uint m2 = data & ~mask;
+			
+			return (m2 | m1);
+		}
 
 		/**
 		 * Count the number of set bits in the provided uint value (32 bits)

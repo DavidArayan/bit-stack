@@ -47,6 +47,18 @@ namespace BitStack {
 		public static ulong ToggleBitAt(this ulong data, int pos) {
 			return data ^ (1Lu << pos);
 		}
+		
+		/**
+		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
+		 * position. position value must be between [0, 63]
+		 */
+		public static ulong SetBit(this ulong data, int pos, ulong bit) {
+			ulong mask = 1Lu << pos;
+			ulong m1 = (bit << pos) & mask;
+			ulong m2 = data & ~mask;
+			
+			return (m2 | m1);
+		}
 
 		/**
 		 * Count the number of set bits in the provided ulong value (64 bits)

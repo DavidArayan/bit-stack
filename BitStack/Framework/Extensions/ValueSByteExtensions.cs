@@ -47,6 +47,18 @@ namespace BitStack {
 		public static sbyte ToggleBitAt(this sbyte data, int pos) {
 			return (sbyte)(data ^ (1 << pos));
 		}
+		
+		/**
+		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
+		 * position. position value must be between [0, 7]
+		 */
+		public static sbyte SetBit(this sbyte data, int pos, sbyte bit) {
+			int mask = 1 << pos;
+			int m1 = (bit << pos) & mask;
+			int m2 = data & ~mask;
+			
+			return (sbyte)(m2 | m1);
+		}
 
 		/**
 		 * Count the number of set bits in the provided sbyte value (8 bits)

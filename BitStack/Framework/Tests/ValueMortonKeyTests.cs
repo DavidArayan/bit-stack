@@ -41,8 +41,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x+1,y,z);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.IncX();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.IncX();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -60,8 +60,9 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x+1,y+1,z);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.IncXY();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.IncXY();
+					Vector3 decode = testKey.Value;
+					
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -79,8 +80,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x+1,y,z+1);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.IncXZ();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.IncXZ();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -98,8 +99,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x,y+1,z+1);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.IncYZ();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.IncYZ();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -117,8 +118,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x+1,y+1,z+1);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.IncXYZ();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.IncXYZ();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -136,8 +137,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x-1,y,z);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.DecX();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.DecX();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -155,8 +156,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x,y+1,z);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.IncY();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.IncY();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -174,8 +175,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x,y-1,z);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.DecY();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.DecY();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -193,8 +194,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x,y,z+1);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.IncZ();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.IncZ();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -212,8 +213,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x,y,z-1);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.DecZ();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.DecZ();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -231,8 +232,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x-1,y-1,z);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.DecXY();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.DecXY();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -250,8 +251,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x-1,y,z-1);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.DecXZ();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.DecXZ();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -269,8 +270,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x,y-1,z-1);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.DecYZ();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.DecYZ();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -288,8 +289,8 @@ public class ValueMortonKeyTests {
 					Vector3 testInc = new Vector3(x-1,y-1,z-1);
 					
 					MortonKey3 mortonKey = new MortonKey3(test);
-					mortonKey.DecXYZ();
-					Vector3 decode = mortonKey.Value;
+					MortonKey3 testKey = mortonKey.DecXYZ();
+					Vector3 decode = testKey.Value;
 					
 					Debug.Assert(testInc == decode,
 								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ") via Original(" + test + ")");
@@ -334,6 +335,56 @@ public class ValueMortonKeyTests {
 					
 					MortonKey3 sum = xm - ym;
 					Vector3 testInc = xa - ya;
+					Vector3 decode = sum.Value;
+					
+					
+					Debug.Assert(testInc == decode,
+								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ")");
+				}
+			}
+		}
+	}
+	
+	[Test]
+	public void Test_MortonKeyMul() {
+		for (int x = 4; x < 6; x++) {
+			for (int y = 8; y < 10; y++) {
+				for (int z = 12; z < 16; z++) {
+					Vector3 xa = new Vector3(z, y, z);
+					Vector3 ya = new Vector3(x, x, y);
+					
+					MortonKey3 xm = new MortonKey3(xa);
+					MortonKey3 ym = new MortonKey3(ya);
+					
+					MortonKey3 sum = xm * ym;
+					Vector3 testInc = xa;
+					
+					testInc.x *= ya.x;
+					testInc.y *= ya.y;
+					testInc.z *= ya.z;
+					
+					Vector3 decode = sum.Value;
+					
+					
+					Debug.Assert(testInc == decode,
+								 "Expected Test(" + testInc + ") to be Equal to Key(" + decode + ")");
+				}
+			}
+		}
+	}
+	
+	[Test]
+	public void Test_MortonKeyMulVal() {
+		for (int x = 4; x < 6; x++) {
+			for (int y = 8; y < 10; y++) {
+				for (int z = 12; z < 16; z++) {
+					Vector3 xa = new Vector3(z, y, z);
+					
+					MortonKey3 xm = new MortonKey3(xa);
+					
+					MortonKey3 sum = xm * 5;
+					Vector3 testInc = xa * 5;
+					
 					Vector3 decode = sum.Value;
 					
 					

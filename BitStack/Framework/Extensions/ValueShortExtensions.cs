@@ -47,6 +47,18 @@ namespace BitStack {
 		public static short ToggleBitAt(this short data, int pos) {
 			return (short)(data ^ (1 << pos));
 		}
+		
+		/**
+		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
+		 * position. position value must be between [0, 15]
+		 */
+		public static short SetBit(this short data, int pos, short bit) {
+			int mask = 1 << pos;
+			int m1 = (bit << pos) & mask;
+			int m2 = data & ~mask;
+			
+			return (short)(m2 | m1);
+		}
 
 		/**
 		 * Count the number of set bits in the provided ushort value (16 bits)
