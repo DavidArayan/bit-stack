@@ -23,6 +23,14 @@ namespace BitStack {
 		public static int BitAt(this ulong data, int pos) {
 			return (int)((data >> pos) & 1Lu);
 		}
+		
+		/**
+		 * Return the inverted state of the bit (either 1 or 0) at provided
+		 * position. position value must be between [0, 63]
+		 */
+		public static int BitInvAt(this ulong data, int pos) {
+			return 1 - (int)((data >> pos) & 1Lu);
+		}
 
 		/**
 		 * Sets the state of the bit into the ON/1 at provided

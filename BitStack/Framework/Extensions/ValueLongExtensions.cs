@@ -23,6 +23,14 @@ namespace BitStack {
 		public static int BitAt(this long data, int pos) {
 			return (int)((data >> pos) & 1);
 		}
+		
+		/**
+		 * Return the inverted state of the bit (either 1 or 0) at provided
+		 * position. position value must be between [0, 63]
+		 */
+		public static int BitInvAt(this long data, int pos) {
+			return 1 - (int)((data >> pos) & 1);
+		}
 
 		/**
 		 * Sets the state of the bit into the ON/1 at provided
