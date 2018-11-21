@@ -46,6 +46,23 @@ namespace BitStack {
 			mortonKey = BitMath.EncodeMortonKey(x, y, z);
 		}
 		
+		public MortonKey3(int x, int y, int z) {
+			#if UNITY_EDITOR || DEBUG
+				if (x > 1024 || x < 0) {
+					BitDebug.Exception("MortonKey3(int, int, int) - morton key x component must be between 0-1023 (10 bits), was " + x);
+				}
+				
+				if (y > 1024 || y < 0) {
+					BitDebug.Exception("MortonKey3(int, int, int) - morton key y component must be between 0-1023 (10 bits), was " + y);
+				}
+				
+				if (z > 1024 || z < 0) {
+					BitDebug.Exception("MortonKey3(int, int, int) - morton key z component must be between 0-1023 (10 bits), was " + z);
+				}
+			#endif
+			mortonKey = BitMath.EncodeMortonKey((uint)x, (uint)y, (uint)z);
+		}
+		
 		public MortonKey3(Vector3 value) {
 			mortonKey = value.MortonKey();
 		}
