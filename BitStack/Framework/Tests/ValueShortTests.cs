@@ -67,6 +67,17 @@ public class ValueShortTests {
 						 "Expected Bit Position(" + i + ") to be 1");
 		}
 	}
+	
+	[Test]
+	public void Test_SetUnsetBit() {
+		for (int i = 0; i < LOOP_COUNT; i++) {
+			Debug.Assert(TEST_VALUE.SetBit(i, 0).SetBit(i, 1).BitAt(i) == 1,
+						 "Expected Bit Position(" + i + ") to be 1");
+						 
+			Debug.Assert(TEST_VALUE.SetBit(i, 1).SetBit(i, 0).BitAt(i) == 0,
+						 "Expected Bit Position(" + i + ") to be 0");
+		}
+	}
 
 	[Test]
 	public void Test_ToggleBitAt() {
