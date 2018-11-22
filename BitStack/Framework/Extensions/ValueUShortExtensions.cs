@@ -21,6 +21,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 15]
 		 */
 		public static int BitAt(this ushort data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("ushort.BitAt(int) - position must be between 0 and 15 but was " + pos);
+				}
+			#endif
 			return ((data >> pos) & 1);
 		}
 		
@@ -29,6 +34,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 15]
 		 */
 		public static int BitInvAt(this ushort data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("ushort.BitInvAt(int) - position must be between 0 and 15 but was " + pos);
+				}
+			#endif
 			return 1 - ((data >> pos) & 1);
 		}
 
@@ -37,6 +47,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 15]
 		 */
 		public static ushort SetBitAt(this ushort data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("ushort.SetBitAt(int) - position must be between 0 and 15 but was " + pos);
+				}
+			#endif
 			return (ushort)(data | 1u << pos);
 		}
 
@@ -45,6 +60,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 15]
 		 */
 		public static ushort UnsetBitAt(this ushort data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("ushort.UnsetBitAt(int) - position must be between 0 and 15 but was " + pos);
+				}
+			#endif
 			return (ushort)(data & ~(1u << pos));
 		}
 
@@ -53,6 +73,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 15].
 		 */
 		public static ushort ToggleBitAt(this ushort data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("ushort.ToggleBitAt(int) - position must be between 0 and 15 but was " + pos);
+				}
+			#endif
 			return (ushort)(data ^ (1u << pos));
 		}
 		
@@ -61,6 +86,15 @@ namespace BitStack {
 		 * position. position value must be between [0, 15]
 		 */
 		public static ushort SetBit(this ushort data, int pos, ushort bit) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("ushort.SetBit(int, ushort) - position must be between 0 and 15 but was " + pos);
+				}
+				
+				if (bit != 0 && bit != 1) {
+					BitDebug.Exception("ushort.SetBit(int, ushort) - bit value must be either 0 or 1 but was " + bit);
+				}
+			#endif
 			int mask = 1 << pos;
 			int m1 = (bit << pos) & mask;
 			int m2 = data & ~mask;
@@ -105,6 +139,11 @@ namespace BitStack {
 		 * a byte and return. Will only look at the first 8 characters
 		 */
 		public static ushort UShortFromBitString(this string data, int readIndex) {
+			#if UNITY_EDITOR || DEBUG
+				if ((readIndex + 16) > data.Length) {
+					BitDebug.Exception("string.UShortFromBitString(int) - read index and ushort length is less than the string size");
+				}
+			#endif
 			ushort value = 0;
 
 			for (int i = readIndex, j = 15; i < 16; i++, j--) {

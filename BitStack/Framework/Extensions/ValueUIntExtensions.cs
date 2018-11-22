@@ -21,6 +21,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 31]
 		 */
 		public static int BitAt(this uint data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("uint.BitAt(int) - position must be between 0 and 31 but was " + pos);
+				}
+			#endif
 			return (int)((data >> pos) & 1);
 		}
 		
@@ -29,6 +34,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 31]
 		 */
 		public static int BitInvAt(this uint data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("uint.BitInvAt(int) - position must be between 0 and 31 but was " + pos);
+				}
+			#endif
 			return 1 - (int)((data >> pos) & 1);
 		}
 
@@ -37,6 +47,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 31]
 		 */
 		public static uint SetBitAt(this uint data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("uint.SetBitAt(int) - position must be between 0 and 31 but was " + pos);
+				}
+			#endif
 			return (data | 1u << pos);
 		}
 
@@ -45,6 +60,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 31]
 		 */
 		public static uint UnsetBitAt(this uint data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("uint.UnsetBitAt(int) - position must be between 0 and 31 but was " + pos);
+				}
+			#endif
 			return (data & ~(1u << pos));
 		}
 
@@ -53,6 +73,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 31].
 		 */
 		public static uint ToggleBitAt(this uint data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("uint.ToggleBitAt(int) - position must be between 0 and 31 but was " + pos);
+				}
+			#endif
 			return (data ^ (1u << pos));
 		}
 		
@@ -61,6 +86,15 @@ namespace BitStack {
 		 * position. position value must be between [0, 31]
 		 */
 		public static uint SetBit(this uint data, int pos, uint bit) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("uint.SetBit(int, uint) - position must be between 0 and 31 but was " + pos);
+				}
+				
+				if (bit != 0 && bit != 1) {
+					BitDebug.Exception("uint.SetBit(int, uint) - bit value must be either 0 or 1 but was " + bit);
+				}
+			#endif
 			uint mask = 1u << pos;
 			uint m1 = (bit << pos) & mask;
 			uint m2 = data & ~mask;
@@ -108,6 +142,11 @@ namespace BitStack {
 		 * a byte and return. Will only look at the first 8 characters
 		 */
 		public static uint UIntFromBitString(this string data, int readIndex) {
+			#if UNITY_EDITOR || DEBUG
+				if ((readIndex + 32) > data.Length) {
+					BitDebug.Exception("string.UIntFromBitString(int) - read index and uint length is less than the string size");
+				}
+			#endif
 			uint value = 0;
 
 			for (int i = readIndex, j = 31; i < 32; i++, j--) {

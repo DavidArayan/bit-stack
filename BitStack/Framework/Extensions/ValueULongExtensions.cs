@@ -21,6 +21,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 63]
 		 */
 		public static int BitAt(this ulong data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("ulong.BitAt(int) - position must be between 0 and 63 but was " + pos);
+				}
+			#endif
 			return (int)((data >> pos) & 1Lu);
 		}
 		
@@ -29,6 +34,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 63]
 		 */
 		public static int BitInvAt(this ulong data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("ulong.BitInvAt(int) - position must be between 0 and 63 but was " + pos);
+				}
+			#endif
 			return 1 - (int)((data >> pos) & 1Lu);
 		}
 
@@ -37,6 +47,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 63]
 		 */
 		public static ulong SetBitAt(this ulong data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("ulong.SetBitAt(int) - position must be between 0 and 63 but was " + pos);
+				}
+			#endif
 			return (data | 1Lu << pos);
 		}
 
@@ -45,6 +60,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 63]
 		 */
 		public static ulong UnsetBitAt(this ulong data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("ulong.UnsetBitAt(int) - position must be between 0 and 63 but was " + pos);
+				}
+			#endif
 			return (data & ~(1Lu << pos));
 		}
 
@@ -53,6 +73,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 63].
 		 */
 		public static ulong ToggleBitAt(this ulong data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("ulong.ToggleBitAt(int) - position must be between 0 and 63 but was " + pos);
+				}
+			#endif
 			return data ^ (1Lu << pos);
 		}
 		
@@ -61,6 +86,15 @@ namespace BitStack {
 		 * position. position value must be between [0, 63]
 		 */
 		public static ulong SetBit(this ulong data, int pos, ulong bit) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("ulong.SetBit(int, ulong) - position must be between 0 and 63 but was " + pos);
+				}
+				
+				if (bit != 0 && bit != 1) {
+					BitDebug.Exception("ulong.SetBit(int, ulong) - bit value must be either 0 or 1 but was " + bit);
+				}
+			#endif
 			ulong mask = 1Lu << pos;
 			ulong m1 = (bit << pos) & mask;
 			ulong m2 = data & ~mask;
@@ -109,6 +143,11 @@ namespace BitStack {
 		 * a byte and return. Will only look at the first 8 characters
 		 */
 		public static ulong ULongFromBitString(this string data, int readIndex) {
+			#if UNITY_EDITOR || DEBUG
+				if ((readIndex + 64) > data.Length) {
+					BitDebug.Exception("string.ULongFromBitString(int) - read index and ulong length is less than the string size");
+				}
+			#endif
 			ulong value = 0;
 
 			for (int i = readIndex, j = 63; i < 64; i++, j--) {

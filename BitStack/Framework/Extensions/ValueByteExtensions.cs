@@ -20,6 +20,11 @@
 		 * position. position value must be between [0, 7]
 		 */
 		public static int BitAt(this byte data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 7) {
+					BitDebug.Exception("byte.BitAt(int) - position must be between 0 and 7 but was " + pos);
+				}
+			#endif
 			return ((data >> pos) & 1);
 		}
 		
@@ -28,6 +33,11 @@
 		 * position. position value must be between [0, 7]
 		 */
 		public static int BitInvAt(this byte data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 7) {
+					BitDebug.Exception("byte.BitInvAt(int) - position must be between 0 and 7 but was " + pos);
+				}
+			#endif
 			return 1 - ((data >> pos) & 1);
 		}
 
@@ -36,6 +46,11 @@
 		 * position. position value must be between [0, 7]
 		 */
 		public static byte SetBitAt(this byte data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 7) {
+					BitDebug.Exception("byte.SetBitAt(int) - position must be between 0 and 7 but was " + pos);
+				}
+			#endif
 			return (byte)(data | 1 << pos);
 		}
 
@@ -44,6 +59,11 @@
 		 * position. position value must be between [0, 7]
 		 */
 		public static byte UnsetBitAt(this byte data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 7) {
+					BitDebug.Exception("byte.UnsetBitAt(int) - position must be between 0 and 7 but was " + pos);
+				}
+			#endif
 			return (byte)(data & ~(1 << pos));
 		}
 
@@ -52,6 +72,11 @@
 		 * position. position value must be between [0, 7].
 		 */
 		public static byte ToggleBitAt(this byte data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 7) {
+					BitDebug.Exception("byte.ToggleBitAt(int) - position must be between 0 and 7 but was " + pos);
+				}
+			#endif
 			return (byte)(data ^ (1 << pos));
 		}
 		
@@ -60,6 +85,15 @@
 		 * position. position value must be between [0, 7]
 		 */
 		public static byte SetBit(this byte data, int pos, byte bit) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 7) {
+					BitDebug.Exception("byte.SetBit(int, byte) - position must be between 0 and 7 but was " + pos);
+				}
+				
+				if (bit != 0 && bit != 1) {
+					BitDebug.Exception("byte.SetBit(int, byte) - bit value must be either 0 or 1 but was " + bit);
+				}
+			#endif
 			int mask = 1 << pos;
 			int m1 = (bit << pos) & mask;
 			int m2 = data & ~mask;
@@ -104,6 +138,11 @@
 		 * a byte and return. Will only look at the first 8 characters
 		 */
 		public static byte ByteFromBitString(this string data, int readIndex) {
+			#if UNITY_EDITOR || DEBUG
+				if ((readIndex + 8) > data.Length) {
+					BitDebug.Exception("string.ByteFromBitString(int) - read index and byte length is less than the string size");
+				}
+			#endif
 			byte value = 0;
 		
 			for (int i = readIndex, j = 7; i < 8; i++, j--) {

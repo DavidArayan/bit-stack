@@ -21,6 +21,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 15]
 		 */
 		public static int BitAt(this short data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("short.BitAt(int) - position must be between 0 and 15 but was " + pos);
+				}
+			#endif
 			return ((data >> pos) & 1);
 		}
 		
@@ -29,6 +34,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 15]
 		 */
 		public static int BitInvAt(this short data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("short.BitInvAt(int) - position must be between 0 and 15 but was " + pos);
+				}
+			#endif
 			return 1 - ((data >> pos) & 1);
 		}
 
@@ -37,6 +47,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 15]
 		 */
 		public static short SetBitAt(this short data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("short.SetBitAt(int) - position must be between 0 and 15 but was " + pos);
+				}
+			#endif
 			return (short)((ushort)data | 1u << pos);
 		}
 
@@ -45,6 +60,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 15]
 		 */
 		public static short UnsetBitAt(this short data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("short.UnsetBitAt(int) - position must be between 0 and 15 but was " + pos);
+				}
+			#endif
 			return (short)(data & ~(1 << pos));
 		}
 
@@ -53,6 +73,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 15].
 		 */
 		public static short ToggleBitAt(this short data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("short.ToggleBitAt(int) - position must be between 0 and 15 but was " + pos);
+				}
+			#endif
 			return (short)(data ^ (1 << pos));
 		}
 		
@@ -61,6 +86,15 @@ namespace BitStack {
 		 * position. position value must be between [0, 15]
 		 */
 		public static short SetBit(this short data, int pos, short bit) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 15) {
+					BitDebug.Exception("short.SetBit(int, short) - position must be between 0 and 15 but was " + pos);
+				}
+				
+				if (bit != 0 && bit != 1) {
+					BitDebug.Exception("short.SetBit(int, short) - bit value must be either 0 or 1 but was " + bit);
+				}
+			#endif
 			int mask = 1 << pos;
 			int m1 = (bit << pos) & mask;
 			int m2 = data & ~mask;

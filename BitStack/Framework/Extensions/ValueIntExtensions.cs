@@ -21,6 +21,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 31]
 		 */
 		public static int BitAt(this int data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("int.BitAt(int) - position must be between 0 and 31 but was " + pos);
+				}
+			#endif
 			return ((data >> pos) & 1);
 		}
 		
@@ -29,6 +34,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 31]
 		 */
 		public static int BitInvAt(this int data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("int.BitInvAt(int) - position must be between 0 and 31 but was " + pos);
+				}
+			#endif
 			return 1 - ((data >> pos) & 1);
 		}
 
@@ -37,6 +47,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 31]
 		 */
 		public static int SetBitAt(this int data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("int.SetBitAt(int) - position must be between 0 and 31 but was " + pos);
+				}
+			#endif
 			return (data | 1 << pos);
 		}
 
@@ -45,6 +60,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 31]
 		 */
 		public static int UnsetBitAt(this int data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("int.UnsetBitAt(int) - position must be between 0 and 31 but was " + pos);
+				}
+			#endif
 			return (data & ~(1 << pos));
 		}
 
@@ -53,6 +73,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 31].
 		 */
 		public static int ToggleBitAt(this int data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("int.ToggleBitAt(int) - position must be between 0 and 31 but was " + pos);
+				}
+			#endif
 			return (data ^ (1 << pos));
 		}
 		
@@ -61,6 +86,15 @@ namespace BitStack {
 		 * position. position value must be between [0, 31]
 		 */
 		public static int SetBit(this int data, int pos, int bit) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 31) {
+					BitDebug.Exception("int.SetBit(int, int) - position must be between 0 and 31 but was " + pos);
+				}
+				
+				if (bit != 0 && bit != 1) {
+					BitDebug.Exception("int.SetBit(int, int) - bit value must be either 0 or 1 but was " + bit);
+				}
+			#endif
 			int mask = 1 << pos;
 			int m1 = (bit << pos) & mask;
 			int m2 = data & ~mask;

@@ -21,6 +21,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 63]
 		 */
 		public static int BitAt(this long data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("long.BitAt(int) - position must be between 0 and 63 but was " + pos);
+				}
+			#endif
 			return (int)((data >> pos) & 1);
 		}
 		
@@ -29,6 +34,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 63]
 		 */
 		public static int BitInvAt(this long data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("long.BitInvAt(int) - position must be between 0 and 63 but was " + pos);
+				}
+			#endif
 			return 1 - (int)((data >> pos) & 1);
 		}
 
@@ -37,6 +47,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 63]
 		 */
 		public static long SetBitAt(this long data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("long.SetBitAt(int) - position must be between 0 and 63 but was " + pos);
+				}
+			#endif
 			return (data | 1L << pos);
 		}
 
@@ -45,6 +60,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 63]
 		 */
 		public static long UnsetBitAt(this long data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("long.UnsetBitAt(int) - position must be between 0 and 63 but was " + pos);
+				}
+			#endif
 			return (data & ~(1L << pos));
 		}
 
@@ -53,6 +73,11 @@ namespace BitStack {
 		 * position. position value must be between [0, 63].
 		 */
 		public static long ToggleBitAt(this long data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("long.ToggleBitAt(int) - position must be between 0 and 63 but was " + pos);
+				}
+			#endif
 			return data ^ (1L << pos);
 		}
 		
@@ -61,6 +86,15 @@ namespace BitStack {
 		 * position. position value must be between [0, 63]
 		 */
 		public static long SetBit(this long data, int pos, long bit) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 63) {
+					BitDebug.Exception("long.SetBit(int, long) - position must be between 0 and 63 but was " + pos);
+				}
+				
+				if (bit != 0 && bit != 1) {
+					BitDebug.Exception("long.SetBit(int, long) - bit value must be either 0 or 1 but was " + bit);
+				}
+			#endif
 			long mask = 1L << pos;
 			long m1 = (bit << pos) & mask;
 			long m2 = data & ~mask;
