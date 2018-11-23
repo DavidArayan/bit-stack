@@ -26,7 +26,7 @@ public class ValueUShortTests {
 	[Test]
 	public void Test_BitInvAt() {
 		for (int i = 0; i < LOOP_COUNT; i++) {
-			Debug.Assert(TEST_VALUE.BitInvAt(i) == (1 - EXPTECTED_BITS[i]));
+			Debug.Assert(TEST_VALUE.BitInvAt(i) != (EXPTECTED_BITS[i]));
 		}
 	}
 
