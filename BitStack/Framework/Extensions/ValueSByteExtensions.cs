@@ -85,14 +85,14 @@ namespace BitStack {
 		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
 		 * position. position value must be between [0, 7]
 		 */
-		public static sbyte SetBit(this sbyte data, int pos, sbyte bit) {
+		public static sbyte SetBit(this sbyte data, int pos, int bit) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 7) {
-					BitDebug.Exception("sbyte.SetBit(int, sbyte) - position must be between 0 and 7 but was " + pos);
+					BitDebug.Exception("sbyte.SetBit(int, int) - position must be between 0 and 7 but was " + pos);
 				}
 				
 				if (bit != 0 && bit != 1) {
-					BitDebug.Exception("sbyte.SetBit(int, sbyte) - bit value must be either 0 or 1 but was " + bit);
+					BitDebug.Exception("sbyte.SetBit(int, int) - bit value must be either 0 or 1 but was " + bit);
 				}
 			#endif
 			int mask = 1 << pos;

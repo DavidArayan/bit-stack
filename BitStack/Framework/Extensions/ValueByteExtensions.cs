@@ -84,14 +84,14 @@
 		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
 		 * position. position value must be between [0, 7]
 		 */
-		public static byte SetBit(this byte data, int pos, byte bit) {
+		public static byte SetBit(this byte data, int pos, int bit) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 7) {
-					BitDebug.Exception("byte.SetBit(int, byte) - position must be between 0 and 7 but was " + pos);
+					BitDebug.Exception("byte.SetBit(int, int) - position must be between 0 and 7 but was " + pos);
 				}
 				
 				if (bit != 0 && bit != 1) {
-					BitDebug.Exception("byte.SetBit(int, byte) - bit value must be either 0 or 1 but was " + bit);
+					BitDebug.Exception("byte.SetBit(int, int) - bit value must be either 0 or 1 but was " + bit);
 				}
 			#endif
 			int mask = 1 << pos;

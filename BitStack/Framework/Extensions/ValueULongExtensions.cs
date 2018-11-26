@@ -85,18 +85,18 @@ namespace BitStack {
 		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
 		 * position. position value must be between [0, 63]
 		 */
-		public static ulong SetBit(this ulong data, int pos, ulong bit) {
+		public static ulong SetBit(this ulong data, int pos, long bit) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 63) {
-					BitDebug.Exception("ulong.SetBit(int, ulong) - position must be between 0 and 63 but was " + pos);
+					BitDebug.Exception("ulong.SetBit(int, int) - position must be between 0 and 63 but was " + pos);
 				}
 				
 				if (bit != 0 && bit != 1) {
-					BitDebug.Exception("ulong.SetBit(int, ulong) - bit value must be either 0 or 1 but was " + bit);
+					BitDebug.Exception("ulong.SetBit(int, int) - bit value must be either 0 or 1 but was " + bit);
 				}
 			#endif
 			ulong mask = 1Lu << pos;
-			ulong m1 = (bit << pos) & mask;
+			ulong m1 = ((ulong)bit << pos) & mask;
 			ulong m2 = data & ~mask;
 			
 			return (m2 | m1);

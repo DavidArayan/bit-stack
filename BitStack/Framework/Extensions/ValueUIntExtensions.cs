@@ -85,21 +85,21 @@ namespace BitStack {
 		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
 		 * position. position value must be between [0, 31]
 		 */
-		public static uint SetBit(this uint data, int pos, uint bit) {
+		public static uint SetBit(this uint data, int pos, int bit) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 31) {
-					BitDebug.Exception("uint.SetBit(int, uint) - position must be between 0 and 31 but was " + pos);
+					BitDebug.Exception("uint.SetBit(int, int) - position must be between 0 and 31 but was " + pos);
 				}
 				
 				if (bit != 0 && bit != 1) {
-					BitDebug.Exception("uint.SetBit(int, uint) - bit value must be either 0 or 1 but was " + bit);
+					BitDebug.Exception("uint.SetBit(int, int) - bit value must be either 0 or 1 but was " + bit);
 				}
 			#endif
 			uint mask = 1u << pos;
-			uint m1 = (bit << pos) & mask;
+			uint m1 = ((uint)bit << pos) & mask;
 			uint m2 = data & ~mask;
 			
-			return (m2 | m1);
+			return (uint)(m2 | m1);
 		}
 
 		/**

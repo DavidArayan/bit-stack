@@ -85,14 +85,14 @@ namespace BitStack {
 		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
 		 * position. position value must be between [0, 15]
 		 */
-		public static short SetBit(this short data, int pos, short bit) {
+		public static short SetBit(this short data, int pos, int bit) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 15) {
-					BitDebug.Exception("short.SetBit(int, short) - position must be between 0 and 15 but was " + pos);
+					BitDebug.Exception("short.SetBit(int, int) - position must be between 0 and 15 but was " + pos);
 				}
 				
 				if (bit != 0 && bit != 1) {
-					BitDebug.Exception("short.SetBit(int, short) - bit value must be either 0 or 1 but was " + bit);
+					BitDebug.Exception("short.SetBit(int, int) - bit value must be either 0 or 1 but was " + bit);
 				}
 			#endif
 			int mask = 1 << pos;

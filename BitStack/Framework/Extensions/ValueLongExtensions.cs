@@ -88,11 +88,11 @@ namespace BitStack {
 		public static long SetBit(this long data, int pos, long bit) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 63) {
-					BitDebug.Exception("long.SetBit(int, long) - position must be between 0 and 63 but was " + pos);
+					BitDebug.Exception("long.SetBit(int, int) - position must be between 0 and 63 but was " + pos);
 				}
 				
 				if (bit != 0 && bit != 1) {
-					BitDebug.Exception("long.SetBit(int, long) - bit value must be either 0 or 1 but was " + bit);
+					BitDebug.Exception("long.SetBit(int, int) - bit value must be either 0 or 1 but was " + bit);
 				}
 			#endif
 			long mask = 1L << pos;
