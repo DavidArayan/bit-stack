@@ -117,6 +117,32 @@ namespace BitStack {
 		public static bool IsPowerOfTwo(this sbyte value) {
 			return value != 0 && (value & value - 1) == 0;
 		}
+		
+		/**
+		 * Returns the byte (8 bits) at provided position index
+		 * Position value must be between [0, 0]
+		 */
+		public static byte ByteAt(this sbyte data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos != 0) {
+					BitDebug.Exception("sbyte.ByteAt(int) - position must be between 0 and 0 but was " + pos);
+				}
+			#endif
+			return (byte)data;
+		}
+
+		/**
+		 * Sets and returns the byte (8 bits) at provided position index
+		 * Position value must be between [0, 0]
+		 */
+		public static sbyte SetByteAt(this sbyte data, byte newData, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos != 0) {
+					BitDebug.Exception("sbyte.SetByteAt(int) - position must be between 0 and 0 but was " + pos);
+				}
+			#endif
+			return (sbyte)newData;
+		}
 
 		/**
 		 * Returns the String representation of the Bit Sequence from the provided

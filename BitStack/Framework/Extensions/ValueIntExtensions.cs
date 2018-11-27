@@ -119,6 +119,34 @@ namespace BitStack {
 		}
 
 		/**
+		 * Returns the byte (8 bits) at provided position index
+		 * Position value must be between [0, 3]
+		 */
+		public static byte ByteAt(this int data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 3) {
+					BitDebug.Exception("int.ByteAt(int) - position must be between 0 and 3 but was " + pos);
+				}
+			#endif
+			return (byte)(data >> (24 - (pos * 8)));
+		}
+
+		/**
+		 * Sets and returns the byte (8 bits) at provided position index
+		 * Position value must be between [0, 3]
+		 */
+		public static int SetByteAt(this int data, byte newData, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 3) {
+					BitDebug.Exception("int.SetByteAt(int) - position must be between 0 and 3 but was " + pos);
+				}
+			#endif
+			int shift = (newData << (8 * pos));
+			int mask = 0xff << shift;
+			return (~mask & data) | shift;
+		}
+
+		/**
 		 * Returns the String representation of the Bit Sequence from the provided
 		 * Int. The String will contain 32 characters of 1 or 0 for each bit position
 		 */

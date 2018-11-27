@@ -15,6 +15,8 @@ public class ValueIntTests {
 
 	// the expected bit sequence in array form
 	static readonly int[] EXPTECTED_BITS = { 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1 };
+	
+	static readonly byte TEST_BYTE = 173;
 
 	[Test]
 	public void Test_BitAt() {
@@ -198,5 +200,19 @@ public class ValueIntTests {
 
 		Debug.Assert(revert == TEST_VALUE,
 					 "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
+	}
+	
+	[Test]
+	public void Test_GetByte() {
+		var tuple = TEST_VALUE.SplitIntoByte();
+		
+		byte[] test_data = {tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4};
+		
+		for (int i = 0; i < 4; i++) {
+			byte testValue = TEST_VALUE.ByteAt(i);
+			
+			Debug.Assert(test_data[i] == testValue,
+					 "Expected Test(" + test_data[i] + ") To be equal to Value(" + testValue + ")");
+		}
 	}
 }

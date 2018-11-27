@@ -118,6 +118,32 @@
 		}
 
 		/**
+		 * Returns the byte (8 bits) at provided position index
+		 * Position value must be between [0, 0]
+		 */
+		public static byte ByteAt(this byte data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos != 0) {
+					BitDebug.Exception("byte.ByteAt(int) - position must be between 0 and 0 but was " + pos);
+				}
+			#endif
+			return data;
+		}
+
+		/**
+		 * Sets and returns the byte (8 bits) at provided position index
+		 * Position value must be between [0, 0]
+		 */
+		public static byte SetByteAt(this byte data, byte newData, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos != 0) {
+					BitDebug.Exception("byte.SetByteAt(int) - position must be between 0 and 0 but was " + pos);
+				}
+			#endif
+			return newData;
+		}
+
+		/**
 		 * Returns the String representation of the Bit Sequence from the provided
 		 * ushort. The String will contain 8 characters of 1 or 0 for each bit position
 		 */

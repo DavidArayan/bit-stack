@@ -197,4 +197,18 @@ public class ValueUIntTests {
 		Debug.Assert(revert == TEST_VALUE,
 					 "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
 	}
+	
+	[Test]
+	public void Test_GetByte() {
+		var tuple = TEST_VALUE.SplitIntoByte();
+		
+		byte[] test_data = {tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4};
+		
+		for (int i = 0; i < 4; i++) {
+			byte testValue = TEST_VALUE.ByteAt(i);
+			
+			Debug.Assert(test_data[i] == testValue,
+					 "Expected Test(" + test_data[i] + ") To be equal to Value(" + testValue + ")");
+		}
+	}
 }

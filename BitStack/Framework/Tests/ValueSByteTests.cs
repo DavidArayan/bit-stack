@@ -159,4 +159,12 @@ public class ValueSByteTests {
 		Debug.Assert(!nPow3.IsPowerOfTwo(),
 					 "Expected Test(" + nPow3 + ") To be Non Power of Two");
 	}
+	
+	[Test]
+	public void Test_GetByte() {
+		byte testValue = TEST_VALUE.ByteAt(0);
+			
+		Debug.Assert(((byte)TEST_VALUE) == testValue,
+					 "Expected Test(" + ((byte)TEST_VALUE) + ") To be equal to Value(" + testValue + ")");
+	}
 }

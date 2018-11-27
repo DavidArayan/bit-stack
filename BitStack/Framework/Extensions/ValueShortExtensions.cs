@@ -117,6 +117,34 @@ namespace BitStack {
 		public static bool IsPowerOfTwo(this short value) {
 			return value != 0 && (value & value - 1) == 0;
 		}
+		
+		/**
+		 * Returns the byte (8 bits) at provided position index
+		 * Position value must be between [0, 1]
+		 */
+		public static byte ByteAt(this short data, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 1) {
+					BitDebug.Exception("short.ByteAt(int) - position must be between 0 and 1 but was " + pos);
+				}
+			#endif
+			return (byte)(data >> (8 - (pos * 8)));
+		}
+
+		/**
+		 * Sets and returns the byte (8 bits) at provided position index
+		 * Position value must be between [0, 1]
+		 */
+		public static short SetByteAt(this short data, byte newData, int pos) {
+			#if UNITY_EDITOR || DEBUG
+				if (pos < 0 || pos > 1) {
+					BitDebug.Exception("short.SetByteAt(int) - position must be between 0 and 1 but was " + pos);
+				}
+			#endif
+			int shift = (newData << (8 * pos));
+			int mask = 0xff << shift;
+			return (short)((~mask & data) | shift);
+		}
 
 		/**
 		 * Returns the String representation of the Bit Sequence from the provided

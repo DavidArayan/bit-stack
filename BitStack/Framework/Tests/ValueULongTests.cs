@@ -217,4 +217,19 @@ public class ValueULongTests {
 		Debug.Assert(revert == TEST_VALUE,
 					 "Expected Test(" + revert + ") To be equal to Value(" + TEST_VALUE + ")");
 	}
+	
+	[Test]
+	public void Test_GetByte() {
+		var tuple = TEST_VALUE.SplitIntoByte();
+		
+		byte[] test_data = {tuple.Item1.Item1, tuple.Item1.Item2, tuple.Item1.Item3, tuple.Item1.Item4,
+							tuple.Item2.Item1, tuple.Item2.Item2, tuple.Item2.Item3, tuple.Item2.Item4};
+		
+		for (int i = 0; i < 8; i++) {
+			byte testValue = TEST_VALUE.ByteAt(i);
+			
+			Debug.Assert(test_data[i] == testValue,
+					 "Expected Test(" + test_data[i] + ") To be equal to Value(" + testValue + ")");
+		}
+	}
 }
