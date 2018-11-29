@@ -12,8 +12,8 @@ public class ValueMortonKeyTests {
 		Vector3 test = new Vector3(0,0,0);
 		MortonKey3 mortonKey = new MortonKey3(test);
 		
-		Debug.Assert(mortonKey.Key == 0,
-					 "Expected Test(" + test + ") to be Equal to Key(" + mortonKey.Key + ")");
+		Debug.Assert(mortonKey.key == 0,
+					 "Expected Test(" + test + ") to be Equal to Key(" + mortonKey.key + ")");
 	}
 	
 	[Test]

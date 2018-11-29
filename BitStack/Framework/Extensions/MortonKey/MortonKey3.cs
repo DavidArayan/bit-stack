@@ -67,21 +67,39 @@ namespace BitStack {
 			mortonKey = value.MortonKey();
 		}
 		
-		public uint Key {
+		public uint key {
 			get {
 				return mortonKey;
+			}
+		}
+
+		public uint x {
+			get {
+				return BitMath.MortonPart3Decode(mortonKey);
+			}
+		}
+
+		public uint y {
+			get {
+				return BitMath.MortonPart3Decode(mortonKey >> 1);
+			}
+		}
+
+		public uint z {
+			get {
+				return BitMath.MortonPart3Decode(mortonKey >> 2);
 			}
 		}
 		
 		public Vector3 Value {
 			get {
-				return Key.DecodeMortonKey3();
+				return key.DecodeMortonKey3();
 			}
 		}
 		
 		public ValueTuple<uint, uint, uint> RawValue {
 			get {
-				return BitMath.DecodeMortonKey3(Key);
+				return BitMath.DecodeMortonKey3(key);
 			}
 		}
 		
@@ -98,40 +116,40 @@ namespace BitStack {
 		}
 		
 		public MortonKey3 IncXY() {
-			uint key = mortonKey;
+			uint _key = mortonKey;
 			
-			key = key.MortonIncX3();
-			key = key.MortonIncY3();
+			_key = _key.MortonIncX3();
+			_key = _key.MortonIncY3();
 			
-			return new MortonKey3(key);
+			return new MortonKey3(_key);
 		}
 		
 		public MortonKey3 IncXZ() {
-			uint key = mortonKey;
+			uint _key = mortonKey;
 			
-			key = key.MortonIncX3();
-			key = key.MortonIncZ3();
+			_key = _key.MortonIncX3();
+			_key = _key.MortonIncZ3();
 			
-			return new MortonKey3(key);
+			return new MortonKey3(_key);
 		}
 		
 		public MortonKey3 IncYZ() {
-			uint key = mortonKey;
+			uint _key = mortonKey;
 			
-			key = key.MortonIncY3();
-			key = key.MortonIncZ3();
+			_key = _key.MortonIncY3();
+			_key = _key.MortonIncZ3();
 			
-			return new MortonKey3(key);
+			return new MortonKey3(_key);
 		}
 		
 		public MortonKey3 IncXYZ() {
-			uint key = mortonKey;
+			uint _key = mortonKey;
 			
-			key = key.MortonIncX3();
-			key = key.MortonIncY3();
-			key = key.MortonIncZ3();
+			_key = _key.MortonIncX3();
+			_key = _key.MortonIncY3();
+			_key = _key.MortonIncZ3();
 			
-			return new MortonKey3(key);
+			return new MortonKey3(_key);
 		}
 		
 		public MortonKey3 DecX() {
@@ -147,40 +165,40 @@ namespace BitStack {
 		}
 		
 		public MortonKey3 DecXY() {
-			uint key = mortonKey;
+			uint _key = mortonKey;
 			
-			key = key.MortonDecX3();
-			key = key.MortonDecY3();
+			_key = _key.MortonDecX3();
+			_key = _key.MortonDecY3();
 			
-			return new MortonKey3(key);
+			return new MortonKey3(_key);
 		}
 		
 		public MortonKey3 DecXZ() {
-			uint key = mortonKey;
+			uint _key = mortonKey;
 			
-			key = key.MortonDecX3();
-			key = key.MortonDecZ3();
+			_key = _key.MortonDecX3();
+			_key = _key.MortonDecZ3();
 			
-			return new MortonKey3(key);
+			return new MortonKey3(_key);
 		}
 		
 		public MortonKey3 DecYZ() {
-			uint key = mortonKey;
+			uint _key = mortonKey;
 			
-			key = key.MortonDecY3();
-			key = key.MortonDecZ3();
+			_key = _key.MortonDecY3();
+			_key = _key.MortonDecZ3();
 			
-			return new MortonKey3(key);
+			return new MortonKey3(_key);
 		}
 		
 		public MortonKey3 DecXYZ() {
-			uint key = mortonKey;
+			uint _key = mortonKey;
 			
-			key = key.MortonDecX3();
-			key = key.MortonDecY3();
-			key = key.MortonDecZ3();
+			_key = _key.MortonDecX3();
+			_key = _key.MortonDecY3();
+			_key = _key.MortonDecZ3();
 			
-			return new MortonKey3(key);
+			return new MortonKey3(_key);
 		}
 		
 		/**
@@ -239,7 +257,7 @@ namespace BitStack {
 		}
 		
 		public MortonKey3 Copy() {
-			return new MortonKey3(Key);
+			return new MortonKey3(key);
 		}
 	}
 }
