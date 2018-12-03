@@ -8,7 +8,7 @@ public class ValueSByteArrayTests {
 	
 	static readonly sbyte[] TEST_VALUE_ARRAY = {-74, -127, -126, 34, 96, 122};
 	static readonly int LOOP_COUNT = BITS * TEST_VALUE_ARRAY.Length;
-	static readonly int LOOP_COUNT_BYTES = LOOP_COUNT / 8;
+	static readonly int LOOP_COUNT_BYTES = LOOP_COUNT / BITS;
 	static readonly int[] EXPTECTED_BITS = CalcBits(TEST_VALUE_ARRAY);
 	
 	// NOTE -> This is Tested elsewhere and is assumed correct	

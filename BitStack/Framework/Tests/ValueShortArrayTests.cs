@@ -3,16 +3,16 @@ using NUnit.Framework;
 using BitStack;
 using System;
 
-public class ValueByteArrayTests {
-	const int BITS = 8;
+public class ValueShortArrayTests {
+	const int BITS = 16;
 	
-	static readonly byte[] TEST_VALUE_ARRAY = {128, 196, 213, 254, 96};
+	static readonly short[] TEST_VALUE_ARRAY = {-12893, -19667, -21398, 25445, 9687, 24398, 27667};
 	static readonly int LOOP_COUNT = BITS * TEST_VALUE_ARRAY.Length;
 	static readonly int LOOP_COUNT_BYTES = LOOP_COUNT / BITS;
 	static readonly int[] EXPTECTED_BITS = CalcBits(TEST_VALUE_ARRAY);
 	
 	// NOTE -> This is Tested elsewhere and is assumed correct	
-	private static int[] CalcBits(byte[] value) {
+	private static int[] CalcBits(short[] value) {
 		int[] bits = new int[BITS * value.Length];
 		
 		int index = 0;
@@ -28,15 +28,15 @@ public class ValueByteArrayTests {
 	}
 	
 	// NOTE -> This is Tested elsewhere and is assumed correct	
-	private static byte[] GetTestArray() {
-		byte[] copyArray = new byte[TEST_VALUE_ARRAY.Length];      
+	private static short[] GetTestArray() {
+		short[] copyArray = new short[TEST_VALUE_ARRAY.Length];      
 		Array.Copy(TEST_VALUE_ARRAY, copyArray, TEST_VALUE_ARRAY.Length);
 		return copyArray;
 	}
 	
 	[Test]
 	public void Test_BitAt() {
-		byte[] TEST_VALUE = GetTestArray();
+		short[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			int bit = TEST_VALUE.BitAt(i);
@@ -48,7 +48,7 @@ public class ValueByteArrayTests {
 	
 	[Test]
 	public void Test_BitInvAt() {
-		byte[] TEST_VALUE = GetTestArray();
+		short[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			int bit = TEST_VALUE.BitInvAt(i);
@@ -60,7 +60,7 @@ public class ValueByteArrayTests {
 
 	[Test]
 	public void Test_SetBitAt() {
-		byte[] TEST_VALUE = GetTestArray();
+		short[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			TEST_VALUE.SetBitAt(i);
@@ -72,7 +72,7 @@ public class ValueByteArrayTests {
 
 	[Test]
 	public void Test_UnsetBitAt() {
-		byte[] TEST_VALUE = GetTestArray();
+		short[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			TEST_VALUE.UnsetBitAt(i);
@@ -84,7 +84,7 @@ public class ValueByteArrayTests {
 	
 	[Test]
 	public void Test_SetBit() {
-		byte[] TEST_VALUE = GetTestArray();
+		short[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			TEST_VALUE.SetBit(i, 0);
@@ -101,7 +101,7 @@ public class ValueByteArrayTests {
 	
 	[Test]
 	public void Test_SetUnsetBit() {
-		byte[] TEST_VALUE = GetTestArray();
+		short[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			TEST_VALUE.SetBit(i, 0);
@@ -120,7 +120,7 @@ public class ValueByteArrayTests {
 
 	[Test]
 	public void Test_ToggleBitAt() {
-		byte[] TEST_VALUE = GetTestArray();
+		short[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			TEST_VALUE.ToggleBitAt(i);
