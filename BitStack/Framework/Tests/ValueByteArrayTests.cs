@@ -51,7 +51,10 @@ public class ValueByteArrayTests {
 		byte[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
-			Debug.Assert(TEST_VALUE.BitInvAt(i) != (EXPTECTED_BITS[i]));
+			int bit = TEST_VALUE.BitInvAt(i);
+			
+			Debug.Assert(TEST_VALUE.BitInvAt(i) != EXPTECTED_BITS[i], 
+							"Expected Bit(" + bit + ") at Index(" + i + ") not to be " + EXPTECTED_BITS[i]);
 		}
 	}
 

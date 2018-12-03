@@ -42,7 +42,7 @@ namespace BitStack {
 			#endif
 			
 			// pipe into the single value type
-			return data[bitIndex].BitAt(pos & BIT_LEN);
+			return data[bitIndex].BitAt(pos % BIT_LEN);
 		}
 		
 		/**
@@ -67,7 +67,7 @@ namespace BitStack {
 			#endif
 			
 			// pipe into the single value type
-			return data[bitIndex].BitInvAt(pos & BIT_LEN);
+			return data[bitIndex].BitInvAt(pos % BIT_LEN);
 		}
 
 		/**
@@ -92,7 +92,7 @@ namespace BitStack {
 			#endif
 			
 			// pipe into the single value type
-			data[bitIndex] = data[bitIndex].SetBitAt(pos & BIT_LEN);
+			data[bitIndex] = data[bitIndex].SetBitAt(pos % BIT_LEN);
 		}
 
 		/**
@@ -117,7 +117,7 @@ namespace BitStack {
 			#endif
 			
 			// pipe into the single value type
-			data[bitIndex] = data[bitIndex].UnsetBitAt(pos & BIT_LEN);
+			data[bitIndex] = data[bitIndex].UnsetBitAt(pos % BIT_LEN);
 		}
 
 		/**
@@ -142,7 +142,7 @@ namespace BitStack {
 			#endif
 			
 			// pipe into the single value type
-			data[bitIndex] = data[bitIndex].ToggleBitAt(pos & BIT_LEN);
+			data[bitIndex] = data[bitIndex].ToggleBitAt(pos % BIT_LEN);
 		}
 		
 		/**
@@ -167,7 +167,7 @@ namespace BitStack {
 			#endif
 			
 			// pipe into the single value type
-			data[bitIndex] = data[bitIndex].SetBit(pos & BIT_LEN, bit);
+			data[bitIndex] = data[bitIndex].SetBit(pos % BIT_LEN, bit);
 		}
 
 		/**
