@@ -138,12 +138,15 @@ namespace BitStack {
 		public static long SetByteAt(this long data, byte newData, int pos) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 7) {
-					BitDebug.Exception("long.SetByteAt(int) - position must be between 0 and 3 but was " + pos);
+					BitDebug.Exception("long.SetByteAt(int) - position must be between 0 and 7 but was " + pos);
 				}
 			#endif
-			int shift = (newData << (8 * pos));
-			long mask = ((long)0xff) << shift;
-			return (~mask & data) | shift;
+			int shift = 56 - (pos * 8);
+			long mask = (long)0xFF << shift;
+			long m1 = ((long)newData << shift) & mask;
+			long m2 = data & ~mask;
+			
+			return (m2 | m1);
 		}
 
 		/**

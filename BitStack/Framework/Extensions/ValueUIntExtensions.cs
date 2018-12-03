@@ -99,7 +99,7 @@ namespace BitStack {
 			uint m1 = ((uint)bit << pos) & mask;
 			uint m2 = data & ~mask;
 			
-			return (uint)(m2 | m1);
+			return m2 | m1;
 		}
 
 		/**
@@ -144,9 +144,12 @@ namespace BitStack {
 					BitDebug.Exception("uint.SetByteAt(int) - position must be between 0 and 3 but was " + pos);
 				}
 			#endif
-			int shift = (newData << (8 * pos));
-			int mask = 0xff << shift;
-			return (uint)((~mask & data) | shift);
+			int shift = 24 - (pos * 8);
+			uint mask = (uint)(0xFF << shift);
+			uint m1 = ((uint)newData << shift) & mask;
+			uint m2 = data & ~mask;
+			
+			return m2 | m1;
 		}
 
 		/**

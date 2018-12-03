@@ -141,9 +141,12 @@ namespace BitStack {
 					BitDebug.Exception("ushort.SetByteAt(int) - position must be between 0 and 1 but was " + pos);
 				}
 			#endif
-			int shift = (newData << (8 * pos));
-			int mask = 0xff << shift;
-			return (ushort)((~mask & data) | shift);
+			int shift = 8 - (pos * 8);
+			int mask = 0xFF << shift;
+			int m1 = (newData << shift) & mask;
+			int m2 = data & ~mask;
+			
+			return (ushort)(m2 | m1);
 		}
 
 		/**

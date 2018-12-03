@@ -142,12 +142,15 @@ namespace BitStack {
 		public static ulong SetByteAt(this ulong data, byte newData, int pos) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 7) {
-					BitDebug.Exception("ulong.SetByteAt(int) - position must be between 0 and 3 but was " + pos);
+					BitDebug.Exception("ulong.SetByteAt(int) - position must be between 0 and 7 but was " + pos);
 				}
 			#endif
-			int shift = (newData << (8 * pos));
-			ulong mask = ((ulong)0xff) << shift;
-			return (ulong)((~mask & data) | (ulong)(shift));
+			int shift = 56 - (pos * 8);
+			ulong mask = (ulong)0xFF << shift;
+			ulong m1 = ((ulong)newData << shift) & mask;
+			ulong m2 = data & ~mask;
+			
+			return (m2 | m1);
 		}
 
 		/**
