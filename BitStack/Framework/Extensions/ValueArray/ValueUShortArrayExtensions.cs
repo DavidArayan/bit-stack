@@ -1,9 +1,9 @@
 ﻿namespace BitStack {
 	
 	/**
-	 * An Extension of the ValueShortExtension which allows working with bits
+	 * An Extension of the ValueUShortExtension which allows working with bits
 	 * on an array of values. All functionality is piped directly to the
-	 * ValueShortExtension whenever possible. 
+	 * ValueUShortExtension whenever possible. 
 	 *
 	 * Since Arrays are a reference type, some functions will not return 
 	 * anything and will modify the array value directly.
@@ -15,7 +15,7 @@
 	 * If performing benchmarks, ensure that the flags are not taken into account.
 	 * The flags ensure that common problems are caught in code and taken care of.
 	 */
-	public static class ValueShortArrayExtensions {
+	public static class ValueUShortArrayExtensions {
 		const int BIT_LEN = 16;
 		const int BYTE_LEN = BIT_LEN / 8;
 		
@@ -23,20 +23,20 @@
 		 * Return the state of the bit (either 1 or 0) at provided
 		 * position. position value must be between [0, data.Length * 16]
 		 */
-		public static int BitAt(this short[] data, int pos) {
+		public static int BitAt(this ushort[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0) {
-					BitDebug.Exception("short[].BitAt(int) - bit position must not be less than 0 was " + pos);
+					BitDebug.Exception("ushort[].BitAt(int) - bit position must not be less than 0 was " + pos);
 				}
 				
 				if (data == null) {
-					BitDebug.Exception("short[].BitAt(int) - array is null");
+					BitDebug.Exception("ushort[].BitAt(int) - array is null");
 				}
 				
 				if (bitIndex > data.Length) {
-					BitDebug.Exception("short[].BitAt(int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
+					BitDebug.Exception("ushort[].BitAt(int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
 				}
 			#endif
 			
@@ -48,20 +48,20 @@
 		 * Return the inverted state of the bit (either 1 or 0) at provided
 		 * position. position value must be between [0, data.Length * 16]
 		 */
-		public static int BitInvAt(this short[] data, int pos) {
+		public static int BitInvAt(this ushort[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0) {
-					BitDebug.Exception("short[].BitInvAt(int) - bit position must not be less than 0 was " + pos);
+					BitDebug.Exception("ushort[].BitInvAt(int) - bit position must not be less than 0 was " + pos);
 				}
 				
 				if (data == null) {
-					BitDebug.Exception("short[].BitInvAt(int) - array is null");
+					BitDebug.Exception("ushort[].BitInvAt(int) - array is null");
 				}
 				
 				if (bitIndex > data.Length) {
-					BitDebug.Exception("short[].BitInvAt(int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
+					BitDebug.Exception("ushort[].BitInvAt(int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
 				}
 			#endif
 			
@@ -73,20 +73,20 @@
 		 * Sets the state of the bit into the ON/1 at provided
 		 * position. position value must be between [0, data.Length * 16]
 		 */
-		public static void SetBitAt(this short[] data, int pos) {
+		public static void SetBitAt(this ushort[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0) {
-					BitDebug.Exception("short[].SetBitAt(int) - bit position must not be less than 0 was " + pos);
+					BitDebug.Exception("ushort[].SetBitAt(int) - bit position must not be less than 0 was " + pos);
 				}
 				
 				if (data == null) {
-					BitDebug.Exception("short[].SetBitAt(int) - array is null");
+					BitDebug.Exception("ushort[].SetBitAt(int) - array is null");
 				}
 				
 				if (bitIndex > data.Length) {
-					BitDebug.Exception("short[].SetBitAt(int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
+					BitDebug.Exception("ushort[].SetBitAt(int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
 				}
 			#endif
 			
@@ -98,20 +98,20 @@
 		 * Sets the state of the bit into the OFF/0 at provided
 		 * position. position value must be between [0, data.Length * 16]
 		 */
-		public static void UnsetBitAt(this short[] data, int pos) {
+		public static void UnsetBitAt(this ushort[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0) {
-					BitDebug.Exception("short[].UnsetBitAt(int) - bit position must not be less than 0 was " + pos);
+					BitDebug.Exception("ushort[].UnsetBitAt(int) - bit position must not be less than 0 was " + pos);
 				}
 				
 				if (data == null) {
-					BitDebug.Exception("short[].UnsetBitAt(int) - array is null");
+					BitDebug.Exception("ushort[].UnsetBitAt(int) - array is null");
 				}
 				
 				if (bitIndex > data.Length) {
-					BitDebug.Exception("short[].UnsetBitAt(int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
+					BitDebug.Exception("ushort[].UnsetBitAt(int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
 				}
 			#endif
 			
@@ -123,20 +123,20 @@
 		 * Toggles the state of the bit into the ON/1 or OFF/0 at provided
 		 * position. position value must be between [0, data.Length * 16].
 		 */
-		public static void ToggleBitAt(this short[] data, int pos) {
+		public static void ToggleBitAt(this ushort[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0) {
-					BitDebug.Exception("short[].ToggleBitAt(int) - bit position must not be less than 0 was " + pos);
+					BitDebug.Exception("ushort[].ToggleBitAt(int) - bit position must not be less than 0 was " + pos);
 				}
 				
 				if (data == null) {
-					BitDebug.Exception("short[].ToggleBitAt(int) - array is null");
+					BitDebug.Exception("ushort[].ToggleBitAt(int) - array is null");
 				}
 				
 				if (bitIndex > data.Length) {
-					BitDebug.Exception("short[].ToggleBitAt(int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
+					BitDebug.Exception("ushort[].ToggleBitAt(int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
 				}
 			#endif
 			
@@ -148,20 +148,20 @@
 		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
 		 * position. position value must be between [0, data.Length * 16]
 		 */
-		public static void SetBit(this short[] data, int pos, int bit) {
+		public static void SetBit(this ushort[] data, int pos, int bit) {
 			int bitIndex = pos / BIT_LEN;
 			
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0) {
-					BitDebug.Exception("short[].SetBit(int, int) - bit position must not be less than 0 was " + pos);
+					BitDebug.Exception("ushort[].SetBit(int, int) - bit position must not be less than 0 was " + pos);
 				}
 				
 				if (data == null) {
-					BitDebug.Exception("short[].SetBit(int, int) - array is null");
+					BitDebug.Exception("ushort[].SetBit(int, int) - array is null");
 				}
 				
 				if (bitIndex > data.Length) {
-					BitDebug.Exception("short[].SetBit(int, int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
+					BitDebug.Exception("ushort[].SetBit(int, int) - bit bucket must not be greater than array " + data.Length + " was " + bitIndex);
 				}
 			#endif
 			
@@ -174,10 +174,10 @@
 		 * A general purpose Hamming Weight or popcount function which returns the number of
 		 * set bits in the argument.
 		 */
-		public static int PopCount(this short[] data) {
+		public static int PopCount(this ushort[] data) {
 			#if UNITY_EDITOR || DEBUG
 				if (data == null) {
-					BitDebug.Exception("short[].PopCount() - array is null");
+					BitDebug.Exception("ushort[].PopCount() - array is null");
 				}
 			#endif
 			
@@ -195,20 +195,20 @@
 		 * Returns the byte (8 bits) at provided position index
 		 * Position value must be between [0, data.Length * 2]
 		 */
-		public static byte ByteAt(this short[] data, int pos) {
+		public static byte ByteAt(this ushort[] data, int pos) {
 			int byteIndex = pos / BYTE_LEN;
 			
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0) {
-					BitDebug.Exception("short[].ByteAt(int) - byte position must not be less than 0 was " + pos);
+					BitDebug.Exception("ushort[].ByteAt(int) - byte position must not be less than 0 was " + pos);
 				}
 				
 				if (data == null) {
-					BitDebug.Exception("short[].ByteAt(int) - array is null");
+					BitDebug.Exception("ushort[].ByteAt(int) - array is null");
 				}
 				
 				if (byteIndex > data.Length) {
-					BitDebug.Exception("short[].ByteAt(int) - byte bucket must not be greater than array " + data.Length + " was " + byteIndex);
+					BitDebug.Exception("ushort[].ByteAt(int) - byte bucket must not be greater than array " + data.Length + " was " + byteIndex);
 				}
 			#endif
 			
@@ -219,20 +219,20 @@
 		 * Sets and returns the byte (8 bits) at provided position index
 		 * Position value must be between [0, data.Length]
 		 */
-		public static void SetByteAt(this short[] data, byte newData, int pos) {
+		public static void SetByteAt(this ushort[] data, byte newData, int pos) {
 			int byteIndex = pos / BYTE_LEN;
 			
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0) {
-					BitDebug.Exception("short[].SetByteAt(byte, int) - byte position must not be less than 0 was " + pos);
+					BitDebug.Exception("ushort[].SetByteAt(byte, int) - byte position must not be less than 0 was " + pos);
 				}
 				
 				if (data == null) {
-					BitDebug.Exception("short[].SetByteAt(byte, int) - array is null");
+					BitDebug.Exception("ushort[].SetByteAt(byte, int) - array is null");
 				}
 				
 				if (byteIndex > data.Length) {
-					BitDebug.Exception("short[].SetByteAt(byte, int) - byte bucket must not be greater than array " + data.Length + " was " + byteIndex);
+					BitDebug.Exception("ushort[].SetByteAt(byte, int) - byte bucket must not be greater than array " + data.Length + " was " + byteIndex);
 				}
 			#endif
 			

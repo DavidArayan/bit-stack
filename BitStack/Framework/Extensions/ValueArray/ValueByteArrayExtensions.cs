@@ -16,7 +16,7 @@
 	 * The flags ensure that common problems are caught in code and taken care of.
 	 */
 	public static class ValueByteArrayExtensions {
-		static readonly int BIT_LEN = 8;
+		const int BIT_LEN = 8;
 		
 		/**
 		 * Return the state of the bit (either 1 or 0) at provided
