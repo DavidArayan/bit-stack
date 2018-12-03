@@ -5,6 +5,13 @@
 	 * byte is an unsigned 8 bit value.
 	 *
 	 * For more info visit https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/byte
+	 *
+	 * NOTICE ABOUT PERFORMANCE
+	 * 
+	 * UNITY_EDITOR or DEBUG flags ensure that common errors are caught. These
+	 * flags are removed in production mode so don't rely on try/catch methods.
+	 * If performing benchmarks, ensure that the flags are not taken into account.
+	 * The flags ensure that common problems are caught in code and taken care of.
 	 */
 	public static class ValueByteExtensions {
 
