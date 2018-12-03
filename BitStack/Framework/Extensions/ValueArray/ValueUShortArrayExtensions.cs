@@ -170,7 +170,7 @@
 		}
 
 		/**
-		 * Count the number of set bits in the provided byte array (8 bits)
+		 * Count the number of set bits in the provided ushort array (16 bits)
 		 * A general purpose Hamming Weight or popcount function which returns the number of
 		 * set bits in the argument.
 		 */
@@ -217,7 +217,7 @@
 
 		/**
 		 * Sets and returns the byte (8 bits) at provided position index
-		 * Position value must be between [0, data.Length]
+		 * Position value must be between [0, data.Length * 2]
 		 */
 		public static void SetByteAt(this ushort[] data, byte newData, int pos) {
 			int byteIndex = pos / BYTE_LEN;

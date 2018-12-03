@@ -169,7 +169,7 @@
 		}
 
 		/**
-		 * Count the number of set bits in the provided byte array (8 bits)
+		 * Count the number of set bits in the provided sbyte array (8 bits)
 		 * A general purpose Hamming Weight or popcount function which returns the number of
 		 * set bits in the argument.
 		 */
