@@ -5,6 +5,7 @@ using System;
 
 public class ValueULongArrayTests {
 	const int BITS = 64;
+	const int BYTES = BITS / 8;
 	
 	static readonly ulong[] TEST_VALUE_ARRAY = {12893967776213, 
 												19667342348, 
@@ -14,34 +15,66 @@ public class ValueULongArrayTests {
 												24398874, 
 												276679832,
 												254453537345767};
-												
+	
+	// looper values
 	static readonly int LOOP_COUNT = BITS * TEST_VALUE_ARRAY.Length;
-	static readonly int LOOP_COUNT_BYTES = LOOP_COUNT / BITS;
+	static readonly int LOOP_COUNT_BYTES = BYTES * TEST_VALUE_ARRAY.Length;
+	
+	// the bit sequence of the above values as a linear array of 1 and 0
 	static readonly int[] EXPTECTED_BITS = CalcBits(TEST_VALUE_ARRAY);
 	
+	// inverted variant of current bytes
+	static readonly byte[] TEST_BYTES = CalcBytes(TEST_VALUE_ARRAY, true);
+	
+	// the expected byte sequence of the current values
+	static readonly byte[] EXPECTED_BYTES = CalcBytes(TEST_VALUE_ARRAY, false);
+
 	// NOTE -> This is Tested elsewhere and is assumed correct	
-	private static int[] CalcBits(ulong[] value) {
+	static int[] CalcBits(ulong[] value) {
 		int[] bits = new int[BITS * value.Length];
-		
+
 		int index = 0;
-		
+
 		for (int i = 0; i < value.Length; i++) {
 			for (int j = 0; j < BITS; j++) {
 				bits[index] = value[i].BitAt(j);
 				index++;
 			}
 		}
-		
+
 		return bits;
 	}
 	
 	// NOTE -> This is Tested elsewhere and is assumed correct	
-	private static ulong[] GetTestArray() {
-		ulong[] copyArray = new ulong[TEST_VALUE_ARRAY.Length];      
+	static byte[] CalcBytes(ulong[] value, bool invert) {
+		byte[] bytes = new byte[BYTES * value.Length];
+
+		int index = 0;
+
+		for (int i = 0; i < value.Length; i++) {
+			for (int j = 0; j < BYTES; j++) {
+				// flip/invert the byte
+				if (invert) {
+					bytes[index] = (byte)~(value[i].ByteAt(j));
+				}
+				else {
+					bytes[index] = value[i].ByteAt(j);
+				}
+				
+				index++;
+			}
+		}
+
+		return bytes;
+	}
+
+	// NOTE -> This is Tested elsewhere and is assumed correct	
+	static ulong[] GetTestArray() {
+		ulong[] copyArray = new ulong[TEST_VALUE_ARRAY.Length];
 		Array.Copy(TEST_VALUE_ARRAY, copyArray, TEST_VALUE_ARRAY.Length);
 		return copyArray;
 	}
-	
+
 	[Test]
 	public void Test_BitAt() {
 		ulong[] TEST_VALUE = GetTestArray();
@@ -146,6 +179,34 @@ public class ValueULongArrayTests {
 			
 			Debug.Assert(TEST_VALUE.BitAt(i) == EXPTECTED_BITS[i],
 							"Expected Toggle(" + inv + ") and InvTest(" + EXPTECTED_BITS[i] + ") to Match.");
+		}
+	}
+	
+	[Test]
+	public void Test_SetByteAt_ByteAt() {
+		ulong[] TEST_VALUE = GetTestArray();
+		
+		for (int i = 0; i < LOOP_COUNT_BYTES; i++) {
+			TEST_VALUE.SetByteAt(TEST_BYTES[i], i);
+			
+			byte value = TEST_VALUE.ByteAt(i);
+			
+			Debug.Assert(value == TEST_BYTES[i],
+							"Expected Byte(" + value + ") and Test(" + TEST_BYTES[i] + ") to Match.");
+							
+			TEST_VALUE.SetByteAt(EXPECTED_BYTES[i], i);
+			
+			value = TEST_VALUE.ByteAt(i);
+			
+			Debug.Assert(value == EXPECTED_BYTES[i],
+							"Expected Byte(" + value + ") and Test(" + EXPECTED_BYTES[i] + ") to Match.");
+		}
+		
+		// in the end, all values should match the original since we have inverted operations
+		// in the last test
+		for (int i = 0; i < TEST_VALUE.Length; i++) {
+			Debug.Assert(TEST_VALUE[i] == TEST_VALUE_ARRAY[i],
+							"Expected Value(" + TEST_VALUE[i] + ") and Test(" + TEST_VALUE_ARRAY[i] + ") to Match.");
 		}
 	}
 }

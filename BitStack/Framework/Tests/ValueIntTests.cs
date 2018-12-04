@@ -22,8 +22,6 @@ public class ValueIntTests {
 	// the expected bit sequence in array form
 	static readonly int[] EXPTECTED_BITS = { 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1 };
 	static readonly byte[] EXPECTED_BYTES = { 127, 246, 0, 187 };
-	
-	static readonly byte TEST_BYTE = 173;
 
 	[Test]
 	public void Test_BitAt() {
