@@ -1,4 +1,8 @@
-﻿#if NET_4_6
+﻿#if UNITY_EDITOR
+#define BITSTACK_DEBUG
+#endif
+
+#if NET_4_6
 using System.Runtime.CompilerServices;
 #endif
 
@@ -40,7 +44,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int BitAt(this sbyte data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 7) {
 					BitDebug.Exception("sbyte.BitAt(int) - position must be between 0 and 7 but was " + pos);
 				}
@@ -56,7 +60,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int BitInvAt(this sbyte data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 7) {
 					BitDebug.Exception("sbyte.BitInvAt(int) - position must be between 0 and 7 but was " + pos);
 				}
@@ -72,7 +76,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static sbyte SetBitAt(this sbyte data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 7) {
 					BitDebug.Exception("sbyte.SetBitAt(int) - position must be between 0 and 7 but was " + pos);
 				}
@@ -88,7 +92,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static sbyte UnsetBitAt(this sbyte data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 7) {
 					BitDebug.Exception("sbyte.UnsetBitAt(int) - position must be between 0 and 7 but was " + pos);
 				}
@@ -104,7 +108,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static sbyte ToggleBitAt(this sbyte data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 7) {
 					BitDebug.Exception("sbyte.ToggleBitAt(int) - position must be between 0 and 7 but was " + pos);
 				}
@@ -120,7 +124,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static sbyte SetBit(this sbyte data, int pos, int bit) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 7) {
 					BitDebug.Exception("sbyte.SetBit(int, int) - position must be between 0 and 7 but was " + pos);
 				}
@@ -166,7 +170,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static byte ByteAt(this sbyte data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos != 0) {
 					BitDebug.Exception("sbyte.ByteAt(int) - position must be between 0 and 0 but was " + pos);
 				}
@@ -182,7 +186,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static sbyte SetByteAt(this sbyte data, byte newData, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos != 0) {
 					BitDebug.Exception("sbyte.SetByteAt(int) - position must be between 0 and 0 but was " + pos);
 				}

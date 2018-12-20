@@ -1,4 +1,8 @@
-﻿#if NET_4_6
+﻿#if UNITY_EDITOR
+#define BITSTACK_DEBUG
+#endif
+
+#if NET_4_6
 using System.Runtime.CompilerServices;
 #endif
 
@@ -40,7 +44,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int BitAt(this int data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 31) {
 					BitDebug.Exception("int.BitAt(int) - position must be between 0 and 31 but was " + pos);
 				}
@@ -56,7 +60,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int BitInvAt(this int data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 31) {
 					BitDebug.Exception("int.BitInvAt(int) - position must be between 0 and 31 but was " + pos);
 				}
@@ -72,7 +76,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int SetBitAt(this int data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 31) {
 					BitDebug.Exception("int.SetBitAt(int) - position must be between 0 and 31 but was " + pos);
 				}
@@ -88,7 +92,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int UnsetBitAt(this int data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 31) {
 					BitDebug.Exception("int.UnsetBitAt(int) - position must be between 0 and 31 but was " + pos);
 				}
@@ -104,7 +108,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int ToggleBitAt(this int data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 31) {
 					BitDebug.Exception("int.ToggleBitAt(int) - position must be between 0 and 31 but was " + pos);
 				}
@@ -120,7 +124,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int SetBit(this int data, int pos, int bit) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 31) {
 					BitDebug.Exception("int.SetBit(int, int) - position must be between 0 and 31 but was " + pos);
 				}
@@ -166,7 +170,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static byte ByteAt(this int data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 3) {
 					BitDebug.Exception("int.ByteAt(int) - position must be between 0 and 3 but was " + pos);
 				}
@@ -182,7 +186,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int SetByteAt(this int data, byte newData, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 3) {
 					BitDebug.Exception("int.SetByteAt(int) - position must be between 0 and 3 but was " + pos);
 				}

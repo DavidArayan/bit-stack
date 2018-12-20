@@ -1,11 +1,15 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+#define BITSTACK_DEBUG
+#endif
+
+using System;
 
 #if NET_4_6
 using System.Runtime.CompilerServices;
 #endif
 
 namespace BitStack {
-	#if UNITY_EDITOR || DEBUG
+	#if BITSTACK_DEBUG
 	
 	public class BitDebug {
 		public const string DEBUG_ERR = "NOTICE: debug messages are only enabled in editor and debug mode, debug code is stripped in production builds.";

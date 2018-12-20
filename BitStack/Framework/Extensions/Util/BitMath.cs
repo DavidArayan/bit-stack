@@ -1,4 +1,8 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+#define BITSTACK_DEBUG
+#endif
+
+using System;
 
 #if NET_4_6
 using System.Runtime.CompilerServices;

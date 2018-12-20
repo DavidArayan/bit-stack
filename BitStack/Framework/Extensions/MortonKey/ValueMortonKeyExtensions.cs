@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+#define BITSTACK_DEBUG
+#endif
+
+using UnityEngine;
 
 #if NET_4_6
 using System.Runtime.CompilerServices;

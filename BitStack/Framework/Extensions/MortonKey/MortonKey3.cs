@@ -1,4 +1,8 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+#define BITSTACK_DEBUG
+#endif
+
+using System;
 using UnityEngine;
 
 namespace BitStack {
@@ -27,7 +31,7 @@ namespace BitStack {
 		}
 		
 		public MortonKey3(int mortonKey) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (mortonKey < 0) {
 					BitDebug.Exception("MortonKey3(int) - morton key must be positive");
 				}
@@ -37,7 +41,7 @@ namespace BitStack {
 		}
 		
 		public MortonKey3(uint x, uint y, uint z) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (x > 1024 || x < 0) {
 					BitDebug.Exception("MortonKey3(uint, uint, uint) - morton key x component must be between 0-1023 (10 bits), was " + x);
 				}
@@ -54,7 +58,7 @@ namespace BitStack {
 		}
 		
 		public MortonKey3(int x, int y, int z) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (x > 1024 || x < 0) {
 					BitDebug.Exception("MortonKey3(int, int, int) - morton key x component must be between 0-1023 (10 bits), was " + x);
 				}

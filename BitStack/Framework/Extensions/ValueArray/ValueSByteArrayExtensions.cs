@@ -1,4 +1,8 @@
-﻿#if NET_4_6
+﻿#if UNITY_EDITOR
+#define BITSTACK_DEBUG
+#endif
+
+#if NET_4_6
 using System.Runtime.CompilerServices;
 #endif
 
@@ -35,7 +39,7 @@ namespace BitStack {
 		public static int BitAt(this sbyte[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0) {
 					BitDebug.Exception("sbyte[].BitAt(int) - bit position must not be less than 0 was " + pos);
 				}
@@ -63,7 +67,7 @@ namespace BitStack {
 		public static int BitInvAt(this sbyte[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0) {
 					BitDebug.Exception("sbyte[].BitInvAt(int) - bit position must not be less than 0 was " + pos);
 				}
@@ -91,7 +95,7 @@ namespace BitStack {
 		public static void SetBitAt(this sbyte[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0) {
 					BitDebug.Exception("sbyte[].SetBitAt(int) - bit position must not be less than 0 was " + pos);
 				}
@@ -119,7 +123,7 @@ namespace BitStack {
 		public static void UnsetBitAt(this sbyte[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0) {
 					BitDebug.Exception("sbyte[].UnsetBitAt(int) - bit position must not be less than 0 was " + pos);
 				}
@@ -147,7 +151,7 @@ namespace BitStack {
 		public static void ToggleBitAt(this sbyte[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0) {
 					BitDebug.Exception("sbyte[].ToggleBitAt(int) - bit position must not be less than 0 was " + pos);
 				}
@@ -175,7 +179,7 @@ namespace BitStack {
 		public static void SetBit(this sbyte[] data, int pos, int bit) {
 			int bitIndex = pos / BIT_LEN;
 			
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0) {
 					BitDebug.Exception("sbyte[].SetBit(int, int) - bit position must not be less than 0 was " + pos);
 				}
@@ -202,7 +206,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int PopCount(this sbyte[] data) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (data == null) {
 					BitDebug.Exception("sbyte[].PopCount() - array is null");
 				}
@@ -226,7 +230,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static byte ByteAt(this sbyte[] data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0) {
 					BitDebug.Exception("sbyte[].ByteAt(int) - byte position must not be less than 0 was " + pos);
 				}
@@ -251,7 +255,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static void SetByteAt(this sbyte[] data, byte newData, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0) {
 					BitDebug.Exception("sbyte[].SetByteAt(byte, int) - byte position must not be less than 0 was " + pos);
 				}

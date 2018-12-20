@@ -1,4 +1,8 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+#define BITSTACK_DEBUG
+#endif
+
+using System;
 
 namespace BitStack {
 

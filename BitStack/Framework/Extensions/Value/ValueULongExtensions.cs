@@ -1,4 +1,8 @@
-﻿#if NET_4_6
+﻿#if UNITY_EDITOR
+#define BITSTACK_DEBUG
+#endif
+
+#if NET_4_6
 using System.Runtime.CompilerServices;
 #endif
 
@@ -40,7 +44,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int BitAt(this ulong data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 63) {
 					BitDebug.Exception("ulong.BitAt(int) - position must be between 0 and 63 but was " + pos);
 				}
@@ -56,7 +60,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int BitInvAt(this ulong data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 63) {
 					BitDebug.Exception("ulong.BitInvAt(int) - position must be between 0 and 63 but was " + pos);
 				}
@@ -72,7 +76,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong SetBitAt(this ulong data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 63) {
 					BitDebug.Exception("ulong.SetBitAt(int) - position must be between 0 and 63 but was " + pos);
 				}
@@ -88,7 +92,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong UnsetBitAt(this ulong data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 63) {
 					BitDebug.Exception("ulong.UnsetBitAt(int) - position must be between 0 and 63 but was " + pos);
 				}
@@ -104,7 +108,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong ToggleBitAt(this ulong data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 63) {
 					BitDebug.Exception("ulong.ToggleBitAt(int) - position must be between 0 and 63 but was " + pos);
 				}
@@ -120,7 +124,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong SetBit(this ulong data, int pos, long bit) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 63) {
 					BitDebug.Exception("ulong.SetBit(int, int) - position must be between 0 and 63 but was " + pos);
 				}
@@ -170,7 +174,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static byte ByteAt(this ulong data, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 7) {
 					BitDebug.Exception("ulong.ByteAt(int) - position must be between 0 and 7 but was " + pos);
 				}
@@ -186,7 +190,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong SetByteAt(this ulong data, byte newData, int pos) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if (pos < 0 || pos > 7) {
 					BitDebug.Exception("ulong.SetByteAt(int) - position must be between 0 and 7 but was " + pos);
 				}
@@ -226,7 +230,7 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong ULongFromBitString(this string data, int readIndex) {
-			#if UNITY_EDITOR || DEBUG
+			#if BITSTACK_DEBUG
 				if ((readIndex + 64) > data.Length) {
 					BitDebug.Exception("string.ULongFromBitString(int) - read index and ulong length is less than the string size");
 				}
