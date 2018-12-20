@@ -4,8 +4,8 @@
  * in older .NET versions. This acts as a simple polyfill to ensure all
  * scripts work in all versions of Unity.
  */
-namespace BitStack {
 #if !NET_4_6
+namespace BitStack {
 
 	/**
 	 * Represents a 1 component Tuple
@@ -82,6 +82,5 @@ namespace BitStack {
 		public I3 Item3 { get { return i3; } }
 		public I4 Item4 { get { return i4; } }
 	}
-
-#endif
 }
+#endif

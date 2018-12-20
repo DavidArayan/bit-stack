@@ -1,10 +1,17 @@
 ﻿using System;
 
+#if NET_4_6
+using System.Runtime.CompilerServices;
+#endif
+
 namespace BitStack {
 
 	/**
 	 * Contains simple utility methods for dealing with decimal numbers. These are often
 	 * required for writing robust code to deal with precision loss for real time applications.
+	 *
+	 * CRITICAL CHANGES
+	 * 20/12/2018 - for .NET 4.6 targets, all functions are hinted to use AggressiveInlining
 	 */
 	public static class ValueDecimalExtensions {
 
@@ -15,6 +22,9 @@ namespace BitStack {
 		 * Perform a robust approximate equality test between two 32 bit
 		 * floating point numbers.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static bool IsEqual(this float a, float b) {
 #pragma warning disable RECS0018 // Comparison of floating point numbers with equality operator
 			var absA = Math.Abs(a);
@@ -41,6 +51,9 @@ namespace BitStack {
 		 * Perform a robust approximate equality test between two 64 bit
 		 * floating point numbers.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static bool IsEqual(this double a, double b) {
 #pragma warning disable RECS0018 // Comparison of floating point numbers with equality operator
 			var absA = Math.Abs(a);

@@ -1,4 +1,8 @@
-﻿namespace BitStack {
+﻿#if NET_4_6
+using System.Runtime.CompilerServices;
+#endif
+
+namespace BitStack {
 	
 	/**
 	 * An Extension of the ValueLongExtension which allows working with bits
@@ -14,6 +18,9 @@
 	 * flags are removed in production mode so don't rely on try/catch methods.
 	 * If performing benchmarks, ensure that the flags are not taken into account.
 	 * The flags ensure that common problems are caught in code and taken care of.
+	 *
+	 * CRITICAL CHANGES
+	 * 20/12/2018 - for .NET 4.6 targets, all functions are hinted to use AggressiveInlining
 	 */
 	public static class ValueLongArrayExtensions {
 		const int BIT_LEN = 64;
@@ -23,6 +30,9 @@
 		 * Return the state of the bit (either 1 or 0) at provided
 		 * position. position value must be between [0, data.Length * 64]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int BitAt(this long[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
@@ -48,6 +58,9 @@
 		 * Return the inverted state of the bit (either 1 or 0) at provided
 		 * position. position value must be between [0, data.Length * 64]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int BitInvAt(this long[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
@@ -73,6 +86,9 @@
 		 * Sets the state of the bit into the ON/1 at provided
 		 * position. position value must be between [0, data.Length * 64]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static void SetBitAt(this long[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
@@ -98,6 +114,9 @@
 		 * Sets the state of the bit into the OFF/0 at provided
 		 * position. position value must be between [0, data.Length * 64]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static void UnsetBitAt(this long[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
@@ -123,6 +142,9 @@
 		 * Toggles the state of the bit into the ON/1 or OFF/0 at provided
 		 * position. position value must be between [0, data.Length * 64].
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static void ToggleBitAt(this long[] data, int pos) {
 			int bitIndex = pos / BIT_LEN;
 			
@@ -148,6 +170,9 @@
 		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
 		 * position. position value must be between [0, data.Length * 64]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static void SetBit(this long[] data, int pos, int bit) {
 			int bitIndex = pos / BIT_LEN;
 			
@@ -174,6 +199,9 @@
 		 * A general purpose Hamming Weight or popcount function which returns the number of
 		 * set bits in the argument.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int PopCount(this long[] data) {
 			#if UNITY_EDITOR || DEBUG
 				if (data == null) {
@@ -195,6 +223,9 @@
 		 * Returns the byte (8 bits) at provided position index
 		 * Position value must be between [0, data.Length * 8]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static byte ByteAt(this long[] data, int pos) {
 			int byteIndex = pos / BYTE_LEN;
 			
@@ -219,6 +250,9 @@
 		 * Sets and returns the byte (8 bits) at provided position index
 		 * Position value must be between [0, data.Length * 8]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static void SetByteAt(this long[] data, byte newData, int pos) {
 			int byteIndex = pos / BYTE_LEN;
 			

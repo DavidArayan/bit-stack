@@ -1,4 +1,7 @@
-﻿
+﻿#if NET_4_6
+using System.Runtime.CompilerServices;
+#endif
+
 namespace BitStack {
 
 	/**
@@ -13,12 +16,18 @@ namespace BitStack {
 	 * flags are removed in production mode so don't rely on try/catch methods.
 	 * If performing benchmarks, ensure that the flags are not taken into account.
 	 * The flags ensure that common problems are caught in code and taken care of.
+	 *
+	 * CRITICAL CHANGES
+	 * 20/12/2018 - for .NET 4.6 targets, all functions are hinted to use AggressiveInlining
 	 */
 	public static class ValueIntExtensions {
 
 		/**
 		 * Simple method to get a simple true/false value from data
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static bool Bool(this int data) {
 			return data > 0;
 		}
@@ -27,6 +36,9 @@ namespace BitStack {
 		 * Return the state of the bit (either 1 or 0) at provided
 		 * position. position value must be between [0, 31]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int BitAt(this int data, int pos) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 31) {
@@ -40,6 +52,9 @@ namespace BitStack {
 		 * Return the inverted state of the bit (either 1 or 0) at provided
 		 * position. position value must be between [0, 31]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int BitInvAt(this int data, int pos) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 31) {
@@ -53,6 +68,9 @@ namespace BitStack {
 		 * Sets the state of the bit into the ON/1 at provided
 		 * position. position value must be between [0, 31]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int SetBitAt(this int data, int pos) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 31) {
@@ -66,6 +84,9 @@ namespace BitStack {
 		 * Sets the state of the bit into the OFF/0 at provided
 		 * position. position value must be between [0, 31]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int UnsetBitAt(this int data, int pos) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 31) {
@@ -79,6 +100,9 @@ namespace BitStack {
 		 * Toggles the state of the bit into the ON/1 or OFF/0 at provided
 		 * position. position value must be between [0, 31].
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int ToggleBitAt(this int data, int pos) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 31) {
@@ -92,6 +116,9 @@ namespace BitStack {
 		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
 		 * position. position value must be between [0, 31]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int SetBit(this int data, int pos, int bit) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 31) {
@@ -114,6 +141,9 @@ namespace BitStack {
 		 * A general purpose Hamming Weight or popcount function which returns the number of
 		 * set bits in the argument.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int PopCount(this int value) {
 			return ((uint)value).PopCount();
 		}
@@ -121,6 +151,9 @@ namespace BitStack {
 		/**
 		 * Checks if the provided value is a power of 2.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static bool IsPowerOfTwo(this int value) {
 			return value != 0 && (value & value - 1) == 0;
 		}
@@ -129,6 +162,9 @@ namespace BitStack {
 		 * Returns the byte (8 bits) at provided position index
 		 * Position value must be between [0, 3]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static byte ByteAt(this int data, int pos) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 3) {
@@ -142,6 +178,9 @@ namespace BitStack {
 		 * Sets and returns the byte (8 bits) at provided position index
 		 * Position value must be between [0, 3]
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int SetByteAt(this int data, byte newData, int pos) {
 			#if UNITY_EDITOR || DEBUG
 				if (pos < 0 || pos > 3) {
@@ -160,6 +199,9 @@ namespace BitStack {
 		 * Returns the String representation of the Bit Sequence from the provided
 		 * Int. The String will contain 32 characters of 1 or 0 for each bit position
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static string BitString(this int value) {
 			return ((uint)value).BitString();
 		}
@@ -168,6 +210,9 @@ namespace BitStack {
 		 * Given a string in binary form ie (10110101) convert into
 		 * a byte and return. Will only look at the first 8 characters
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int IntFromBitString(this string data, int readIndex) {
 			return (int)data.UIntFromBitString(readIndex);
 		}
@@ -176,6 +221,9 @@ namespace BitStack {
 		 * Given a string in binary form ie (10110101) convert into
 		 * a byte and return. Will only look at the first 8 characters
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static int IntFromBitString(this string data) {
 			return data.IntFromBitString(0);
 		}
@@ -183,6 +231,9 @@ namespace BitStack {
 		/**
 		 * Returns the Hex Value as a String.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static string HexString(this int value) {
 			return value.ToString("X");
 		}

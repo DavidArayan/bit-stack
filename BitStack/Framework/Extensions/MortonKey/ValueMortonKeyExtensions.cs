@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+#if NET_4_6
+using System.Runtime.CompilerServices;
+#endif
+
 namespace BitStack {
 
 	/**
@@ -8,6 +12,9 @@ namespace BitStack {
 	 *
 	 * 2 component keys are 16 bits per component
 	 * 3 component keys are 10 bits per component
+	 *
+	 * CRITICAL CHANGES
+	 * 20/12/2018 - for .NET 4.6 targets, all functions are hinted to use AggressiveInlining
 	 */
 	public static class ValueMortonKeyExtensions {
 		public const uint MORTON_X3_MASK = 0x9249249;
@@ -31,6 +38,9 @@ namespace BitStack {
 		 * Maximum value of y component = 2^10 = 0-1023
 		 * Maximum value of z component = 2^10 = 0-1023
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonKey(this Vector3 vec) {
 			var _x = (uint)vec.x;
 			var _y = (uint)vec.y;
@@ -43,6 +53,9 @@ namespace BitStack {
 		 * Given a Morton Key previously encoded using a 3 component
 		 * Vector. Decode the key and return the original 3 component Vector.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static Vector3 DecodeMortonKey3(this uint mortonKey) {
 			var decodedKey = BitMath.DecodeMortonKey3(mortonKey);
 
@@ -58,6 +71,9 @@ namespace BitStack {
 		 * Maximum value of x component = 2^16 = 0-65535
 		 * Maximum value of y component = 2^16 = 0-65535
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonKey(this Vector2 vec) {
 			var _x = (uint)vec.x;
 			var _y = (uint)vec.y;
@@ -69,6 +85,9 @@ namespace BitStack {
 		 * Given a Morton Key previously encoded using a 2 component
 		 * Vector. Decode the key and return the original 2 component Vector.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static Vector2 DecodeMortonKey2(this uint mortonKey) {
 			var decodedKey = BitMath.DecodeMortonKey2(mortonKey);
 
@@ -80,6 +99,9 @@ namespace BitStack {
 		 * unit and return the value. This is much more efficient than
 		 * encoding/decoding for LUT operations.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonIncX3(this uint mortonKey) {
 			uint sum = (mortonKey | MORTON_YZ3_MASK) + 1;
 			return (sum & MORTON_X3_MASK) | (mortonKey & MORTON_YZ3_MASK);
@@ -90,6 +112,9 @@ namespace BitStack {
 		 * unit and return the value. This is much more efficient than
 		 * encoding/decoding for LUT operations.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonIncY3(this uint mortonKey) {
 			uint sum = (mortonKey | MORTON_XZ3_MASK) + 2;
 			return (sum & MORTON_Y3_MASK) | (mortonKey & MORTON_XZ3_MASK);
@@ -100,6 +125,9 @@ namespace BitStack {
 		 * unit and return the value. This is much more efficient than
 		 * encoding/decoding for LUT operations.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonIncZ3(this uint mortonKey) {
 			uint sum = (mortonKey | MORTON_XY3_MASK) + 1;
 			return (sum & MORTON_Z3_MASK) | (mortonKey & MORTON_XY3_MASK);
@@ -110,6 +138,9 @@ namespace BitStack {
 		 * unit and return the value. This is much more efficient than
 		 * encoding/decoding for LUT operations.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonDecX3(this uint mortonKey) {
 			uint diff = (mortonKey & MORTON_X3_MASK) - 1;
 			return (diff & MORTON_X3_MASK) | (mortonKey & MORTON_YZ3_MASK);
@@ -120,6 +151,9 @@ namespace BitStack {
 		 * unit and return the value. This is much more efficient than
 		 * encoding/decoding for LUT operations.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonDecY3(this uint mortonKey) {
 			uint diff = (mortonKey & MORTON_Y3_MASK) - 2;
 			return (diff & MORTON_Y3_MASK) | (mortonKey & MORTON_XZ3_MASK);
@@ -130,6 +164,9 @@ namespace BitStack {
 		 * unit and return the value. This is much more efficient than
 		 * encoding/decoding for LUT operations.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonDecZ3(this uint mortonKey) {
 			uint diff = (mortonKey & MORTON_Z3_MASK) - 1;
 			return (diff & MORTON_Z3_MASK) | (mortonKey & MORTON_XY3_MASK);
@@ -140,6 +177,9 @@ namespace BitStack {
 		 * unit and return the value. This is much more efficient than
 		 * encoding/decoding for LUT operations.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonIncX2(this uint mortonKey) {
 			uint sum = (mortonKey | MORTON_Y2_MASK) + 2;
 			return (sum & MORTON_X2_MASK) | (mortonKey & MORTON_Y2_MASK);
@@ -150,6 +190,9 @@ namespace BitStack {
 		 * unit and return the value. This is much more efficient than
 		 * encoding/decoding for LUT operations.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonIncY2(this uint mortonKey) {
 			uint sum = (mortonKey | MORTON_X2_MASK) + 1;
 			return (sum & MORTON_Y2_MASK) | (mortonKey & MORTON_X2_MASK);
@@ -160,6 +203,9 @@ namespace BitStack {
 		 * unit and return the value. This is much more efficient than
 		 * encoding/decoding for LUT operations.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonDecX2(this uint mortonKey) {
 			uint diff = (mortonKey & MORTON_X2_MASK) - 2;
 			return (diff & MORTON_X2_MASK) | (mortonKey & MORTON_Y2_MASK);
@@ -170,6 +216,9 @@ namespace BitStack {
 		 * unit and return the value. This is much more efficient than
 		 * encoding/decoding for LUT operations.
 		 */
+		#if NET_4_6
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
 		public static uint MortonDecY2(this uint mortonKey) {
 			uint diff = (mortonKey & MORTON_Y2_MASK) - 1;
 			return (diff & MORTON_Y2_MASK) | (mortonKey & MORTON_X2_MASK);
