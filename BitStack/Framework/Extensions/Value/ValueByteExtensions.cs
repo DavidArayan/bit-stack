@@ -259,5 +259,15 @@ namespace BitStack {
 		public static string HexString(this byte value) {
 			return value.ToString("X");
 		}
+		
+		/**
+		 * Reverse the Bit Sequence of the given value
+		 */
+		#if BITSTACK_METHOD_INLINE
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		#endif
+		public static byte ReverseBits(this byte value) {
+			return (byte)(((value * 0x80200802UL) & 0x0884422110UL) * 0x0101010101UL >> 32);
+		}
 	}
 }
