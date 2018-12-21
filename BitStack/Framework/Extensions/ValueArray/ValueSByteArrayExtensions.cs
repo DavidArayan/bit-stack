@@ -2,7 +2,11 @@
 #define BITSTACK_DEBUG
 #endif
 
-#if NET_4_6
+#if NET_4_6 && !BITSTACK_DISABLE_INLINE
+#define BITSTACK_METHOD_INLINE
+#endif
+
+#if BITSTACK_METHOD_INLINE
 using System.Runtime.CompilerServices;
 #endif
 
@@ -33,7 +37,7 @@ namespace BitStack {
 		 * Return the state of the bit (either 1 or 0) at provided
 		 * position. position value must be between [0, data.Length * 8]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int BitAt(this sbyte[] data, int pos) {
@@ -61,7 +65,7 @@ namespace BitStack {
 		 * Return the inverted state of the bit (either 1 or 0) at provided
 		 * position. position value must be between [0, data.Length * 8]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int BitInvAt(this sbyte[] data, int pos) {
@@ -89,7 +93,7 @@ namespace BitStack {
 		 * Sets the state of the bit into the ON/1 at provided
 		 * position. position value must be between [0, data.Length * 8]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static void SetBitAt(this sbyte[] data, int pos) {
@@ -117,7 +121,7 @@ namespace BitStack {
 		 * Sets the state of the bit into the OFF/0 at provided
 		 * position. position value must be between [0, data.Length * 8]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static void UnsetBitAt(this sbyte[] data, int pos) {
@@ -145,7 +149,7 @@ namespace BitStack {
 		 * Toggles the state of the bit into the ON/1 or OFF/0 at provided
 		 * position. position value must be between [0, data.Length * 8].
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static void ToggleBitAt(this sbyte[] data, int pos) {
@@ -173,7 +177,7 @@ namespace BitStack {
 		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
 		 * position. position value must be between [0, data.Length * 8]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static void SetBit(this sbyte[] data, int pos, int bit) {
@@ -202,7 +206,7 @@ namespace BitStack {
 		 * A general purpose Hamming Weight or popcount function which returns the number of
 		 * set bits in the argument.
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int PopCount(this sbyte[] data) {
@@ -226,7 +230,7 @@ namespace BitStack {
 		 * Returns the byte (8 bits) at provided position index
 		 * Position value must be between [0, data.Length]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static byte ByteAt(this sbyte[] data, int pos) {
@@ -251,7 +255,7 @@ namespace BitStack {
 		 * Sets and returns the byte (8 bits) at provided position index
 		 * Position value must be between [0, data.Length]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static void SetByteAt(this sbyte[] data, byte newData, int pos) {

@@ -2,9 +2,13 @@
 #define BITSTACK_DEBUG
 #endif
 
+#if NET_4_6 && !BITSTACK_DISABLE_INLINE
+#define BITSTACK_METHOD_INLINE
+#endif
+
 using System;
 
-#if NET_4_6
+#if BITSTACK_METHOD_INLINE
 using System.Runtime.CompilerServices;
 #endif
 
@@ -16,7 +20,7 @@ namespace BitStack {
 	 */
 	public sealed class BitMath {
 	
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static uint EncodeMortonKey(uint x, uint y, uint z) {
@@ -27,7 +31,7 @@ namespace BitStack {
 			return (cz << 2) + (cy << 1) + cx;
 		}
 
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ValueTuple<uint, uint, uint> DecodeMortonKey3(uint mortonKey) {
@@ -38,7 +42,7 @@ namespace BitStack {
 			return new ValueTuple<uint, uint, uint>(cx, cy, cz);
 		}
 
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static uint EncodeMortonKey(uint x, uint y) {
@@ -48,7 +52,7 @@ namespace BitStack {
 			return (cy << 1) + cx;
 		}
 
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ValueTuple<uint, uint> DecodeMortonKey2(uint mortonKey) {
@@ -58,7 +62,7 @@ namespace BitStack {
 			return new ValueTuple<uint, uint>(cx, cy);
 		}
 
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static uint MortonPart3Encode(uint n) {
@@ -72,7 +76,7 @@ namespace BitStack {
 			return n;
 		}
 
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static uint MortonPart3Decode(uint n) {
@@ -86,7 +90,7 @@ namespace BitStack {
 			return n;
 		}
 
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static uint MortonPart2Encode(uint n) {
@@ -100,7 +104,7 @@ namespace BitStack {
 			return n;
 		}
 		
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static uint MortonPart2Decode(uint n) {

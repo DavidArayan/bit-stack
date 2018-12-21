@@ -2,9 +2,13 @@
 #define BITSTACK_DEBUG
 #endif
 
+#if NET_4_6 && !BITSTACK_DISABLE_INLINE
+#define BITSTACK_METHOD_INLINE
+#endif
+
 using System;
 
-#if NET_4_6
+#if BITSTACK_METHOD_INLINE
 using System.Runtime.CompilerServices;
 #endif
 
@@ -26,7 +30,7 @@ namespace BitStack {
 		 * Perform a robust approximate equality test between two 32 bit
 		 * floating point numbers.
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static bool IsEqual(this float a, float b) {
@@ -55,7 +59,7 @@ namespace BitStack {
 		 * Perform a robust approximate equality test between two 64 bit
 		 * floating point numbers.
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static bool IsEqual(this double a, double b) {

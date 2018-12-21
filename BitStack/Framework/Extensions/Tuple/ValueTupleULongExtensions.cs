@@ -2,6 +2,10 @@
 #define BITSTACK_DEBUG
 #endif
 
+#if NET_4_6 && !BITSTACK_DISABLE_INLINE
+#define BITSTACK_METHOD_INLINE
+#endif
+
 using System;
 
 namespace BitStack {

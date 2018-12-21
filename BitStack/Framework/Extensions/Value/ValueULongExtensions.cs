@@ -2,7 +2,11 @@
 #define BITSTACK_DEBUG
 #endif
 
-#if NET_4_6
+#if NET_4_6 && !BITSTACK_DISABLE_INLINE
+#define BITSTACK_METHOD_INLINE
+#endif
+
+#if BITSTACK_METHOD_INLINE
 using System.Runtime.CompilerServices;
 #endif
 
@@ -29,7 +33,7 @@ namespace BitStack {
 		/**
 		 * Simple method to get a simple true/false value from data
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static bool Bool(this ulong data) {
@@ -40,7 +44,7 @@ namespace BitStack {
 		 * Return the state of the bit (either 1 or 0) at provided
 		 * position. position value must be between [0, 63]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int BitAt(this ulong data, int pos) {
@@ -56,7 +60,7 @@ namespace BitStack {
 		 * Return the inverted state of the bit (either 1 or 0) at provided
 		 * position. position value must be between [0, 63]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int BitInvAt(this ulong data, int pos) {
@@ -72,7 +76,7 @@ namespace BitStack {
 		 * Sets the state of the bit into the ON/1 at provided
 		 * position. position value must be between [0, 63]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong SetBitAt(this ulong data, int pos) {
@@ -88,7 +92,7 @@ namespace BitStack {
 		 * Sets the state of the bit into the OFF/0 at provided
 		 * position. position value must be between [0, 63]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong UnsetBitAt(this ulong data, int pos) {
@@ -104,7 +108,7 @@ namespace BitStack {
 		 * Toggles the state of the bit into the ON/1 or OFF/0 at provided
 		 * position. position value must be between [0, 63].
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong ToggleBitAt(this ulong data, int pos) {
@@ -120,7 +124,7 @@ namespace BitStack {
 		 * Sets the state of the bit into the OFF/0 or ON/1 at provided
 		 * position. position value must be between [0, 63]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong SetBit(this ulong data, int pos, long bit) {
@@ -145,7 +149,7 @@ namespace BitStack {
 		 * A general purpose Hamming Weight or popcount function which returns the number of
 		 * set bits in the argument.
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int PopCount(this ulong value) {
@@ -159,7 +163,7 @@ namespace BitStack {
 		/**
 		 * Checks if the provided value is a power of 2.
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static bool IsPowerOfTwo(this ulong value) {
@@ -170,7 +174,7 @@ namespace BitStack {
 		 * Returns the byte (8 bits) at provided position index
 		 * Position value must be between [0, 7]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static byte ByteAt(this ulong data, int pos) {
@@ -186,7 +190,7 @@ namespace BitStack {
 		 * Sets and returns the byte (8 bits) at provided position index
 		 * Position value must be between [0, 3]
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong SetByteAt(this ulong data, byte newData, int pos) {
@@ -207,7 +211,7 @@ namespace BitStack {
 		 * Returns the String representation of the Bit Sequence from the provided
 		 * Long. The String will contain 64 characters of 1 or 0 for each bit position
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static string BitString(this ulong value) {
@@ -226,7 +230,7 @@ namespace BitStack {
 		 * Given a string in binary form ie (10110101) convert into
 		 * a byte and return. Will only look at the first 8 characters
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong ULongFromBitString(this string data, int readIndex) {
@@ -248,7 +252,7 @@ namespace BitStack {
 		 * Given a string in binary form ie (10110101) convert into
 		 * a byte and return. Will only look at the first 8 characters
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static ulong ULongFromBitString(this string data) {
@@ -258,7 +262,7 @@ namespace BitStack {
 		/**
 		 * Returns the Hex Value as a String.
 		 */
-		#if NET_4_6
+		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static string HexString(this ulong value) {
