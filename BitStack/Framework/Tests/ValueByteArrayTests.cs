@@ -3,7 +3,7 @@ using NUnit.Framework;
 using BitStack;
 using System;
 
-public class ValueByteArrayTests {
+public sealed class ValueByteArrayTests {
 	const int BITS = 8;
 	const int BYTES = BITS / 8;
 	
@@ -69,91 +69,83 @@ public class ValueByteArrayTests {
 	}
 
 	[Test]
-	public void Test_BitAt() {
+	public static void Test_BitAt() {
 		byte[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			int bit = TEST_VALUE.BitAt(i);
 			
-			Debug.Assert(bit == EXPTECTED_BITS[i], 
-							"Expected Bit(" + bit + ") at Index(" + i + ") to be " + EXPTECTED_BITS[i]);
+			Debug.Assert(bit == EXPTECTED_BITS[i], "Expected Bit(" + bit + ") at Index(" + i + ") to be " + EXPTECTED_BITS[i]);
 		}
 	}
 	
 	[Test]
-	public void Test_BitInvAt() {
+	public static void Test_BitInvAt() {
 		byte[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			int bit = TEST_VALUE.BitInvAt(i);
 			
-			Debug.Assert(TEST_VALUE.BitInvAt(i) != EXPTECTED_BITS[i], 
-							"Expected Bit(" + bit + ") at Index(" + i + ") not to be " + EXPTECTED_BITS[i]);
+			Debug.Assert(TEST_VALUE.BitInvAt(i) != EXPTECTED_BITS[i], "Expected Bit(" + bit + ") at Index(" + i + ") not to be " + EXPTECTED_BITS[i]);
 		}
 	}
 
 	[Test]
-	public void Test_SetBitAt() {
+	public static void Test_SetBitAt() {
 		byte[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			TEST_VALUE.SetBitAt(i);
 			
-			Debug.Assert(TEST_VALUE.BitAt(i) == 1,
-						 "Expected Bit Position(" + i + ") to be 1");
+			Debug.Assert(TEST_VALUE.BitAt(i) == 1, "Expected Bit Position(" + i + ") to be 1");
 		}
 	}
 
 	[Test]
-	public void Test_UnsetBitAt() {
+	public static void Test_UnsetBitAt() {
 		byte[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			TEST_VALUE.UnsetBitAt(i);
 			
-			Debug.Assert(TEST_VALUE.BitAt(i) == 0,
-						 "Expected Bit Position(" + i + ") to be 0");
+			Debug.Assert(TEST_VALUE.BitAt(i) == 0, "Expected Bit Position(" + i + ") to be 0");
 		}
 	}
 	
 	[Test]
-	public void Test_SetBit() {
+	public static void Test_SetBit() {
 		byte[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			TEST_VALUE.SetBit(i, 0);
 			
-			Debug.Assert(TEST_VALUE.BitAt(i) == 0,
-						 "Expected Bit Position(" + i + ") to be 0");
+			Debug.Assert(TEST_VALUE.BitAt(i) == 0, "Expected Bit Position(" + i + ") to be 0");
 						 
 			TEST_VALUE.SetBit(i, 1);
 						 
-			Debug.Assert(TEST_VALUE.BitAt(i) == 1,
-						 "Expected Bit Position(" + i + ") to be 1");
+			Debug.Assert(TEST_VALUE.BitAt(i) == 1, "Expected Bit Position(" + i + ") to be 1");
 		}
 	}
 	
 	[Test]
-	public void Test_SetUnsetBit() {
+	public static void Test_SetUnsetBit() {
 		byte[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
 			TEST_VALUE.SetBit(i, 0);
 			TEST_VALUE.SetBit(i, 1);
 			
-			Debug.Assert(TEST_VALUE.BitAt(i) == 1,
-						 "Expected Bit Position(" + i + ") to be 1");
+			Debug.Assert(TEST_VALUE.BitAt(i) == 1, "Expected Bit Position(" + i + ") to be 1");
 						 
 			TEST_VALUE.SetBit(i, 1);
 			TEST_VALUE.SetBit(i, 0);
 						 
-			Debug.Assert(TEST_VALUE.BitAt(i) == 0,
-						 "Expected Bit Position(" + i + ") to be 0");
+			Debug.Assert(TEST_VALUE.BitAt(i) == 0, "Expected Bit Position(" + i + ") to be 0");
 		}
 	}
 
 	[Test]
-	public void Test_ToggleBitAt() {
+	public static void Test_ToggleBitAt() {
 		byte[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
@@ -161,8 +153,7 @@ public class ValueByteArrayTests {
 			
 			int inv = TEST_VALUE.BitAt(i);
 			
-			Debug.Assert(TEST_VALUE.BitAt(i) != EXPTECTED_BITS[i],
-							"Expected Toggle(" + inv + ") and InvTest(" + EXPTECTED_BITS[i] + ") to not Match.");
+			Debug.Assert(TEST_VALUE.BitAt(i) != EXPTECTED_BITS[i], "Expected Toggle(" + inv + ") and InvTest(" + EXPTECTED_BITS[i] + ") to not Match.");
 		}
 		
 		for (int i = 0; i < LOOP_COUNT; i++) {
@@ -170,13 +161,12 @@ public class ValueByteArrayTests {
 			
 			int inv = TEST_VALUE.BitAt(i);
 			
-			Debug.Assert(TEST_VALUE.BitAt(i) == EXPTECTED_BITS[i],
-							"Expected Toggle(" + inv + ") and InvTest(" + EXPTECTED_BITS[i] + ") to Match.");
+			Debug.Assert(TEST_VALUE.BitAt(i) == EXPTECTED_BITS[i], "Expected Toggle(" + inv + ") and InvTest(" + EXPTECTED_BITS[i] + ") to Match.");
 		}
 	}
 	
 	[Test]
-	public void Test_SetByteAt_ByteAt() {
+	public static void Test_SetByteAt_ByteAt() {
 		byte[] TEST_VALUE = GetTestArray();
 		
 		for (int i = 0; i < LOOP_COUNT_BYTES; i++) {
@@ -184,22 +174,19 @@ public class ValueByteArrayTests {
 			
 			byte value = TEST_VALUE.ByteAt(i);
 			
-			Debug.Assert(value == TEST_BYTES[i],
-							"Expected Byte(" + value + ") and Test(" + TEST_BYTES[i] + ") to Match.");
+			Debug.Assert(value == TEST_BYTES[i], "Expected Byte(" + value + ") and Test(" + TEST_BYTES[i] + ") to Match.");
 							
 			TEST_VALUE.SetByteAt(EXPECTED_BYTES[i], i);
 			
 			value = TEST_VALUE.ByteAt(i);
 			
-			Debug.Assert(value == EXPECTED_BYTES[i],
-							"Expected Byte(" + value + ") and Test(" + EXPECTED_BYTES[i] + ") to Match.");
+			Debug.Assert(value == EXPECTED_BYTES[i], "Expected Byte(" + value + ") and Test(" + EXPECTED_BYTES[i] + ") to Match.");
 		}
 		
 		// in the end, all values should match the original since we have inverted operations
 		// in the last test
 		for (int i = 0; i < TEST_VALUE.Length; i++) {
-			Debug.Assert(TEST_VALUE[i] == TEST_VALUE_ARRAY[i],
-							"Expected Value(" + TEST_VALUE[i] + ") and Test(" + TEST_VALUE_ARRAY[i] + ") to Match.");
+			Debug.Assert(TEST_VALUE[i] == TEST_VALUE_ARRAY[i], "Expected Value(" + TEST_VALUE[i] + ") and Test(" + TEST_VALUE_ARRAY[i] + ") to Match.");
 		}
 	}
 }

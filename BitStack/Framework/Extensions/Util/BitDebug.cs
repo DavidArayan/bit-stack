@@ -16,7 +16,7 @@ namespace BitStack {
 	#if BITSTACK_DEBUG
 	
 	public class BitDebug {
-		public const string DEBUG_ERR = "NOTICE: debug messages are only enabled in editor and debug mode, debug code is stripped in production builds.";
+		private const string DEBUG_ERR = "NOTICE: debug messages are only enabled in editor and debug mode, debug code is stripped in production builds.";
 
 		#if BITSTACK_METHOD_INLINE
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
