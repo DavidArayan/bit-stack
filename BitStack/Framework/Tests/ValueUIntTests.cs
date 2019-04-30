@@ -6,7 +6,7 @@ using BitStack;
  * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
  * related to the uint data type (unsigned int, 32 bits)
  */
-public sealed class ValueUIntTests {
+public static sealed class ValueUIntTests {
 
 	static readonly uint TEST_VALUE = 7623190; // 00000000011101000101001000010110
 	static readonly string TEST_VALUE_STR = "00000000011101000101001000010110";

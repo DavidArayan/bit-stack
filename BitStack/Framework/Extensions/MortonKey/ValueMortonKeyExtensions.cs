@@ -24,7 +24,7 @@ namespace BitStack {
 	 * CRITICAL CHANGES
 	 * 20/12/2018 - for .NET 4.6 targets, all functions are hinted to use AggressiveInlining
 	 */
-	public static class ValueMortonKeyExtensions {
+	public static sealed class ValueMortonKeyExtensions {
 		public static readonly uint MORTON_X3_MASK = 0x9249249;
 		public static readonly uint MORTON_Y3_MASK = 0x12492492;
 		public static readonly uint MORTON_Z3_MASK = 0x24924924;

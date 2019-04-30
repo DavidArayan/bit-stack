@@ -2,31 +2,31 @@
   <img src="Graphics/icon.png?raw=true" alt="BitStack Logo" width="600">
 </h3>
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/577417c2e74242e290b1abeec1b89c2e)](https://app.codacy.com/app/DavidArayan/bit-stack?utm_source=github.com&utm_medium=referral&utm_content=DavidArayan/bit-stack&utm_campaign=Badge_Grade_Settings)
 [![Twitter: @DavidArayan](https://img.shields.io/badge/contact-DavidArayan-blue.svg?style=flat)](https://twitter.com/DavidArayan)
 [![Join the chat at https://gitter.im/ezyframeworks/bitstack](https://img.shields.io/badge/chat-gitter/bitstack-green.svg?style=flat)](https://gitter.im/ezyframeworks/bitstack)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat)](LICENSE)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/577417c2e74242e290b1abeec1b89c2e)](https://app.codacy.com/app/DavidArayan/bit-stack?utm_source=github.com&utm_medium=referral&utm_content=DavidArayan/bit-stack&utm_campaign=Badge_Grade_Settings)
 
 _BitStack_ when you need to manipulate bits but can't be bothered learning about it all. Easy of use, stability and open source.
 
-***
+* * *
 
 #### Open Source Bit Manipulation Framework for the Unity3D Game Engine
 
-* Uses extension methods for ease of use
-* Unit [Tests](BitStack/Framework/Tests) written for all functionality, ensuring stability
-* Supports signed and unsigned operations on byte, short, int and long
-* Flexible and Documented API
-* No external plugin dependencies, fully written in C#
-* Updated for Unity3D 2018
-* MIT Open Source [License](LICENSE)
+-   Uses extension methods for ease of use
+-   Unit [Tests](BitStack/Framework/Tests) written for all functionality, ensuring stability
+-   Supports signed and unsigned operations on byte, short, int and long
+-   Flexible and Documented API
+-   No external plugin dependencies, fully written in C#
+-   Updated for Unity3D 2018
+-   MIT Open Source [License](LICENSE)
 
 #### Contributions and Bug Reports
 
-* Contributions are always welcome and highly appreciated! please use Pull Request
-* Bugs, Comments, General Enquiries and Feature Requests please use the Issue Tracker
+-   Contributions are always welcome and highly appreciated! please use Pull Request
+-   Bugs, Comments, General Enquiries and Feature Requests please use the Issue Tracker
 
-***
+* * *
 
 #### Basic Usage Example
 
@@ -92,7 +92,7 @@ byte toggles8 = 0;
 
 #### Basic Extension Methods
 
-* _value.SetBitAt(int bitPosition)_ Sets the bit at the provided bit position to the ON/1 State. Example.
+-   _value.SetBitAt(int bitPosition)_ Sets the bit at the provided bit position to the ON/1 State. Example.
 
 ```C#
 // can be long, uint, int, ushort, short, sbyte or byte
@@ -102,7 +102,7 @@ ulong value = 0;
 value = value.SetBitAt(5);
 ```
 
-* _value.UnsetBitAt(int bitPosition)_ Unset the bit at the provided bit position to the OFF/0 State. Example.
+-   _value.UnsetBitAt(int bitPosition)_ Unset the bit at the provided bit position to the OFF/0 State. Example.
 
 ```C#
 // can be long, uint, int, ushort, short, sbyte or byte
@@ -112,7 +112,7 @@ ulong value = 0;
 value = value.UnsetBitAt(5);
 ```
 
-* _value.ToggleBitAt(int bitPosition)_ Toggles the bit at the provided bit position.
+-   _value.ToggleBitAt(int bitPosition)_ Toggles the bit at the provided bit position.
 
 ```C#
 // can be long, uint, int, ushort, short, sbyte or byte
@@ -128,7 +128,7 @@ val = val.ToggleBitAt(5);
 val = val.ToggleBitAt(5);
 ```
 
-* _value.BitAt(int bitPosition)_ Returns the current state of the bit at the provided bit position.
+-   _value.BitAt(int bitPosition)_ Returns the current state of the bit at the provided bit position.
 
 ```C#
 // can be long, uint, int, ushort, short, sbyte or byte
@@ -147,7 +147,7 @@ val = val.UnsetBitAt(5);
 print(val.BitAt(5)); // prints 0
 ```
 
-* _value.Bool()_ Returns true if the value is greater than 0, otherwise returns false. Can be used as a simple convenience function.
+-   _value.Bool()_ Returns true if the value is greater than 0, otherwise returns false. Can be used as a simple convenience function.
 
 ```C#
 // can be long, uint, int, ushort, short, sbyte or byte
@@ -160,7 +160,7 @@ val = val.UnsetBitAt(5);
 print(val.BitAt(5).Bool()); // prints false
 ```
 
-* _value.PopCount()_ Returns the number of bits which have been set to the ON/1 State. The result can be used to derive how many bits are in the OFF/0 State.
+-   _value.PopCount()_ Returns the number of bits which have been set to the ON/1 State. The result can be used to derive how many bits are in the OFF/0 State.
 
 ```C#
 // can be long, uint, int, ushort, short, sbyte or byte
@@ -173,14 +173,14 @@ val = val.UnsetBitAt(5).UnsetBitAt(17).SetBitAt(23);
 print(val.PopCount()); // prints 1
 ```
 
-* _value.IsPowerOfTwo()_ Returns true if the provided value is actually a power of 2, otherwise returns false.
+-   _value.IsPowerOfTwo()_ Returns true if the provided value is actually a power of 2, otherwise returns false.
 
 ```C#
 print(256.IsPowerOfTwo()) // prints true
 print(127.IsPowerOfTwo()) // prints false
 ```
 
-* _value.BitString()_ Returns the bit sequence of the provided value as a String. This is useful for debugging purposes or if visual observation of the bit sequence is required. The length of the String will vary depending on the bit length of the value. For example, a long value will return 64 character String whilst an int value will return 32 characters.
+-   _value.BitString()_ Returns the bit sequence of the provided value as a String. This is useful for debugging purposes or if visual observation of the bit sequence is required. The length of the String will vary depending on the bit length of the value. For example, a long value will return 64 character String whilst an int value will return 32 characters.
 
 ```C#
 byte val = 0;
@@ -194,7 +194,7 @@ The advanced extension methods allows proper splitting/combining of value types 
 
 The basic Split() methods will split values into smaller bits and Combine() will merge them back up. The Split method will return a Tuple with multiple values.
 
-* _value.SplitIntoByte()_ Splits the provided value into it's byte representation. The number of bytes returned depends on the value.
+-   _value.SplitIntoByte()_ Splits the provided value into it's byte representation. The number of bytes returned depends on the value.
 
 ```C#
 int val = 42;
@@ -216,7 +216,7 @@ print(combinedValue); // prints 42
 
 The following _Split_ options are available for the various value types
 
-* long and ulong (64 bits)
+-   long and ulong (64 bits)
 
 ```C#
 long val = 42; // long or ulong
@@ -229,7 +229,7 @@ val.SplitIntoInt();			// (int, int)
 val.SplitIntoUInt();		// (uint, uint)
 ```
 
-* int and uint (32 bits)
+-   int and uint (32 bits)
 
 ```C#
 int val = 42; // int or uint
@@ -240,7 +240,7 @@ val.SplitIntoShort();		// (short, short)
 val.SplitIntoUShort();		// (ushort, ushort)
 ```
 
-* short and ushort (16 bits)
+-   short and ushort (16 bits)
 
 ```C#
 short val = 42; // short or ushort

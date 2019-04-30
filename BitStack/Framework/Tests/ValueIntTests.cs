@@ -12,7 +12,7 @@ using BitStack;
  * 
  * Always run unit tests for correctness whenever the core functionality changes
  */
-public sealed class ValueIntTests {
+public static sealed class ValueIntTests {
 
 	static readonly int TEST_VALUE = -217623190; // 11110011000001110101010101101010
 	static readonly string TEST_VALUE_STR = "11110011000001110101010101101010";

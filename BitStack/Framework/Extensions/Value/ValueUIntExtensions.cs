@@ -28,7 +28,7 @@ namespace BitStack {
 	 * CRITICAL CHANGES
 	 * 20/12/2018 - for .NET 4.6 targets, all functions are hinted to use AggressiveInlining
 	 */
-	public static class ValueUIntExtensions {
+	public static sealed class ValueUIntExtensions {
 
 		/**
 		 * Simple method to get a simple true/false value from data
@@ -153,10 +153,10 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int PopCount(this uint data) {
-			data = data - ((data >> 1) & 0x55555555);
-			data = (data & 0x33333333) + ((data >> 2) & 0x33333333);
+			uint data0 = data - ((data >> 1) & 0x55555555);
+			uint data1 = (data0 & 0x33333333) + ((data0 >> 2) & 0x33333333);
 
-			return (int)((((data + (data >> 4)) & 0x0F0F0F0F) * 0x01010101) >> 24);
+			return (int)((((data1 + (data1 >> 4)) & 0x0F0F0F0F) * 0x01010101) >> 24);
 		}
 
 		/**

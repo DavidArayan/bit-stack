@@ -11,7 +11,7 @@ namespace BitStack {
 	/**
 	 * Represents a 1 component Tuple
 	 */
-	public struct ValueTuple<I1> : IEquatable<ValueTuple<I1>> {
+	public struct ValueTuple<I1> : IEquatable<ValueTuple<I1>> where I1 : IEquatable<I1> {
 		readonly I1 i1;
 
         public ValueTuple(I1 item1) {
@@ -21,14 +21,14 @@ namespace BitStack {
         public I1 Item1 { get { return i1; } }
 
         public bool Equals(ValueTuple<I1> other) {
-			return i1 == other.Item1;
+			return i1.Equals(other.Item1);
 		}
     }
 
 	/**
 	 * Represents a 2 component Tuple
 	 */
-	public struct ValueTuple<I1, I2> : IEquatable<ValueTuple<I1, I2>> {
+	public struct ValueTuple<I1, I2> : IEquatable<ValueTuple<I1, I2>> where I1 : IEquatable<I1> where I2 : IEquatable<I2> {
 		readonly I1 i1;
 		readonly I2 i2;
 
@@ -41,14 +41,14 @@ namespace BitStack {
 		public I2 Item2 { get { return i2; } }
 
 		public bool Equals(ValueTuple<I1, I2> other) {
-			return other.Item1 == i1 && other.Item2 == i2;
+			return i1.Equals(other.Item1) && i2.Equals(other.Item2);
 		}
 	}
 
 	/**
 	 * Represents a 3 component Tuple
 	 */
-	public struct ValueTuple<I1, I2, I3> : IEquatable<ValueTuple<I1, I2, I3>> {
+	public struct ValueTuple<I1, I2, I3> : IEquatable<ValueTuple<I1, I2, I3>> where I1 : IEquatable<I1> where I2 : IEquatable<I2> where I3 : IEquatable<I3> {
 		readonly I1 i1;
 		readonly I2 i2;
 		readonly I3 i3;
@@ -64,14 +64,14 @@ namespace BitStack {
 		public I3 Item3 { get { return i3; } }
 
 		public bool Equals(ValueTuple<I1, I2, I3> other) {
-			return other.Item1 == i1 && other.Item2 == i2 && other.Item3 == i3;
+			return i1.Equals(other.Item1) && i2.Equals(other.Item2) && i3.Equals(other.Item3);
 		}
 	}
 
 	/**
 	 * Represents a 4 component Tuple
 	 */
-	public struct ValueTuple<I1, I2, I3, I4> : IEquatable<ValueTuple<I1, I2, I3, I4>> {
+	public struct ValueTuple<I1, I2, I3, I4> : IEquatable<ValueTuple<I1, I2, I3, I4>> where I1 : IEquatable<I1> where I2 : IEquatable<I2> where I3 : IEquatable<I3> where I4 : IEquatable<I4> {
 		readonly I1 i1;
 		readonly I2 i2;
 		readonly I3 i3;
@@ -90,7 +90,7 @@ namespace BitStack {
 		public I4 Item4 { get { return i4; } }
 
 		public bool Equals(ValueTuple<I1, I2, I3, I4> other) {
-			return other.Item1 == i1 && other.Item2 == i2 && other.Item3 == i3 && other.Item4 == i4;
+			return i1.Equals(other.Item1) && i2.Equals(other.Item2) && i3.Equals(other.Item3) && i4.Equals(other.Item4);
 		}
 	}
 }

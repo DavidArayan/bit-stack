@@ -6,7 +6,7 @@ using BitStack;
  * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
  * related to the short data type (signed short, 16 bits)
  */
-public sealed class ValueShortTests {
+public static sealed class ValueShortTests {
 
 	static readonly short TEST_VALUE = -29897; // 1000101100110111
 	static readonly string TEST_VALUE_STR = "1000101100110111";

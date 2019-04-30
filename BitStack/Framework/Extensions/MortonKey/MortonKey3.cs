@@ -215,6 +215,20 @@ namespace BitStack {
 			
 			return new MortonKey3(_key);
 		}
+
+		public uint Mod(uint modulo) {
+			return mortonKey % modulo; 
+		}
+
+		public uint Mask(uint mask) {
+			#if BITSTACK_DEBUG
+				if (!mask.IsPowerOfTwo()) {
+					BitDebug.Exception("MortonKey3.Mask(uint) - provided mask must be a power of 2");
+				}
+			#endif
+
+			return mortonKey & mask;
+		}
 		
 		/**
 		 * Overrides - MortonKey3(1,2,3) + MortonKey3(4,5,6) = MortonKey3(5,7,9)

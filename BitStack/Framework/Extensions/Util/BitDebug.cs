@@ -12,10 +12,9 @@ using System;
 using System.Runtime.CompilerServices;
 #endif
 
+#if BITSTACK_DEBUG
 namespace BitStack {
-	#if BITSTACK_DEBUG
-	
-	public class BitDebug {
+	public static sealed class BitDebug {
 		private const string DEBUG_ERR = "NOTICE: debug messages are only enabled in editor and debug mode, debug code is stripped in production builds.";
 
 		#if BITSTACK_METHOD_INLINE
@@ -25,6 +24,5 @@ namespace BitStack {
 			throw new Exception(data + "\n" + DEBUG_ERR);
 		}
 	}
-	
-	#endif
 }
+#endif

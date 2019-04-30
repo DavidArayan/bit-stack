@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using BitStack;
 
-public sealed class ValueMortonKeyTests {
+public static sealed class ValueMortonKeyTests {
 
 	[Test]
 	public static void Test_MortonKeyEncodeZero() {

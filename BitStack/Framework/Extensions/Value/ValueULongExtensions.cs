@@ -153,11 +153,11 @@ namespace BitStack {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		#endif
 		public static int PopCount(this ulong value) {
-			value -= (value >> 1) & 0x5555555555555555;
-			value = (value & 0x3333333333333333) + ((value >> 2) & 0x3333333333333333);
-			value = (value + (value >> 4)) & 0x0f0f0f0f0f0f0f0f;
+			ulong value0 = value - (value >> 1) & 0x5555555555555555;
+			ulong value1 = (value0 & 0x3333333333333333) + ((value0 >> 2) & 0x3333333333333333);
+			ulong value2 = (value1 + (value1 >> 4)) & 0x0f0f0f0f0f0f0f0f;
 
-			return (int)((value * 0x0101010101010101) >> 56);
+			return (int)((value2 * 0x0101010101010101) >> 56);
 		}
 
 		/**

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using BitStack;
 using System;
 
-public sealed class ValueULongArrayTests {
+public static sealed class ValueULongArrayTests {
 	const int BITS = 64;
 	const int BYTES = BITS / 8;
 	

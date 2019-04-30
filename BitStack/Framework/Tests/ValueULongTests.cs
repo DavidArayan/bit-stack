@@ -6,7 +6,7 @@ using BitStack;
  * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
  * related to the ulong data type (unsigned long, 64 bits)
  */
-public sealed class ValueULongTests {
+public static sealed class ValueULongTests {
 
 	static readonly ulong TEST_VALUE = 47520971873972742; // 0000000010101000110101000001001001110111111011011111001000000110
 	static readonly string TEST_VALUE_STR = "0000000010101000110101000001001001110111111011011111001000000110";
