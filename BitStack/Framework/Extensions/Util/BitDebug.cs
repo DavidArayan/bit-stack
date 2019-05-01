@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+#if UNITY_EDITOR
 #define BITSTACK_DEBUG
 #endif
 
@@ -14,15 +14,15 @@ using System.Runtime.CompilerServices;
 
 #if BITSTACK_DEBUG
 namespace BitStack {
-	public static sealed class BitDebug {
-		private const string DEBUG_ERR = "NOTICE: debug messages are only enabled in editor and debug mode, debug code is stripped in production builds.";
+    public static sealed class BitDebug {
+        private const string DEBUG_ERR = "NOTICE: debug messages are only enabled in editor and debug mode, debug code is stripped in production builds.";
 
-		#if BITSTACK_METHOD_INLINE
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		#endif
-		public static void Exception(string data) {
-			throw new Exception(data + "\n" + DEBUG_ERR);
-		}
-	}
+#if BITSTACK_METHOD_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void Exception(string data) {
+            throw new Exception(data + "\n" + DEBUG_ERR);
+        }
+    }
 }
 #endif

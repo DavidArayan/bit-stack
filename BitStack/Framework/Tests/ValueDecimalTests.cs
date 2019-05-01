@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using NUnit.Framework;
 using BitStack;
+using NUnit.Framework;
+using UnityEngine;
 
 /**
  * Comparison of Float (32 bit) and Double (64 bit) values is often tricky due
@@ -8,62 +8,62 @@ using BitStack;
  * comparison operations work properly.
  */
 public static sealed class ValueDecimalTests {
-	static readonly float FLOAT_SMALL_POSITIVE = float.Epsilon;
-	static readonly float FLOAT_SMALL_NEGATIVE = -float.Epsilon;
-	static readonly float FLOAT_ZERO;
+    static readonly float FLOAT_SMALL_POSITIVE = float.Epsilon;
+    static readonly float FLOAT_SMALL_NEGATIVE = -float.Epsilon;
+    static readonly float FLOAT_ZERO;
 
-	static readonly double DOUBLE_SMALL_POSITIVE = double.Epsilon;
-	static readonly double DOUBLE_SMALL_NEGATIVE = -double.Epsilon;
-	static readonly double DOUBLE_ZERO;
+    static readonly double DOUBLE_SMALL_POSITIVE = double.Epsilon;
+    static readonly double DOUBLE_SMALL_NEGATIVE = -double.Epsilon;
+    static readonly double DOUBLE_ZERO;
 
-	[Test]
-	public static void Test_FloatEqualTolerance() {
-		var test = 0.0f;
+    [Test]
+    public static void Test_FloatEqualTolerance() {
+        var test = 0.0f;
 
-		Debug.Assert(test.IsEqual(FLOAT_ZERO), "Expected Test(" + test + ") to be Equal to Float(" + FLOAT_ZERO + ")");
-		Debug.Assert(test.IsEqual(FLOAT_SMALL_POSITIVE), "Expected Test(" + test + ") to be Equal to Float(" + FLOAT_SMALL_POSITIVE + ")");
-		Debug.Assert(test.IsEqual(FLOAT_SMALL_NEGATIVE), "Expected Test(" + test + ") to be Equal to Float(" + FLOAT_SMALL_NEGATIVE + ")");
-	}
+        Debug.Assert(test.IsEqual(FLOAT_ZERO), "Expected Test(" + test + ") to be Equal to Float(" + FLOAT_ZERO + ")");
+        Debug.Assert(test.IsEqual(FLOAT_SMALL_POSITIVE), "Expected Test(" + test + ") to be Equal to Float(" + FLOAT_SMALL_POSITIVE + ")");
+        Debug.Assert(test.IsEqual(FLOAT_SMALL_NEGATIVE), "Expected Test(" + test + ") to be Equal to Float(" + FLOAT_SMALL_NEGATIVE + ")");
+    }
 
-	[Test]
-	public static void Test_FloatUnequalTolerance() {
-		var test = 0.000001f;
+    [Test]
+    public static void Test_FloatUnequalTolerance() {
+        var test = 0.000001f;
 
-		Debug.Assert(!test.IsEqual(FLOAT_ZERO),
-					 "Expected Test(" + test + ") to be Unqual to Float(" + FLOAT_ZERO + ")");
+        Debug.Assert(!test.IsEqual(FLOAT_ZERO),
+            "Expected Test(" + test + ") to be Unqual to Float(" + FLOAT_ZERO + ")");
 
-		Debug.Assert(!test.IsEqual(FLOAT_SMALL_POSITIVE),
-					 "Expected Test(" + test + ") to be Unqual to Float(" + FLOAT_SMALL_POSITIVE + ")");
+        Debug.Assert(!test.IsEqual(FLOAT_SMALL_POSITIVE),
+            "Expected Test(" + test + ") to be Unqual to Float(" + FLOAT_SMALL_POSITIVE + ")");
 
-		Debug.Assert(!test.IsEqual(FLOAT_SMALL_NEGATIVE),
-					 "Expected Test(" + test + ") to be Unqual to Float(" + FLOAT_SMALL_NEGATIVE + ")");
-	}
+        Debug.Assert(!test.IsEqual(FLOAT_SMALL_NEGATIVE),
+            "Expected Test(" + test + ") to be Unqual to Float(" + FLOAT_SMALL_NEGATIVE + ")");
+    }
 
-	[Test]
-	public static void Test_DoubleEqualTolerance() {
-		var test = 0.0;
+    [Test]
+    public static void Test_DoubleEqualTolerance() {
+        var test = 0.0;
 
-		Debug.Assert(test.IsEqual(DOUBLE_ZERO),
-					 "Expected Test(" + test + ") to be Equal to Double(" + DOUBLE_ZERO + ")");
+        Debug.Assert(test.IsEqual(DOUBLE_ZERO),
+            "Expected Test(" + test + ") to be Equal to Double(" + DOUBLE_ZERO + ")");
 
-		Debug.Assert(test.IsEqual(DOUBLE_SMALL_POSITIVE),
-					 "Expected Test(" + test + ") to be Equal to Double(" + DOUBLE_SMALL_POSITIVE + ")");
+        Debug.Assert(test.IsEqual(DOUBLE_SMALL_POSITIVE),
+            "Expected Test(" + test + ") to be Equal to Double(" + DOUBLE_SMALL_POSITIVE + ")");
 
-		Debug.Assert(test.IsEqual(DOUBLE_SMALL_NEGATIVE),
-					 "Expected Test(" + test + ") to be Equal to Double(" + DOUBLE_SMALL_NEGATIVE + ")");
-	}
+        Debug.Assert(test.IsEqual(DOUBLE_SMALL_NEGATIVE),
+            "Expected Test(" + test + ") to be Equal to Double(" + DOUBLE_SMALL_NEGATIVE + ")");
+    }
 
-	[Test]
-	public static void Test_DoubleUnequalTolerance() {
-		var test = 0.0000001;
+    [Test]
+    public static void Test_DoubleUnequalTolerance() {
+        var test = 0.0000001;
 
-		Debug.Assert(!test.IsEqual(DOUBLE_ZERO),
-					 "Expected Test(" + test + ") to be Unqual to Double(" + DOUBLE_ZERO + ")");
+        Debug.Assert(!test.IsEqual(DOUBLE_ZERO),
+            "Expected Test(" + test + ") to be Unqual to Double(" + DOUBLE_ZERO + ")");
 
-		Debug.Assert(!test.IsEqual(DOUBLE_SMALL_POSITIVE),
-					 "Expected Test(" + test + ") to be Unqual to Double(" + DOUBLE_SMALL_POSITIVE + ")");
+        Debug.Assert(!test.IsEqual(DOUBLE_SMALL_POSITIVE),
+            "Expected Test(" + test + ") to be Unqual to Double(" + DOUBLE_SMALL_POSITIVE + ")");
 
-		Debug.Assert(!test.IsEqual(DOUBLE_SMALL_NEGATIVE),
-					 "Expected Test(" + test + ") to be Unqual to Double(" + DOUBLE_SMALL_NEGATIVE + ")");
-	}
+        Debug.Assert(!test.IsEqual(DOUBLE_SMALL_NEGATIVE),
+            "Expected Test(" + test + ") to be Unqual to Double(" + DOUBLE_SMALL_NEGATIVE + ")");
+    }
 }
