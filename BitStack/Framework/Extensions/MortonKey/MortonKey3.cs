@@ -221,12 +221,6 @@ namespace BitStack {
         }
 
         public uint Mask(uint mask) {
-#if BITSTACK_DEBUG
-            if (!mask.IsPowerOfTwo()) {
-                BitDebug.Exception("MortonKey3.Mask(uint) - provided mask must be a power of 2");
-            }
-#endif
-
             return mortonKey & mask;
         }
 

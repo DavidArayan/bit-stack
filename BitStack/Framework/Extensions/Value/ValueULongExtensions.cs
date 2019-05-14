@@ -53,7 +53,7 @@ namespace BitStack {
                 BitDebug.Exception("ulong.BitAt(int) - position must be between 0 and 63 but was " + pos);
             }
 #endif
-            return (int) ((data >> pos) & 1 Lu);
+            return (int) ((data >> pos) & 1);
         }
 
         /**
@@ -69,7 +69,7 @@ namespace BitStack {
                 BitDebug.Exception("ulong.BitInvAt(int) - position must be between 0 and 63 but was " + pos);
             }
 #endif
-            return 1 - (int) ((data >> pos) & 1 Lu);
+            return 1 - (int) ((data >> pos) & 1ul);
         }
 
         /**
@@ -85,7 +85,7 @@ namespace BitStack {
                 BitDebug.Exception("ulong.SetBitAt(int) - position must be between 0 and 63 but was " + pos);
             }
 #endif
-            return (data | 1 Lu << pos);
+            return (data | 1ul << pos);
         }
 
         /**
@@ -101,7 +101,7 @@ namespace BitStack {
                 BitDebug.Exception("ulong.UnsetBitAt(int) - position must be between 0 and 63 but was " + pos);
             }
 #endif
-            return (data & ~(1 Lu << pos));
+            return (data & ~(1ul << pos));
         }
 
         /**
@@ -117,7 +117,7 @@ namespace BitStack {
                 BitDebug.Exception("ulong.ToggleBitAt(int) - position must be between 0 and 63 but was " + pos);
             }
 #endif
-            return data ^ (1 Lu << pos);
+            return data ^ (1ul << pos);
         }
 
         /**
@@ -137,7 +137,7 @@ namespace BitStack {
                 BitDebug.Exception("ulong.SetBit(int, int) - bit value must be either 0 or 1 but was " + bit);
             }
 #endif
-            ulong mask = 1 Lu << pos;
+            ulong mask = 1ul << pos;
             ulong m1 = ((ulong) bit << pos) & mask;
             ulong m2 = data & ~mask;
 
@@ -153,7 +153,7 @@ namespace BitStack {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static int PopCount(this ulong value) {
-            ulong value0 = value - (value >> 1) & 0x5555555555555555;
+            ulong value0 = value - ((value >> 1) & 0x5555555555555555);
             ulong value1 = (value0 & 0x3333333333333333) + ((value0 >> 2) & 0x3333333333333333);
             ulong value2 = (value1 + (value1 >> 4)) & 0x0f0f0f0f0f0f0f0f;
 

@@ -6,7 +6,7 @@ using UnityEngine;
  * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
  * related to the byte data type (unsigned byte, 8 bits)
  */
-public static sealed class ValueByteTests {
+public static class ValueByteTests {
 
     static readonly byte TEST_VALUE = 158; // 10011110
     static readonly string TEST_VALUE_STR = "10011110";

@@ -6,7 +6,7 @@ using UnityEngine;
  * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
  * related to the short data type (signed short, 16 bits)
  */
-public static sealed class ValueShortTests {
+public static class ValueShortTests {
 
     static readonly short TEST_VALUE = -29897; // 1000101100110111
     static readonly string TEST_VALUE_STR = "1000101100110111";

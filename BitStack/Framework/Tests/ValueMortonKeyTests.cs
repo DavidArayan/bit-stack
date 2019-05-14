@@ -2,7 +2,7 @@ using BitStack;
 using NUnit.Framework;
 using UnityEngine;
 
-public static sealed class ValueMortonKeyTests {
+public static class ValueMortonKeyTests {
 
     [Test]
     public static void Test_MortonKeyEncodeZero() {
@@ -82,7 +82,7 @@ public static sealed class ValueMortonKeyTests {
     }
 
     [Test]
-    public static oid Test_MortonKeyEncodeDecodeIncYZ() {
+    public static void Test_MortonKeyEncodeDecodeIncYZ() {
         for (int x = 4; x < 9; x++) {
             for (int y = 3; y < 10; y++) {
                 for (int z = 2; z < 11; z++) {

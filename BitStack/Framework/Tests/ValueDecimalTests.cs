@@ -7,7 +7,7 @@ using UnityEngine;
  * to precision loss. These Unit tests will execute tolerance tests to ensure that
  * comparison operations work properly.
  */
-public static sealed class ValueDecimalTests {
+public static class ValueDecimalTests {
     static readonly float FLOAT_SMALL_POSITIVE = float.Epsilon;
     static readonly float FLOAT_SMALL_NEGATIVE = -float.Epsilon;
     static readonly float FLOAT_ZERO;

@@ -18,7 +18,7 @@ namespace BitStack {
      * CRITICAL CHANGES
      * 20/12/2018 - for .NET 4.6 targets, all functions are hinted to use AggressiveInlining
      */
-    public static sealed class BitMath {
+    public static class BitMath {
 
 #if BITSTACK_METHOD_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

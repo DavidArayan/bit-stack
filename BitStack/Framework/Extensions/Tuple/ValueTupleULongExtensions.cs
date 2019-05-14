@@ -14,7 +14,7 @@ namespace BitStack {
      * Represents Extension methods for unsigned long value type for working
      * with Tuples.
      */
-    public static sealed class ValueTupleULongExtensions {
+    public static class ValueTupleULongExtensions {
 
         /**
          * Combine a 2 value signed int (32 bits per) into a set of unsigned long (64 bits x 1)

@@ -30,7 +30,7 @@ namespace BitStack {
      * CRITICAL CHANGES
      * 20/12/2018 - for .NET 4.6 targets, all functions are hinted to use AggressiveInlining
      */
-    public static sealed class ValueUIntArrayExtensions {
+    public static class ValueUIntArrayExtensions {
         const int BIT_LEN = 32;
         const int BYTE_LEN = BIT_LEN / 8;
 

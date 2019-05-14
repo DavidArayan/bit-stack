@@ -6,7 +6,7 @@ using UnityEngine;
  * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
  * related to the long data type (signed long, 64 bits)
  */
-public static sealed class ValueLongTests {
+public static class ValueLongTests {
 
     static readonly long TEST_VALUE = -396761530871789; // 1111111111111110100101110010010111000001111001000101000000010011
     static readonly string TEST_VALUE_STR = "1111111111111110100101110010010111000001111001000101000000010011";

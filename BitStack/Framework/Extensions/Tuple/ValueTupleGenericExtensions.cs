@@ -14,7 +14,7 @@ namespace BitStack {
      * Provides Generic Extension Methods for the System.ValueTuple which is used
      * throughout the stack 
      */
-    public static sealed class ValueTupleGenericExtensions {
+    public static class ValueTupleGenericExtensions {
 
         /**
          * Split a 4 component value tuple into 2 x 2 component value tuples.

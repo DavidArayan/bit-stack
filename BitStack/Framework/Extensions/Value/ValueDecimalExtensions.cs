@@ -21,7 +21,7 @@ namespace BitStack {
      * CRITICAL CHANGES
      * 20/12/2018 - for .NET 4.6 targets, all functions are hinted to use AggressiveInlining
      */
-    public static sealed class ValueDecimalExtensions {
+    public static class ValueDecimalExtensions {
 
         const float FLOAT_NORMAL = (1 << 23) * float.Epsilon;
         const double DOUBLE_NORMAL = (1L << 52) * double.Epsilon;

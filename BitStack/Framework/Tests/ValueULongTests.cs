@@ -6,7 +6,7 @@ using UnityEngine;
  * Unit Tests designed to be ran by the Unity Test Runner which tests functionality
  * related to the ulong data type (unsigned long, 64 bits)
  */
-public static sealed class ValueULongTests {
+public static class ValueULongTests {
 
     static readonly ulong TEST_VALUE = 47520971873972742; // 0000000010101000110101000001001001110111111011011111001000000110
     static readonly string TEST_VALUE_STR = "0000000010101000110101000001001001110111111011011111001000000110";
@@ -191,7 +191,7 @@ public static sealed class ValueULongTests {
     }
 
     [Test]
-    public void Test_SetByteAt() {
+    public static void Test_SetByteAt() {
         var tuple = TEST_VALUE.SplitIntoByte();
 
         byte[] test_data = { tuple.Item1.Item1, tuple.Item1.Item2, tuple.Item1.Item3, tuple.Item1.Item4, tuple.Item2.Item1, tuple.Item2.Item2, tuple.Item2.Item3, tuple.Item2.Item4 };
