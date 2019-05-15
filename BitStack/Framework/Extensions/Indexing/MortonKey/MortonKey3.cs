@@ -27,7 +27,7 @@ namespace BitStack {
      * If performing benchmarks, ensure that the flags are not taken into account.
      * The flags ensure that common problems are caught in code and taken care of.
      */
-    public struct MortonKey3 : IEquatable<MortonKey3>, IEquatable<uint>, IEquatable<Vector3> {
+    public struct MortonKey3 : IKeyIndex<MortonKey3>, IEquatable<MortonKey3>, IEquatable<uint>, IEquatable<Vector3>, IEquatable<IKeyIndex<MortonKey3>> {
         readonly uint mortonKey;
 
         public MortonKey3(uint mortonKey) {
@@ -277,6 +277,10 @@ namespace BitStack {
 
         public bool Equals(Vector3 other) {
             return mortonKey == other.MortonKey();
+        }
+
+        public bool Equals(IKeyIndex<MortonKey3> other) {
+            return mortonKey == other.key;
         }
 
         public MortonKey3 Copy() {
