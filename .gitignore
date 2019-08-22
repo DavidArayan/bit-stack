@@ -1,6 +1,8 @@
-
 BitStack/\.DS_Store
-
 \.DS_Store
-
 *.meta
+library/bin/
+library/obj/
+library-test/bin/
+library-test/obj/
+.vscode/
