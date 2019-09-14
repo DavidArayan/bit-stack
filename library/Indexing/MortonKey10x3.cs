@@ -18,21 +18,30 @@ using System;
 
 namespace CoreGDX.BitStack.Indexing {
     
-    /**
-     * Provides a Morton Key Indexing Structure that holds 10 bits
-     * of data for 3 internal components. Each component cannot be
-     * greater than 2^10 = 1024.
-     *
-     * Morton Keys can be used for Spatial Hashing or Indexing
-     * operations that provides good data locality.
-     *
-     * NOTE ABOUT PERFORMANCE
-     *
-     * When using DEBUG mode enabled, arguments will be checked for
-     * range validity however in Production Mode those checks will
-     * be stripped from binaries. Do NOT reply on try/catch methods
-     * to exit higher level code.
-     */
+    /// <summary>
+    /// Provides a 32 bit Morton Key Indexing Structure that holds 
+    /// 10 bits of data for 3 (x, y, z) internal components. Each 
+    /// component must be between range [0, 1023]
+    ///
+    /// NOTE ABOUT PERFORMANCE
+    ///
+    /// When using DEBUG mode enabled, arguments will be checked for
+    /// range validity, however in RELEASE mode those checks will
+    /// be stripped from binaries. Do NOT reply on try/catch methods
+    /// to exit higher level code.
+    /// </summary>
+    /// <remarks>
+    /// Morton Keys can be used for Spatial Hashing or Indexing
+    /// operations that provides good data locality.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// var key = new MortonKey10x3(10, 20, 30);
+    /// Console.WriteLine(key.X); // prints 10
+    /// Console.WriteLine(key.Y); // prints 20
+    /// Console.WriteLine(key.Z); // prints 30
+    /// </code>
+    /// </example>
     public readonly struct MortonKey10x3 :  ISpatialKey<uint>, 
                                             IEquatable<ISpatialKey<ulong>>,
                                             IEquatable<ISpatialKey<uint>>,
@@ -46,99 +55,109 @@ namespace CoreGDX.BitStack.Indexing {
         #region debug private constants
 #if BITSTACK_DEBUG
         private const String ClassName = "MortonKey10x3";
-        private const int MaxComponentValue = 1 >> 10;
+        private const int MaxComponentValue = (1 << 10) - 1;
         private const int MinComponentValue = 0;
         private const int MaxKeyValue = MaxComponentValue * MaxComponentValue * MaxComponentValue;
+        private const int MinKeyValue = 0;
 #endif
         #endregion
 
         #region runtime private constants
-        private const uint XMask = 0x9249249;
-        private const uint YMask = 0x12492492;
-        private const uint ZMask = 0x24924924;
+        private const uint XMask = 0b00001001001001001001001001001001;
+        private const uint YMask = 0b00010010010010010010010010010010;
+        private const uint ZMask = 0b00100100100100100100100100100100;
 
         private const uint XYMask = XMask | YMask;
         private const uint XZMask = XMask | ZMask;
         private const uint YZMask = YMask | ZMask;
         #endregion
 
-        private readonly uint key;
+        public uint Key { get; }
 
         #region constructors
         public MortonKey10x3(uint key) {
 #if BITSTACK_DEBUG
             if (key > MaxKeyValue) {
-                BitDebug.Exit(ClassName + "(uint) - argument (key) cannot be greater than " + MaxKeyValue + " but was " + key);
+                BitDebug.Exit($"{ClassName}(uint) - argument (key) cannot be greater than {MaxKeyValue} but was {key}");
             }
 #endif
-            this.key = key;
+
+            unchecked {
+                Key = key;
+            }
         }
 
         public MortonKey10x3(int key) {
 #if BITSTACK_DEBUG
-            if (key < MinComponentValue) {
-                BitDebug.Exit(ClassName + "(int) - argument (key) cannot be less than " + MinComponentValue + " but was " + key);
+            if (key < MinKeyValue) {
+                BitDebug.Exit($"{ClassName}(int) - argument (key) cannot be less than {MinKeyValue} but was {key}");
             }
 
             if (key > MaxKeyValue) {
-                BitDebug.Exit(ClassName + "(int) - argument (key) cannot be greater than " + MaxKeyValue + " but was " + key);
+                BitDebug.Exit($"{ClassName}(int) - argument (key) cannot be greater than {MaxKeyValue} but was {key}");
             }
 #endif
-            this.key = (uint) key;
+            unchecked {
+                Key = (uint) key;
+            }
         }
 
         public MortonKey10x3(uint x, uint y, uint z) {
 #if BITSTACK_DEBUG
             if (x > MaxComponentValue) {
-                BitDebug.Exit(ClassName + "(uint, uint, uint) - argument (x) cannot be greater than " + MaxComponentValue + " but was " + x);
+                BitDebug.Exit($"{ClassName}(uint, uint, uint) - argument (x) cannot be greater than {MaxComponentValue} but was {x}");
             }
 
             if (y > MaxComponentValue) {
-                BitDebug.Exit(ClassName + "(uint, uint, uint) - argument (y) cannot be greater than " + MaxComponentValue + " but was " + y);
+                BitDebug.Exit($"{ClassName}(uint, uint, uint) - argument (y) cannot be greater than {MaxComponentValue} but was {y}");
             }
 
             if (z > MaxComponentValue) {
-                BitDebug.Exit(ClassName + "(uint, uint, uint) - argument (z) cannot be greater than " + MaxComponentValue + " but was " + z);
+                BitDebug.Exit($"{ClassName}(uint, uint, uint) - argument (z) cannot be greater than {MaxComponentValue} but was {z}");
             }
 #endif
-            uint cx = MortonPartEncode(x);
-            uint cy = MortonPartEncode(y);
-            uint cz = MortonPartEncode(z);
+            uint cx = EncodeValue(x);
+            uint cy = EncodeValue(y);
+            uint cz = EncodeValue(z);
 
-            this.key = (cz << 2) + (cy << 1) + cx;
+            unchecked {
+                Key = (cz << 2) + (cy << 1) + cx;
+            }
         }
 
         public MortonKey10x3(int x, int y, int z) {
 #if BITSTACK_DEBUG
             if (x > MaxComponentValue) {
-                BitDebug.Exit(ClassName + "(int, int, int) - argument (x) cannot be greater than " + MaxComponentValue + " but was " + x);
+                BitDebug.Exit($"{ClassName}(int, int, int) - argument (x) cannot be greater than {MaxComponentValue} but was {x}");
             }
 
             if (x < MinComponentValue) {
-                BitDebug.Exit(ClassName + "(int, int, int) - argument (x) cannot be less than " + MinComponentValue + " but was " + x);
+                BitDebug.Exit($"{ClassName}(int, int, int) - argument (x) cannot be less than {MinComponentValue} but was {x}");
             }
 
             if (y > MaxComponentValue) {
-                BitDebug.Exit(ClassName + "(int, int, int) - argument (y) cannot be greater than " + MaxComponentValue + " but was " + y);
+                BitDebug.Exit($"{ClassName}(int, int, int) - argument (y) cannot be greater than {MaxComponentValue} but was {y}");
             }
 
             if (y < MinComponentValue) {
-                BitDebug.Exit(ClassName + "(int, int, int) - argument (y) cannot be less than " + MinComponentValue + " but was " + y);
+                BitDebug.Exit($"{ClassName}(int, int, int) - argument (y) cannot be less than {MinComponentValue} but was {y}");
             }
 
             if (z > MaxComponentValue) {
-                BitDebug.Exit(ClassName + "(int, int, int) - argument (z) cannot be greater than " + MaxComponentValue + " but was " + z);
+                BitDebug.Exit($"{ClassName}(int, int, int) - argument (z) cannot be greater than {MaxComponentValue} but was {z}");
             }
 
             if (z < MinComponentValue) {
-                BitDebug.Exit(ClassName + "(int, int, int) - argument (z) cannot be less than " + MinComponentValue + " but was " + z);
+                BitDebug.Exit($"{ClassName}(int, int, int) - argument (z) cannot be less than {MinComponentValue} but was {z}");
             }
 #endif
-            uint cx = MortonPartEncode((uint) x);
-            uint cy = MortonPartEncode((uint) y);
-            uint cz = MortonPartEncode((uint) z);
+            uint cx = EncodeValue((uint) x);
+            uint cy = EncodeValue((uint) y);
+            uint cz = EncodeValue((uint) z);
 
-            this.key = (cz << 2) + (cy << 1) + cx;
+            unchecked {
+                Key = (cz << 2) + (cy << 1) + cx;
+            }
         }
 
         #endregion
@@ -148,42 +167,37 @@ namespace CoreGDX.BitStack.Indexing {
 #if BITSTACK_METHOD_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static uint MortonPartEncode(uint n) {
-            uint n0 = n & 0x000003ff;
+        private static uint EncodeValue(uint n) {
+            unchecked {
+                // mask the maximum value
+                uint n0 = n & 0b00000000000000000000001111111111;
 
-            uint n1 = (n0 ^ (n0 << 16)) & 0xff0000ff;
-            uint n2 = (n1 ^ (n1 << 8)) & 0x0300f00f;
-            uint n3 = (n2 ^ (n2 << 4)) & 0x030c30c3;
-            uint n4 = (n3 ^ (n3 << 2)) & 0x09249249;
+                uint n1 = (n0 ^ (n0 << 16)) & 0b00111111000000000000000011111111;
+                uint n2 = (n1 ^ (n1 << 8))  & 0b00001111000000001111000000001111;
+                uint n3 = (n2 ^ (n2 << 4))  & 0b00000011000011000011000011000011;
+                uint n4 = (n3 ^ (n3 << 2))  & 0b00001001001001001001001001001001;
 
-            return n4;
+                return n4;
+            }
         }
 
 #if BITSTACK_METHOD_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static uint MortonPartDecode(uint n) {
-            uint n0 = n & 0x09249249;
+        private static uint DecodeValue(uint n) {
+            unchecked {
+                uint n0 = n & 0b00001001001001001001001001001001;
 
-            uint n1 = (n0 ^ (n0 >> 2)) & 0x030c30c3;
-            uint n2 = (n1 ^ (n1 >> 4)) & 0x0300f00f;
-            uint n3 = (n2 ^ (n2 >> 8)) & 0xff0000ff;
-            uint n4 = (n3 ^ (n3 >> 16)) & 0x000003ff;
+                uint n1 = (n0 ^ (n0 >> 2))  & 0b00000011000011000011000011000011;
+                uint n2 = (n1 ^ (n1 >> 4))  & 0b00001111000000001111000000001111;
+                uint n3 = (n2 ^ (n2 >> 8))  & 0b00111111000000000000000011111111;
+                uint n4 = (n3 ^ (n3 >> 16)) & 0b00000000000000000000001111111111;
 
-            return n4;
+                return n4;
+            }
         }
 
         #endregion
-
-        /**
-         * Grab the internal 32 bit unsigned key used to represent
-         * the current Morton Index.
-         */
-        public uint Key {
-            get {
-                return key;
-            }
-        }
 
         /**
          * Compute and return the X component of the Morton Key.
@@ -194,7 +208,7 @@ namespace CoreGDX.BitStack.Indexing {
          */
         public uint X {
             get {
-                return MortonPartDecode(key);
+                return DecodeValue(Key);
             }
         }
 
@@ -207,7 +221,7 @@ namespace CoreGDX.BitStack.Indexing {
          */
         public uint Y {
             get {
-                return MortonPartDecode(key >> 1);
+                return DecodeValue(Key >> 1);
             }
         }
 
@@ -220,62 +234,62 @@ namespace CoreGDX.BitStack.Indexing {
          */
         public uint Z {
             get {
-                return MortonPartDecode(key >> 2);
+                return DecodeValue(Key >> 2);
             }
         }
 
         #region implicit operator overloads
 
         public static implicit operator ulong(MortonKey10x3 key) {
-            return key.key;
+            return key.Key;
         }
 
         public static implicit operator long(MortonKey10x3 key) {
-            return key.key;
+            return key.Key;
         }
 
         public static implicit operator uint(MortonKey10x3 key) {
-            return key.key;
+            return key.Key;
         }
 
         public static implicit operator int(MortonKey10x3 key) {
-            return (int) key.key;
+            return (int) key.Key;
         }
 
         public static implicit operator ushort(MortonKey10x3 key) {
 #if BITSTACK_DEBUG
-            if (key.key > ushort.MaxValue) {
-                BitDebug.Exit(ClassName + " implicit cast to ushort - cannot assign value as key (" + key.key + ") is larger than ushort value of (" + ushort.MaxValue + ")");
+            if (key.Key > ushort.MaxValue) {
+                BitDebug.Exit($"(ushort){ClassName} implicit cast to ushort - cannot assign value as key ({key.Key}) is larger than ushort max value of ({ushort.MaxValue})");
             }
 #endif
-            return (ushort) key.key;
+            return (ushort) key.Key;
         }
 
         public static implicit operator short(MortonKey10x3 key) {
 #if BITSTACK_DEBUG
-            if (key.key > short.MaxValue) {
-                BitDebug.Exit(ClassName + " implicit cast to short - cannot assign value as key (" + key.key + ") is larger than short value of (" + short.MaxValue + ")");
+            if (key.Key > short.MaxValue) {
+                BitDebug.Exit($"(short){ClassName} implicit cast to short - cannot assign value as key ({key.Key}) is larger than short max value of ({short.MaxValue})");
             }
 #endif
-            return (short) key.key;
+            return (short) key.Key;
         }
 
         public static implicit operator byte(MortonKey10x3 key) {
 #if BITSTACK_DEBUG
-            if (key.key > byte.MaxValue) {
-                BitDebug.Exit(ClassName + " implicit cast to byte - cannot assign value as key " + key.key + " is larger than byte value of (" + byte.MaxValue + ")");
+            if (key.Key > byte.MaxValue) {
+                BitDebug.Exit($"(byte){ClassName} implicit cast to byte - cannot assign value as key ({key.Key}) is larger than byte max value of ({byte.MaxValue})");
             }
 #endif
-            return (byte) key.key;
+            return (byte) key.Key;
         }
 
         public static implicit operator sbyte(MortonKey10x3 key) {
 #if BITSTACK_DEBUG
-            if (key.key > sbyte.MaxValue) {
-                BitDebug.Exit(ClassName + " implicit cast to sbyte - cannot assign value as key (" + key.key + ") is larger than sbyte value of (" + sbyte.MaxValue + ")");
+            if (key.Key > sbyte.MaxValue) {
+                BitDebug.Exit($"(sbyte){ClassName} implicit cast to sbyte - cannot assign value as key ({key.Key}) is larger than sbyte max value of ({sbyte.MaxValue})");
             }
 #endif
-            return (sbyte) key.key;
+            return (sbyte) key.Key;
         }
 
         public static implicit operator ValueTuple<uint, uint, uint>(MortonKey10x3 key) {
@@ -313,8 +327,8 @@ namespace CoreGDX.BitStack.Indexing {
          * rules still apply.
          */
         public static MortonKey10x3 operator +(MortonKey10x3 x, MortonKey10x3 y) {
-            uint xKey = x.key;
-            uint yKey = y.key;
+            uint xKey = x.Key;
+            uint yKey = y.Key;
 
             uint sumX = (xKey | YZMask) + (yKey & XMask);
             uint sumY = (xKey | XZMask) + (yKey & YMask);
@@ -330,8 +344,8 @@ namespace CoreGDX.BitStack.Indexing {
          * rules still apply.
          */
         public static MortonKey10x3 operator -(MortonKey10x3 x, MortonKey10x3 y) {
-            uint xKey = x.key;
-            uint yKey = y.key;
+            uint xKey = x.Key;
+            uint yKey = y.Key;
 
             uint diffX = (xKey & XMask) - (yKey & XMask);
             uint diffY = (xKey & YMask) - (yKey & YMask);
@@ -344,41 +358,45 @@ namespace CoreGDX.BitStack.Indexing {
         #region equality implementation
 
         public bool Equals(ISpatialKey<ulong> other) {
-            return key == other.Key;
+            return X == other.X && Y == other.Y && Z == other.Z;
         }
 
         public bool Equals(ISpatialKey<uint> other) {
-            return key == other.Key;
+            return X == other.X && Y == other.Y && Z == other.Z;
         }
 
         public bool Equals(ISpatialKey<ushort> other) {
-            return key == other.Key;
+            return X == other.X && Y == other.Y && Z == other.Z;
         }
 
         public bool Equals(ISpatialKey<byte> other) {
-            return key == other.Key;
+            return X == other.X && Y == other.Y && Z == other.Z;
         }
 
         public bool Equals(MortonKey10x3 other) {
-            return key == other.key;
+            return Key == other.Key;
         }
 
         public bool Equals(ulong other) {
-            return key == (uint) other;
+            return Key == other;
         }
 
         public bool Equals(uint other) {
-            return key == other;
+            return Key == other;
         }
 
         public bool Equals(ushort other) {
-            return key == other;
+            return Key == other;
         }
 
         public bool Equals(byte other) {
-            return key == other;
+            return Key == other;
         }
 
         #endregion
+
+        public override int GetHashCode() {
+            return (int)Key;
+        }
     }
 }

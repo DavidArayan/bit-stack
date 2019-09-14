@@ -21,7 +21,7 @@ namespace CoreGDX.BitStack.Debug {
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
 		public static void Exit(string data) {
-			throw new Exception(data + "\n" + DebugErrorMessage);
+			throw new Exception($"{data} \n {DebugErrorMessage}");
 		}
 	}
 #endif

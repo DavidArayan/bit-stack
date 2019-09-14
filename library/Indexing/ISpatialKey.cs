@@ -6,8 +6,8 @@ namespace CoreGDX.BitStack.Indexing {
      */
     public interface ISpatialKey<T> where T : struct {
         T Key { get; }
-        uint X { get; }
-        uint Y { get; }
-        uint Z { get; }
+        T X { get; }
+        T Y { get; }
+        T Z { get; }
     }
 }
